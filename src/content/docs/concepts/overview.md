@@ -1,6 +1,9 @@
 ---
 title: Architectural Overview
 description: Design principles, core pillars, and ecosystem architecture for FAIRmorph.
+
+sidebar:
+  order: 1
 ---
 
 FAIRmorph provides a zero-friction, offline-first workflow for standardizing, validating, and publishing ecological observation data. 

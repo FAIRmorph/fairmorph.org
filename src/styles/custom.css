@@ -1,0 +1,13 @@
+* FAIRmorph Custom Starlight Styling */
+
+:root {
+  /* Optionale Anpassung von Akzentfarben für das Theme */
+  --sl-color-accent-low: #1e293b;
+  --sl-color-accent: #2563eb;
+  --sl-color-accent-high: #93c5fd;
+}
+
+/* Lesbarkeit im Codeblock optimieren */
+.expressive-code {
+  font-size: 0.9rem;
+}

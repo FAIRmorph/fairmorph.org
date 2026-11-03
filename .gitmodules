@@ -1,6 +1,0 @@
-[submodule "external/gui"]
-	path = external/gui
-	url = https://github.com/fairmorph/fairmorph-gui.git
-[submodule "external/engine"]
-	path = external/engine
-	url = https://github.com/fairmorph/fairmorph-engine.git

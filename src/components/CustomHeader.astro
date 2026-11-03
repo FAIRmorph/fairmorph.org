@@ -1,0 +1,64 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
+import Search from '@astrojs/starlight/components/Search.astro';
+import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+---
+
+<div class="header-container">
+  <div class="left-group">
+    <SiteTitle {...Astro.props} />
+    <nav class="nav-links">
+      <a href="/concepts/overview/">Overview</a>
+      <a href="/workbench/">Workbench</a>
+      <a href="/engine/">Engine</a>
+      <a href="/community/citation/">Citation</a>
+    </nav>
+  </div>
+  <div class="right-group">
+    <Search {...Astro.props} />
+    <SocialIcons {...Astro.props} />
+    <ThemeSelect {...Astro.props} />
+  </div>
+</div>
+
+<style>
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    gap: 1.5rem;
+  }
+  .left-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .nav-links {
+    display: none;
+    gap: 1.25rem;
+  }
+  @media (min-width: 50rem) {
+    .nav-links {
+      display: flex;
+    }
+  }
+  .nav-links a {
+    color: var(--sl-color-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--sl-text-sm);
+    transition: color 0.15s ease;
+  }
+  .nav-links a:hover {
+    color: var(--sl-color-accent-high);
+  }
+  .right-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+</style>

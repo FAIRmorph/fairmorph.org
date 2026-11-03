@@ -1,6 +1,9 @@
 ---
 title: Installation & Setup
 description: Current status and planned installation workflows for FAIRfield / FAIRmorph.
+
+sidebar:
+  order: 2
 ---
 
 :::caution[Development Status: Pre-Alpha]

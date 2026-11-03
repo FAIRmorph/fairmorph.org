@@ -3,14 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "sync": "node scripts/sync-docs.js",
-    "gen-engine": "python3 scripts/gen-engine-docs.py",
-    "gen-gui": "node scripts/gen-gui-docs.js",
-    "prepare-docs": "npm run sync && npm run gen-engine && npm run gen-gui",
-    "predev": "npm run prepare-docs",
-    "prebuild": "npm run prepare-docs",
-    "dev": "astro dev",
-    "build": "astro build",
+    "prepare-docs": "node scripts/ingest-remote-docs.mjs && python3 scripts/gen-engine-reference.py",
+    "dev": "npm run prepare-docs && astro dev",
+    "build": "npm run prepare-docs && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

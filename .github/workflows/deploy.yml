@@ -1,0 +1,78 @@
+name: Deploy Portal & Documentation
+
+on:
+  push:
+    branches: [ main ]
+  repository_dispatch:
+    types: [ docs-update ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Portal
+        uses: actions/checkout@v4
+
+      - name: Checkout fairmorph-engine
+        uses: actions/checkout@v4
+        with:
+          repository: fairmorph/fairmorph-engine
+          path: external/engine
+
+      - name: Checkout fairmorph-workbench
+        uses: actions/checkout@v4
+        with:
+          repository: fairmorph/fairmorph-workbench
+          path: external/workbench
+
+      - name: Setup Node (v22)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Setup Python (3.11)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Tools & Dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install ./external/engine typer pydoc-markdown
+          npm ci
+
+      - name: Ingest Markdown & Generate References
+        run: |
+          node scripts/ingest-remote-docs.mjs
+          python3 scripts/gen-engine-reference.py
+
+      - name: Build Astro Starlight Site
+        run: npm run build
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
