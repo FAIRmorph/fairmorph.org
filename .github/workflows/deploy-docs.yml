@@ -6,11 +6,6 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: [code-updated, docs-updated]
-  # Upstream repositories cannot use this repository's GITHUB_TOKEN.
-  # Poll all three public upstream main branches: new documentation is
-  # picked up automatically even if no cross-repo dispatch is configured.
-  schedule:
-    - cron: '17 * * * *'
 
 permissions:
   contents: read
