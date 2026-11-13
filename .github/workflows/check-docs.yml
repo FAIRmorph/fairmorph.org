@@ -126,6 +126,10 @@ jobs:
             const doc = fs.readFileSync(file, 'utf8');
             if (!doc.includes('Prototype Fund') || !doc.includes('not production')) throw new Error('Missing public prototype notice: ' + file);
           }
+          const fundDoc = fs.readFileSync('src/content/docs/guide/prototype-fund.md', 'utf8');
+          for (const phrase of ['## Offene Infrastruktur, Datenstandards und Frictionless', 'Frictionless ersetzt nicht die bestehende Transformations- und Audit-Engine', 'repository-neutraler RUN', 'Table Schemas', 'Frictionless-validierte Data Packages', 'wissenschaftliche Freigabe']) {
+            if (!fundDoc.includes(phrase)) throw new Error('FOSS architecture and Frictionless scope missing: ' + phrase);
+          }
           const homepage = fs.readFileSync('src/content/docs/index.mdx', 'utf8');
           if (!homepage.includes('Making ecological data FAIR') || !homepage.includes('guide/overview/')) throw new Error('Missing ecological FAIR hero/concept link');
           if (!homepage.includes("link: '#what-works-today'")) throw new Error('Second hero button must link to What works today');
