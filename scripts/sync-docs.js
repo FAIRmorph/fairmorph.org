@@ -70,7 +70,7 @@ function documentationUrl(source, relative, fragment = '') {
 }
 
 function titleFor(text, source, relative) {
-  if (relative === 'README.md') return source.label;
+  if (relative === 'README.md') return 'Overview';
   const heading = text.match(/^#\s+(.+)$/m)?.[1]?.trim();
   if (heading) return heading.replace(/\*\*/g, '').replace(/`/g, '');
   return path.posix.basename(relative, '.md').replace(/[-_]/g, ' ');
@@ -89,6 +89,15 @@ function updateLinks(text, relative, included, source) {
     const origin = source.url.replace(/\.git$/, '');
     return '](' + origin + '/blob/main/' + absolute + (fragment ? '#' + fragment : '') + ')';
   });
+}
+
+// Starlight renders the frontmatter title as the page's only <h1>.
+// Preserve H1 in the original GitHub Markdown; suppress just its mirrored copy.
+function removeDuplicateHeading(text) {
+  const frontmatter = text.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n/);
+  const prefix = frontmatter ? frontmatter[0] : '';
+  const body = text.slice(prefix.length);
+  return prefix + body.replace(/^(\s*)# [^\r\n]+\r?\n(?:\r?\n)?/, '$1');
 }
 
 function ensureFrontmatter(text, title, source, sha) {
@@ -119,8 +128,10 @@ for (const source of SOURCES) {
   for (const file of selected) {
     const output = path.join(destination, publishedPath(file));
     let text = fs.readFileSync(path.join(root, file), 'utf8');
+    const title = titleFor(text, source, file);
     text = updateLinks(text, file, included, source);
-    text = ensureFrontmatter(text, titleFor(text, source, file), source, sha);
+    text = removeDuplicateHeading(text);
+    text = ensureFrontmatter(text, title, source, sha);
     fs.ensureDirSync(path.dirname(output));
     fs.writeFileSync(output, text, 'utf8');
   }
