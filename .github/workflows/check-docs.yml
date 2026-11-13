@@ -96,7 +96,7 @@ jobs:
           walk('dist');
           for (const file of pages) {
             const html = fs.readFileSync(file, 'utf8');
-            const count = (html.match(/<h1(?:\\s|>)/gi) || []).length;
+            const count = (html.match(/<h1[ >]/gi) || []).length;
             if (count !== 1) throw new Error(file + ' has ' + count + ' H1 elements (expected exactly one)');
           }
           for (const section of ['engine', 'workbench', 'validations']) {
