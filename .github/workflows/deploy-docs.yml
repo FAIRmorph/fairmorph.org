@@ -1,10 +1,16 @@
-name: Deploy FAIRmorph Docs
+name: Deploy FAIRmorph documentation
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
   repository_dispatch:
-    types: [code-updated]
+    types: [code-updated, docs-updated]
+  # Upstream repositories cannot use this repository's GITHUB_TOKEN.
+  # Poll all three public upstream main branches: new documentation is
+  # picked up automatically even if no cross-repo dispatch is configured.
+  schedule:
+    - cron: '17 * * * *'
 
 permissions:
   contents: read
@@ -12,49 +18,42 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: fairmorph-docs-pages
   cancel-in-progress: true
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository with Submodules
+      - name: Checkout portal (legacy submodules not used)
         uses: actions/checkout@v4
         with:
-          submodules: recursive
+          submodules: false
 
-      - name: Setup Node (Node 24)
+      - name: Set up Node 24
         uses: actions/setup-node@v4
         with:
-          node-version: 24
-          cache: 'npm'
+          node-version: '24'
+          cache: npm
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      - name: Install site dependencies
+        run: npm ci
 
-      - name: Install Dependencies & Prepare Docs
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install --editable ./external/engine || pip install ./external/engine
-          pip install pydoc-markdown
-          npm ci || npm install
-          npm run prepare-docs
+      - name: Build site and fetch latest documentation from all repositories
+        # prebuild -> prepare-docs -> sync-docs.js clones/fetches each upstream main
+        run: npm run build
 
-      - name: Build Astro Docs Site
-        run: |
-          npm run build
+      - name: Record upstream source commits
+        run: cat .docs-upstream/revisions.json
 
-      - name: Upload Artifacts
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: ./dist
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
