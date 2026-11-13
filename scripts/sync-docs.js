@@ -62,7 +62,8 @@ function publishedPath(relative) {
 // README.md and index.md both represent their containing directory's index.
 function documentationUrl(source, relative, fragment = '') {
   const published = publishedPath(relative);
-  const route = published.replace(/(^|\/)index\.md$/i, '$1').replace(/\.md$/i, '');
+  const route = published.replace(/(^|\/)index\.md$/i, '$1').replace(/\.md$/i, '')
+    .toLowerCase().replace(/\./g, '').replace(/_/g, '-');
   const pieces = [source.id, route].filter(Boolean).join('/');
   const normalized = '/' + pieces.replace(/\/+/g, '/').replace(/\/$/, '') + '/';
   return normalized + (fragment ? '#' + fragment : '');
