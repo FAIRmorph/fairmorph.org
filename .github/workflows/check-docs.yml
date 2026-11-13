@@ -115,7 +115,7 @@ jobs:
           import fs from 'node:fs';
           for (const section of ['engine', 'workbench', 'validations']) {
             for (const name of ['index.md', 'INSTALL.md']) {
-              const file = 'src/content/docs/' + section + '/' + (name === 'INSTALL.md' ? name : name);
+              const file = 'src/content/docs/' + section + '/' + name;
               // Imported installation guide source retains its original filename.
               if (!fs.existsSync(file)) throw new Error('Missing source documentation: ' + file);
               const doc = fs.readFileSync(file, 'utf8');
@@ -134,10 +134,10 @@ jobs:
           }
           for (const section of ['engine', 'workbench', 'validations']) {
             const directory = 'src/content/docs/' + section;
-            const walk = (dir) => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isDirectory() ? walk(dir + '/' + e.name) : /\\.md$/.test(e.name) ? [dir + '/' + e.name] : []);
+            const walk = (dir) => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isDirectory() ? walk(dir + '/' + e.name) : /[.]md$/.test(e.name) ? [dir + '/' + e.name] : []);
             for (const file of walk(directory)) {
               const doc = fs.readFileSync(file, 'utf8');
-              if (/v0\\.13/i.test(doc)) throw new Error('Internal framework number leaked: ' + file);
+              if (/v0[.]13/i.test(doc)) throw new Error('Internal framework number leaked: ' + file);
             }
           }
           console.log('Prototype notice, cited evidence and public scope verified');
