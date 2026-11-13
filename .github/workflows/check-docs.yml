@@ -129,6 +129,9 @@ jobs:
           const homepage = fs.readFileSync('src/content/docs/index.mdx', 'utf8');
           if (!homepage.includes('Making ecological data FAIR') || !homepage.includes('guide/overview/')) throw new Error('Missing ecological FAIR hero/concept link');
           if (!homepage.includes("link: '#what-works-today'")) throw new Error('Second hero button must link to What works today');
+          for (const phrase of ['Supporting researchers from field data to FAIR reuse', 'Bring ecological data together', 'Explain data through guided questions', 'Check and improve data with confidence', 'Make data easier for others to reuse', 'no-code interviews', 'already produces verified RUNs']) {
+            if (!homepage.includes(phrase)) throw new Error('Missing researcher-focused benefit: ' + phrase);
+          }
           for (const phrase of ['## What works today?', 'Prototype Fund', 'CS-PHOC', 'NSIS', 'AppImage', 'PyInstaller', 'CI/CD', 'Tauri desktop Workbench']) {
             if (!homepage.includes(phrase)) throw new Error('Missing Prototype Fund proof point: ' + phrase);
           }
