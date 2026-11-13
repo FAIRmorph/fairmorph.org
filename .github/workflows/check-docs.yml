@@ -1,0 +1,46 @@
+name: Check FAIRmorph documentation integration
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout portal without legacy pinned submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build portal with live upstream docs
+        run: npm run build
+      - name: Check all three sources and navigation pages
+        run: |
+          node - <<'JS'
+          import fs from 'node:fs';
+          const revisions = JSON.parse(fs.readFileSync('.docs-upstream/revisions.json', 'utf8'));
+          for (const id of ['engine', 'workbench', 'validations']) {
+            if (!/^[0-9a-f]{40}$/.test(revisions[id]?.commit || '')) throw new Error('Missing upstream SHA: ' + id);
+            if (revisions[id].pages < 2) throw new Error('No synced Markdown pages: ' + id);
+            if (!fs.existsSync('src/content/docs/' + id + '/index.md')) throw new Error('Missing landing page: ' + id);
+            console.log(id, revisions[id].pages, revisions[id].commit);
+          }
+          for (const f of ['src/content/docs/index.mdx', 'src/content/docs/guide/overview.md']) {
+            if (!fs.existsSync(f)) throw new Error('Missing portal-owned page: ' + f);
+          }
+          const nav = fs.readFileSync('astro.config.mjs', 'utf8');
+          for (const id of ['engine', 'workbench', 'validations']) {
+            if (!nav.includes("directory: '" + id + "'")) throw new Error('No dynamic navigation for ' + id);
+          }
+          JS
