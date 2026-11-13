@@ -1,5 +1,7 @@
 # FAIRmorph.org — Documentation Portal
 
+> **Prototype Fund (Germany) · Proof of concept — not production software.** FAIRmorph is an experimental open-source prototype; general-purpose publication, complete no-code workflows and installer guarantees are not available yet. See the [concept and research evidence](src/content/docs/guide/overview.md).
+
 This repository hosts the **[FAIRmorph project documentation](https://www.fairmorph.org/)** using Astro Starlight. It combines general project information with **automatically updated** guides from three separate source repositories.
 
 | Documentation section | Authoritative source | What readers will find |
@@ -61,7 +63,7 @@ Generated sections should not be hand-edited or committed. Fix factual mistakes 
 
 The [Docs check workflow](.github/workflows/check-docs.yml) validates the fetched current docs and builds the complete site on pull requests. [Deploy documentation](.github/workflows/deploy-docs.yml) builds the same content before publication. A failed upstream fetch or missing README fails the build: it does **not** silently skip a documentation section.
 
-FAIRmorph v0.13 is a **technical vertical proof of concept**, not an automatically approved scientific publication system. The Engine has no AI runtime requirement, the Workbench does not yet expose every scientific mapping/review workflow, and the CS-PHOC validation repository's three output formats are **dataset-specific test exports**. The portal's [concept page](src/content/docs/guide/overview.md) explains these boundaries.
+FAIRmorph is a **technical proof of concept for Germany’s Prototype Fund**, not an automatically approved scientific publication system. The Engine has no AI runtime requirement, the Workbench does not yet expose every scientific mapping/review workflow, and the CS-PHOC validation repository's three output formats are **dataset-specific test exports**. The portal's [concept page](src/content/docs/guide/overview.md) explains these boundaries.
 
 ## License
 
