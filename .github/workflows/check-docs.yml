@@ -80,6 +80,35 @@ jobs:
           if (missing.length) throw new Error('Missing documentation routes:\\n' + missing.join('\\n'));
           console.log('Verified internal links across ' + pages.length + ' Markdown pages');
           JS
+      - name: Verify a single visible page heading and concise navigation
+        run: |
+          node - <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const pages = [];
+          function walk(directory) {
+            for (const item of fs.readdirSync(directory, {withFileTypes: true})) {
+              const file = path.join(directory, item.name);
+              if (item.isDirectory()) walk(file);
+              else if (item.name === 'index.html') pages.push(file);
+            }
+          }
+          walk('dist');
+          for (const file of pages) {
+            const html = fs.readFileSync(file, 'utf8');
+            const count = (html.match(/<h1[ >]/gi) || []).length;
+            if (count !== 1) throw new Error(file + ' has ' + count + ' H1 elements (expected exactly one)');
+          }
+          for (const section of ['engine', 'workbench', 'validations']) {
+            const page = fs.readFileSync('src/content/docs/' + section + '/index.md', 'utf8');
+            if (!page.includes('title: "Overview"')) throw new Error('Repeated root title in ' + section);
+          }
+          const nav = fs.readFileSync('astro.config.mjs', 'utf8');
+          for (const label of ['Project', 'Engine', 'Workbench', 'Validations']) {
+            if (!nav.includes("label: '" + label + "'")) throw new Error('Missing navigation label ' + label);
+          }
+          console.log('Single H1 verified on ' + pages.length + ' published HTML pages');
+          JS
       - name: Check all three sources and navigation pages
         run: |
           node - <<'JS'

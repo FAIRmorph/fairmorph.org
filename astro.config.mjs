@@ -18,7 +18,7 @@ export default defineConfig({
 
   integrations: [
     starlight({
-      title: 'FAIRmorph Ecosystem',
+      title: 'FAIRmorph',
       description: 'FAIRmorph project, Engine, Workbench and independently reproduced validation documentation', 
       customCss: [
         'katex/dist/katex.min.css',
@@ -34,22 +34,22 @@ export default defineConfig({
       // Autogenerate ensures newly added upstream pages appear without a portal PR.
       sidebar: [
         {
-          label: 'FAIRmorph Project',
+          label: 'Project',
           items: [
             { label: 'Concept and status', slug: 'guide/overview' },
             { label: 'Installation and development', slug: 'guide/installation' },
           ],
         },
         {
-          label: 'FAIRmorph Engine',
+          label: 'Engine',
           items: [{ autogenerate: { directory: 'engine' } }],
         },
         {
-          label: 'FAIRmorph Workbench',
+          label: 'Workbench',
           items: [{ autogenerate: { directory: 'workbench' } }],
         },
         {
-          label: 'Real-data Validations',
+          label: 'Validations',
           items: [{ autogenerate: { directory: 'validations' } }],
         },
       ],
