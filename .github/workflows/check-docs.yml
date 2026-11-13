@@ -136,6 +136,9 @@ jobs:
             if (!homepage.includes(phrase)) throw new Error('Missing Prototype Fund proof point: ' + phrase);
           }
           const concept = fs.readFileSync('src/content/docs/guide/overview.md', 'utf8');
+          for (const message of ['guided, no-code desktop workflow', 'Supporting scientific meaning without guessing', 'The intended researcher journey', 'What the prototype demonstrates', 'For researchers', 'For data stewards']) {
+            if (!concept.includes(message)) throw new Error('Concept page not aligned to researcher-focused homepage: ' + message);
+          }
           for (const doi of ['10.1016/j.ecoinf.2026.103712', '10.1371/journal.pbio.1002295', '10.1038/sdata.2016.18']) {
             if (!concept.includes(doi)) throw new Error('Missing research reference: ' + doi);
           }

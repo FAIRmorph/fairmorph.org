@@ -1,11 +1,13 @@
 ---
 title: Concept and scope
-description: Why FAIRmorph exists, how the Engine, Workbench and independent validations relate, and what has actually been demonstrated.
+description: How FAIRmorph aims to support ecological researchers with guided data preparation, scientific documentation and FAIR reuse—and what the prototype demonstrates.
 ---
 
-FAIRmorph is an open-source, **local-first software project** for turning heterogeneous research data into **explicit, inspectable and reproducible data products**. The central idea is to keep original observations, their interpretation, transformation decisions, technical execution, and scientific approval **separate and traceable**.
+**Good ecological research already takes expertise, care and time. Preparing its data for colleagues and future studies should be easier.** FAIRmorph is an open-source, local-first project designed to support researchers in bringing field observations together, cleaning and checking records, explaining what they mean and making the resulting datasets easier for others to understand and reuse.
 
-Rather than define new scientific exchange standards, FAIRmorph aims to help researchers prepare their own data for established formats and archives when the necessary metadata, mappings and approvals are available. **FAIRmorph is a Prototype Fund (Germany) proof of concept**, not production-ready biodiversity publishing software.
+The intended experience is a **guided, no-code desktop workflow** with ecology-specific questions about field definitions, units, missing values, sampling methods and research context. The researcher remains responsible for scientific interpretation; FAIRmorph aims to make the necessary decisions easier to record, review and repeat. **The complete interview experience is a development goal**, not an existing end-to-end feature.
+
+Underneath that experience, a separate Python Engine already provides source preservation, versioned definitions and review contracts, technical transformations and verifiable execution evidence. Support for standards such as **Darwin Core (DwC)** and preparation for repositories such as **PANGAEA** is one useful outcome of well-curated data—not the sole purpose of FAIRmorph.
 
 :::caution[Prototype Fund (Germany) — experimental research prototype]
 This software is a **proof of concept for Germany's [Prototype Fund](https://prototypefund.de/)**. It is **not production-ready**: no general-purpose one-click export to multiple repositories, complete no-code curation, guaranteed installation package, or automatic scientific/publication approval is available. The documentation distinguishes implemented behavior from research and product goals.
@@ -13,20 +15,20 @@ This software is a **proof of concept for Germany's [Prototype Fund](https://pro
 
 ## Research evidence: the FAIR implementation gap
 
-**The challenge is not the absence of FAIR principles, libraries or data standards. It is making ecological data understandable, correctly described, consistently transformed and reusable without extensive one-off specialist effort.** The following research motivates FAIRmorph's workflow design, but it does not demonstrate that FAIRmorph itself solves each problem.
+**FAIR research data depend on more than making files available.** They need context, consistent preparation and explanations that let someone other than the original research team interpret and reuse them. Existing tools and standards help, while researchers also benefit from practical guidance through the work of combining sources, resolving ambiguities, checking records and describing scientific meaning. The following studies inform FAIRmorph's design priorities; they are **not evaluations of FAIRmorph's effectiveness**.
 
 - **FAIR principles are necessary but difficult to operationalize.** [Wilkinson et al. (2016)](https://doi.org/10.1038/sdata.2016.18) formulated the Findable, Accessible, Interoperable and Reusable principles for data, metadata and supporting workflows. [Jantzen & Vriend (2026)](https://doi.org/10.1016/j.ecoinf.2026.103712) identify the difficulty of converting these abstract requirements into actionable ecological data-management steps despite existing guidance and tools.
 - **Archiving is not enough for reuse.** [Roche et al. (2015)](https://doi.org/10.1371/journal.pbio.1002295) assessed **100** archived ecology/evolution datasets; **56%** were incomplete and **64%** were partly or wholly unsuitable for reuse because of metadata, raw-data or format limitations. These percentages characterize their studied sample and period, not the current state of all ecological archives. A later [assessment of 362 datasets (2022)](https://pmc.ncbi.nlm.nih.gov/articles/PMC9114975/) also found persistent completeness and reusability gaps.
 - **Curation requires resources and training.** [*Affording reusable data* (2025)](https://doi.org/10.1038/s41597-025-04565-0) describes the time, coordination and funding costs of data preparation in a multidisciplinary research project. [Gomes et al. (2022)](https://doi.org/10.1098/rspb.2022.1113) discuss knowledge barriers, concerns about sharing and scientific incentive structures. A tool can reduce some technical friction but does not eliminate those institutional barriers.
 - **The process itself matters.** [Wilkinson et al. (2016)](https://doi.org/10.1038/sdata.2016.18) also treat workflows as FAIR research objects; recommendations for [FAIR computational workflows (2025)](https://doi.org/10.1038/s41597-025-04451-9) reinforce the importance of reproducible, reusable processing methods.
 
-**Design implication:** FAIRmorph aims to preserve original research bytes alongside explicit field meanings, reviewed mapping decisions, versioned transformation recipes and verifiable output evidence. That foundation could let researchers create multiple destination-specific packages and repeat future releases without silently reconstructing manual steps. Scientific judgments still require the responsible research team; producing a technically verified file does not establish publication acceptance.
+**What this means for FAIRmorph:** make the complete preparation process more approachable, not just the last export step. The intended guided workflow connects original observations, clear field descriptions, human-reviewed scientific decisions, transparent quality checks and repeatable transformations. **Other researchers should be able to understand what the data mean and how they were prepared.** Different destination formats and later updates can build on that common foundation. FAIRmorph can support scientific review; it cannot replace the researcher's judgment or establish publication acceptance.
 
-## Why distinguish source data from scientific interpretation?
+## Supporting scientific meaning without guessing
 
-A column called `count` is not automatically a population estimate, an `Occurrence`, or an individual organism. Similarly, an empty cell is not necessarily a recorded zero. Different datasets require source-supported definitions, documented missing-value rules and informed choices about target schemas.
+A column called `count` is not automatically a population estimate, an `Occurrence`, or an individual organism. An empty cell is not necessarily a recorded zero. Ecology-specific questions about sampling methods, units and missing values can help make these distinctions explicit **without expecting every researcher to design a schema or write a script**.
 
-FAIRmorph therefore treats imported **source bytes as immutable evidence**, and manages field definitions, mappings and review decisions separately. A technically verified transformation demonstrates repeatability and integrity. It **does not itself prove that a scientific interpretation is correct or authorized for publication**.
+The Engine already keeps imported **source bytes as immutable evidence** and supports separately versioned field definitions, mappings and review decisions. The proposed Workbench interviews would guide people through these choices in accessible language, with room for expert review. Technical verification establishes defined integrity and repeatability checks; it **does not prove a biological interpretation is correct or approved for publication**.
 
 ## Three complementary repositories
 
@@ -38,31 +40,34 @@ FAIRmorph therefore treats imported **source bytes as immutable evidence**, and 
 
 The Workbench is **not** a separate processing or scientific approval authority. It must use the Engine's existing contract-backed decisions. Neither the Engine nor Workbench depends on AI.
 
-## The intended processing model
+## The intended researcher journey
 
 ```text
-Original scientific source files
+Field observations, counts, site records and related data
        |
        v
-Engine imports unchanged bytes and records source identities
+Import sources without altering the original evidence
        |
        v
-Documented field meaning + separately reviewed mapping decisions
+Combine and clean records through explicit transformations
        |
        v
-Selected, version-pinned technical or semantic pipeline
+Answer guided ecology-specific questions about data meaning
        |
        v
-Immutable RUN outputs, manifests and integrity verification
+Review field definitions, mappings and relevant metadata
        |
        v
-Target-specific publication projection (only when fully specified)
+Run checks and keep verifiable transformation evidence
        |
        v
-Test package or scientifically reviewed publication, as appropriate
+Share interpretable data and reuse the workflow for updates
+       |
+       v
+Prepare standards-based outputs when requirements are met
 ```
 
-Not every box is exposed through the Workbench yet, and the existence of a generic Engine adapter does not mean every target format or dataset is production-ready.
+**This is the intended end-to-end experience, not a claim that all steps are already available in the desktop UI.** Today the Engine demonstrates import, selected operations, revision/review contracts and verified RUNs; the Workbench exposes a narrower project/import/technical-pipeline workflow. The full guided scientific interview, broader domain checks and generalized publication preparation are still being developed.
 
 ## Current evidence from real data
 
@@ -72,13 +77,13 @@ The validated source contains **322 survey-window rows**, **2,144 count rows**, 
 
 Those results mean **the particular data transformation and test formats were technically checked**, not that 16,940 individual animals were identified, that zero always proves ecological absence, or that a population estimate was established. The Darwin Core Archive, PANGAEA-preparation TSV and GeoJSON files were generated by **CS-PHOC-specific code in the validation repository**, **not** by a generic multi-format Engine export operation. Their status is **test only; not approved for publication**. The Workbench UI was not part of that automated test.
 
-## What is implemented, and what remains an aim?
+## What the prototype demonstrates—and what comes next
 
-**Implemented or technically demonstrated in the present PoC:** local source preservation and checksums, explicit project configuration and immutable RUN evidence; selected review/versioning contracts; a basic Workbench project and technical-pipeline workflow; and independently audited real-data **test** exports.
+**Demonstrated in the current proof of concept:** the Engine preserves source files and checksums, supports selected generic tabular operations, versioned field/review contracts, explicit configurations and immutable, verifiable RUN evidence. The Workbench demonstrates local project setup, source import, technical pipeline selection/execution and integrity verification. Independent CS-PHOC tests reproduce a real-data processing path and audit dataset-specific test outputs.
 
-**Not yet demonstrated as general product capabilities:** a complete Workbench scientific field-definition/mapping interview, comprehensive GIS/media inspection and EXIF-based binding, domain-wide quality-control coverage, a turnkey signed desktop distribution, automatic repository submission or DOI assignment, or publication-ready export for arbitrary datasets. Supporting such workflows will require additional implementation and validation.
+**Next development goals:** a connected, guided **no-code experience** for describing ecological field semantics and reviewing mappings; more accessible data-combination and cleanup steps; wider ecological and GIS quality checks; stronger media/EXIF support; validated Windows/Linux desktop packages with bundled Engine; and broader standards-based output preparation. General-purpose repository submission, DOI assignment and scientific publication approval have **not** been demonstrated.
 
-The project aims for transparency and low barriers to use, but **reproducible technical evidence, scientific approval, external publishing permissions and editorial acceptance are distinct requirements**.
+**For researchers**, FAIRmorph aims to reduce repeated manual data work while preserving their authority over scientific meaning. **For data stewards**, it aims to make definitions, decisions, checks and provenance easier to inspect and maintain. **For subsequent research teams**, the goal is understandable, reusable datasets that do not depend on undocumented knowledge held by one person. Reproducible technical evidence, scientific approval, repository permissions and editorial acceptance remain distinct requirements.
 
 ## Explore the documentation
 
