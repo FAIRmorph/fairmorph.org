@@ -3,7 +3,7 @@
  * No submodule SHA or cross-repository access token is needed.
  *
  * Every npm run prepare-docs / build / dev fetches origin/main.
- * GitHub Actions also rebuilds automatically on a schedule.
+ * GitHub Actions rebuilds on the portal's own updates and incoming code-updated dispatches.
  *
  * The portal's own src/content/docs/index.mdx and guide/* are NEVER touched.
  */
@@ -57,6 +57,17 @@ function publishedPath(relative) {
   return relative.replace(/(^|\/)README\.md$/i, '$1index.md');
 }
 
+// Starlight generates public routes without .md extensions. Use absolute site
+// paths so every mirrored link works from nested sections and on GitHub Pages.
+// README.md and index.md both represent their containing directory's index.
+function documentationUrl(source, relative, fragment = '') {
+  const published = publishedPath(relative);
+  const route = published.replace(/(^|\/)index\.md$/i, '$1').replace(/\.md$/i, '');
+  const pieces = [source.id, route].filter(Boolean).join('/');
+  const normalized = '/' + pieces.replace(/\/+/g, '/').replace(/\/$/, '') + '/';
+  return normalized + (fragment ? '#' + fragment : '');
+}
+
 function titleFor(text, source, relative) {
   if (relative === 'README.md') return source.label;
   const heading = text.match(/^#\s+(.+)$/m)?.[1]?.trim();
@@ -71,13 +82,9 @@ function updateLinks(text, relative, included, source) {
     if (!file) return full;
     const absolute = path.posix.normalize(path.posix.join(path.posix.dirname(relative), file));
     if (included.has(absolute)) {
-      const publishedTarget = publishedPath(absolute);
-      const outputSelf = publishedPath(relative);
-      let next = path.posix.relative(path.posix.dirname(outputSelf), publishedTarget);
-      if (!next.startsWith('.')) next = './' + next;
-      return '](' + next + (fragment ? '#' + fragment : '') + ')';
+      return '](' + documentationUrl(source, absolute, fragment) + ')';
     }
-    // Files such as LICENSE, source images and JSON contracts remain in their origin repository.
+    // Assets and non-Markdown files remain in the authoritative repository.
     const origin = source.url.replace(/\.git$/, '');
     return '](' + origin + '/blob/main/' + absolute + (fragment ? '#' + fragment : '') + ')';
   });
