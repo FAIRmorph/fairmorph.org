@@ -3,11 +3,11 @@ title: FAIRmorph
 description: Curate research data once, prepare it for multiple formats and repositories, and repeat updates with transparent, verifiable processing.
 template: splash
 hero:
-  title: Curate once. Reuse across formats and repositories.
-  tagline: FAIRmorph helps researchers turn diverse field data into traceable, reusable datasets. Define how your data should be interpreted, then aim to generate different publication packages from the same reviewed source—and repeat the process consistently when the data changes.
+  title: Making ecological data FAIR shouldn't be this complicated.
+  tagline: Standards and software already exist. What is missing is an accessible way to connect ecological observations, scientific metadata, reviewed transformations, and different publication requirements. FAIRmorph aims to make that work easier to repeat—with a local-first, researcher-friendly desktop workflow.
   actions:
-    - text: See how it works
-      link: '#one-curation-workflow-many-outputs'
+    - text: Explore the concept
+      link: /guide/overview/
       icon: right-arrow
       variant: primary
     - text: Explore the working proof of concept
@@ -16,6 +16,18 @@ hero:
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+:::caution[Prototype Fund (Germany) · Proof of concept — not production software]
+**FAIRmorph is an open-source prototype for Germany's [Prototype Fund](https://prototypefund.de/), not a production-ready application.** The no-code desktop experience, general-purpose publication to multiple repositories, and one-click installation are goals under development. Current Engine, Workbench and validation capabilities are documented and testable; scientific approval and publisher acceptance are separate steps.
+:::
+
+**The promise:** guided, no-code ecological data curation; reusable scientific decisions; repeatable preparation for **Darwin Core (DwC), PANGAEA and other repository formats**—without manually rebuilding every export when data changes. These are the project's intended benefits, **not yet a complete end-to-end product**.
+
+## Why FAIR data remains difficult
+
+Existing standards do not automatically explain what a source column means or how to document, verify and publish it. A [2026 study on FAIR practices for ecologists](https://doi.org/10.1016/j.ecoinf.2026.103712) describes the gap between FAIR principles and actionable steps for researchers. In a [study of 100 archived ecology/evolution datasets](https://doi.org/10.1371/journal.pbio.1002295), **56% were incomplete** and **64% had limitations that partly or fully prevented reuse**. Those figures refer to that study's sample, not all published data.
+
+**FAIRmorph's proposed answer is a repeatable curation workflow**, not another file converter: keep the original data, document field meaning and review decisions, track transformations, then reuse that evidence for different outputs and later dataset revisions. [Read the scientific background and limitations](/guide/overview/#research-evidence-the-fair-implementation-gap).
 
 ## Less repeated work. More reusable research data.
 
@@ -75,7 +87,7 @@ When a dataset needs to serve a biodiversity network, a data repository, a proje
 
 ## What works today?
 
-FAIRmorph is in active development at **framework v0.13 (technical proof of concept)**. The vision of a fully integrated, one-click, multi-repository publishing workflow is **not yet a released product**.
+**Prototype Fund proof of concept:** FAIRmorph is a publicly documented, testable prototype—not a production-ready, one-click, multi-repository publishing application.
 
 What has been demonstrated:
 
