@@ -10,9 +10,9 @@ hero:
       link: /guide/overview/
       icon: right-arrow
       variant: primary
-    - text: Explore the working proof of concept
-      link: /validations/docs/cs-phoc-reproduction-and-results/
-      icon: external
+    - text: What works today?
+      link: '#what-works-today'
+      icon: right-arrow
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
@@ -126,15 +126,17 @@ When a dataset needs to serve a biodiversity network, a data repository, a proje
 
 ## What works today?
 
-**Prototype Fund proof of concept:** FAIRmorph is a publicly documented, testable prototype—not a production-ready, one-click, multi-repository publishing application.
+**This proof of concept supports the application to Germany's Prototype Fund.** The purpose is to demonstrate that FAIRmorph's planned system is technically feasible, reproducible, and ready for further feature development—not to present a finished tool for research-data publication.
 
-What has been demonstrated:
+The prototype focuses on four concrete proof points:
 
-- **Engine:** local import of unchanged source files, selected generic transformations, versioned review structures, verified RUN evidence, and technical integrity checks.
-- **Workbench:** a local desktop workflow for project setup, explicit source import, technical pipeline selection/execution, project verification, and dataset-title revisions.
-- **Real-data validation:** the original CS-PHOC seal-census dataset was used for a bounded reproducibility test. From the verified Engine run, **dataset-specific validation code** generated and independently audited Darwin Core Archive, PANGAEA-preparation TSV, and GeoJSON **test outputs**.
+1. **A real scientific end-to-end test case.** A pinned, publicly available CS-PHOC ecological dataset is imported unchanged, processed by the generic Engine and verified through an immutable technical RUN. Separate **dataset-specific validation code** generates DwC-A, PANGAEA-preparation TSV and GeoJSON **test outputs**, which are independently checked against the source. This demonstrates the data path, **not** generic publishing or scientific approval.
+2. **Desktop build and bundled Engine sidecar.** The Workbench uses Svelte/Tauri with the Python Engine as a separate local application. Its release workflow is configured to build **Windows (NSIS)** and **Linux (deb/AppImage)** packages, bundle the Engine using PyInstaller, and smoke-test the sidecar. **The build pipeline is implemented; successful packaged release builds and easy installation on end-user machines are not yet demonstrated here.**
+3. **Continuous integration and delivery structure.** Engine tests, Workbench Linux/Windows integration checks, the independent real-data validation CI, desktop packaging workflows, and automatic documentation deployment establish the intended repository and CI/CD structure. They provide a tested foundation for further features—not a guarantee that all future functionality or distributable packages already pass acceptance tests.
+4. **The intended two-component architecture in working code.** A separate **Python Engine** owns imported sources, mappings, processing, immutable RUN evidence and verification; the **Tauri desktop Workbench** invokes it through a defined local process interface. Current UI workflows demonstrate project setup, import, technical pipeline execution and verification, while full scientific curation and publishing remain under development.
 
-The CS-PHOC demonstration shows that several representations of the **same real data** can be prepared and checked against a common source. It does **not** yet prove generic publication export for arbitrary datasets, publisher acceptance, a completed Workbench publishing workflow, or scientific approval of the source-field drafts.
+**What is not yet proven:** one-click installation, complete no-code scientific review, multi-repository publication for arbitrary ecological datasets, publisher acceptance or production reliability. Those are the next product and validation milestones.
+
 
 <CardGrid>
   <LinkCard title="See the real-data demonstration" href="/validations/docs/cs-phoc-reproduction-and-results/" description="What was tested, expected results, how to reproduce it, and what the audit proves." />
