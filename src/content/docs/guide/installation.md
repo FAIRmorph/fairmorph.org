@@ -3,6 +3,8 @@ title: Installation and development
 description: Practical setup for the FAIRmorph Engine, desktop Workbench and automatically synchronized documentation portal.
 ---
 
+**Prototype Fund (Germany) proof of concept — not production-ready software.** This project is experimental and its Engine and Workbench are currently installed from development source.
+
 FAIRmorph currently consists of **separate source repositories**, not a single ready-to-install scientific publication product. The Python Engine can be used independently, while the desktop Workbench requires the Engine during development. The validation scripts provide a reproducible real-data proof of concept.
 
 ## FAIRmorph Engine
@@ -58,7 +60,7 @@ npm ci
 npm run dev
 ```
 
-For upstream-triggered public deployment, the portal reuses the existing **fairmorph-docs-dispatcher GitHub App**, which has already triggered a successful `code-updated` deployment. There is no scheduled polling fallback and no new shared Actions credential. Maintainers should verify that the App's push-event/webhook configuration covers all three source repositories; see the [portal README](https://github.com/FAIRmorph/fairmorph.org#automatic-documentation-updates).
+For upstream-triggered deployment, Engine and Workbench each use a GitHub Actions workflow that generates a short-lived GitHub App token from existing repository secrets and sends `code-updated`. The validations repository uses an independent validation CI; its automatic documentation-dispatch integration is not yet enabled. There is no scheduled polling fallback. See the [portal README](https://github.com/FAIRmorph/fairmorph.org#automatic-documentation-updates).
 
 The development server runs locally (typically `http://localhost:4321/`). `npm run dev` and `npm run build` both trigger `npm run sync`, which fetches the latest published Markdown from each upstream `main` branch.
 

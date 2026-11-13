@@ -39,7 +39,7 @@ jobs:
             '/engine/docs/data-contracts/',
             '/engine/docs/operations/',
             '/engine/docs/run-recovery/',
-            '/engine/docs/framework-v013-poc-scope/',
+            '/engine/docs/scope-and-development/',
             '/engine/examples/cs-phoc/',
             '/engine/'
           ]) {
@@ -108,6 +108,39 @@ jobs:
             if (!nav.includes("label: '" + label + "'")) throw new Error('Missing navigation label ' + label);
           }
           console.log('Single H1 verified on ' + pages.length + ' published HTML pages');
+          JS
+      - name: Verify Prototype Fund warnings and research foundation
+        run: |
+          node - <<'JS'
+          import fs from 'node:fs';
+          for (const section of ['engine', 'workbench', 'validations']) {
+            for (const name of ['index.md', 'INSTALL.md']) {
+              const file = 'src/content/docs/' + section + '/' + name;
+              // Imported installation guide source retains its original filename.
+              if (!fs.existsSync(file)) throw new Error('Missing source documentation: ' + file);
+              const doc = fs.readFileSync(file, 'utf8');
+              if (!/Prototype Fund/.test(doc) || !/not production software/.test(doc)) throw new Error('Missing prototype warning: ' + file);
+            }
+          }
+          for (const file of ['src/content/docs/index.mdx', 'src/content/docs/guide/overview.md']) {
+            const doc = fs.readFileSync(file, 'utf8');
+            if (!doc.includes('Prototype Fund') || !doc.includes('not production')) throw new Error('Missing public prototype notice: ' + file);
+          }
+          const homepage = fs.readFileSync('src/content/docs/index.mdx', 'utf8');
+          if (!homepage.includes('Making ecological data FAIR') || !homepage.includes('guide/overview/')) throw new Error('Missing ecological FAIR hero/concept link');
+          const concept = fs.readFileSync('src/content/docs/guide/overview.md', 'utf8');
+          for (const doi of ['10.1016/j.ecoinf.2026.103712', '10.1371/journal.pbio.1002295', '10.1038/sdata.2016.18']) {
+            if (!concept.includes(doi)) throw new Error('Missing research reference: ' + doi);
+          }
+          for (const section of ['engine', 'workbench', 'validations']) {
+            const directory = 'src/content/docs/' + section;
+            const walk = (dir) => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isDirectory() ? walk(dir + '/' + e.name) : /[.]md$/.test(e.name) ? [dir + '/' + e.name] : []);
+            for (const file of walk(directory)) {
+              const doc = fs.readFileSync(file, 'utf8');
+              if (/v0[.]13/i.test(doc)) throw new Error('Internal framework number leaked: ' + file);
+            }
+          }
+          console.log('Prototype notice, cited evidence and public scope verified');
           JS
       - name: Check all three sources and navigation pages
         run: |
