@@ -142,17 +142,36 @@ jobs:
           const homepage = fs.readFileSync('src/content/docs/index.mdx', 'utf8');
           if (!homepage.includes('Making ecological data FAIR') || !homepage.includes('guide/overview/')) throw new Error('Missing ecological FAIR hero/concept link');
           if (!homepage.includes('link: /guide/prototype-fund/')) throw new Error('Primary hero action must link to the concrete Prototype Fund application');
-          for (const phrase of ['Supporting researchers from field data to FAIR reuse', 'Bring ecological data together', 'Explain data through guided questions', 'Check and improve data with confidence', 'Make data easier for others to reuse', 'no-code interviews', 'already produces verified RUNs']) {
-            if (!homepage.includes(phrase)) throw new Error('Missing researcher-focused benefit: ' + phrase);
+          // The homepage is intentionally a concise entry point; keep its visual
+          // comparison and four benefits without duplicating the full concept.
+          for (const phrase of [
+            '## From scattered data work to guided, reusable curation',
+            '/img/curation-workflows.svg',
+            'Conceptual comparison:',
+            '## What FAIRmorph aims to make easier',
+            'Bring ecological data together',
+            'Explain scientific meaning',
+            'Check and trace decisions',
+            'Prepare data for reuse',
+            'The guided, no-code scientific workflow is the product goal'
+          ]) {
+            if (!homepage.includes(phrase)) throw new Error('Missing essential homepage element: ' + phrase);
           }
-          for (const phrase of ['## What works today?', '### Demonstrated / In development', 'Demonstrated with technical evidence', 'In development or not yet demonstrated', '/guide/prototype-fund/', 'Prototype Fund', 'CS-PHOC', 'NSIS', 'AppImage', 'v0.1.1', 'CI/CD', 'Tauri desktop Workbench']) {
-            if (!homepage.includes(phrase)) throw new Error('Missing Prototype Fund proof point: ' + phrase);
+          for (const phrase of [
+            '## What works today?', 'Demonstrated in the proof of concept',
+            'Still to build or verify', '/guide/prototype-fund/', 'Prototype Fund',
+            'CS-PHOC', 'v0.1.1', '/guide/overview/',
+            '/engine/', '/workbench/', '/validations/',
+            'not production-ready software'
+          ]) {
+            if (!homepage.includes(phrase)) throw new Error('Missing compact PoC evidence or route: ' + phrase);
           }
+          if (homepage.length > 8000) throw new Error('Homepage is too long for a concise entry point');
           const concept = fs.readFileSync('src/content/docs/guide/overview.md', 'utf8');
           for (const message of ['guided, no-code desktop workflow', 'Supporting scientific meaning without guessing', 'The intended researcher journey', 'What the prototype demonstrates', 'For researchers', 'For data stewards']) {
             if (!concept.includes(message)) throw new Error('Concept page not aligned to researcher-focused homepage: ' + message);
           }
-          for (const phrase of ['Every decision matters. Make it traceable.', 'versioned', 'RUNs', '/guide/overview/#transparent-versioned-and-reproducible-by-design']) {
+          for (const phrase of ['versioned', 'RUNs', '/guide/overview/#transparent-versioned-and-reproducible-by-design']) {
             if (!homepage.includes(phrase)) throw new Error('Homepage traceability message missing: ' + phrase);
           }
           for (const phrase of ['## Transparent, versioned and reproducible by design', 'SourceFieldDefinition', 'Mapping and review decisions', 'Processing RUNs', 'complete cell-by-cell history']) {
