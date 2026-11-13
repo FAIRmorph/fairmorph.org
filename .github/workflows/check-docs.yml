@@ -139,6 +139,12 @@ jobs:
           for (const message of ['guided, no-code desktop workflow', 'Supporting scientific meaning without guessing', 'The intended researcher journey', 'What the prototype demonstrates', 'For researchers', 'For data stewards']) {
             if (!concept.includes(message)) throw new Error('Concept page not aligned to researcher-focused homepage: ' + message);
           }
+          for (const phrase of ['Every decision matters. Make it traceable.', 'versioned', 'RUNs', '/guide/overview/#transparent-versioned-and-reproducible-by-design']) {
+            if (!homepage.includes(phrase)) throw new Error('Homepage traceability message missing: ' + phrase);
+          }
+          for (const phrase of ['## Transparent, versioned and reproducible by design', 'SourceFieldDefinition', 'Mapping and review decisions', 'Processing RUNs', 'complete cell-by-cell history']) {
+            if (!concept.includes(phrase)) throw new Error('Concept audit explanation missing: ' + phrase);
+          }
           for (const doi of ['10.1016/j.ecoinf.2026.103712', '10.1371/journal.pbio.1002295', '10.1038/sdata.2016.18']) {
             if (!concept.includes(doi)) throw new Error('Missing research reference: ' + doi);
           }
