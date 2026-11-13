@@ -60,7 +60,7 @@ npm ci
 npm run dev
 ```
 
-For upstream-triggered public deployment, maintainers must configure `FAIRMORPH_DOCS_DISPATCH_TOKEN` in the Engine, Workbench and Validations repositories; see the [portal README](https://github.com/FAIRmorph/fairmorph.org#automatic-documentation-updates). There is no scheduled polling fallback.
+For upstream-triggered public deployment, the portal reuses the existing **fairmorph-docs-dispatcher GitHub App**, which has already triggered a successful `code-updated` deployment. There is no scheduled polling fallback and no new shared Actions credential. Maintainers should verify that the App's push-event/webhook configuration covers all three source repositories; see the [portal README](https://github.com/FAIRmorph/fairmorph.org#automatic-documentation-updates).
 
 The development server runs locally (typically `http://localhost:4321/`). `npm run dev` and `npm run build` both trigger `npm run sync`, which fetches the latest published Markdown from each upstream `main` branch.
 
