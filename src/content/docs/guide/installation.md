@@ -49,7 +49,7 @@ These files and tests are **not** an automated Workbench UI demonstration.
 
 ## Develop or preview this documentation portal
 
-This portal uses Astro Starlight. It **fetches the latest Markdown from Engine, Workbench and Validations on every local build** and deploys the current documentation automatically using a GitHub Actions schedule.
+This portal uses Astro Starlight. It **fetches the latest Markdown from Engine, Workbench and Validations on every local build** and deploys updated documentation when an upstream Markdown change lands on `main` and triggers an authenticated GitHub Actions dispatch.
 
 Requirements: **Node.js 24+, npm and Git**.
 
@@ -59,6 +59,8 @@ cd fairmorph.org
 npm ci
 npm run dev
 ```
+
+For upstream-triggered public deployment, maintainers must configure `FAIRMORPH_DOCS_DISPATCH_TOKEN` in the Engine, Workbench and Validations repositories; see the [portal README](https://github.com/FAIRmorph/fairmorph.org#automatic-documentation-updates). There is no scheduled polling fallback.
 
 The development server runs locally (typically `http://localhost:4321/`). `npm run dev` and `npm run build` both trigger `npm run sync`, which fetches the latest published Markdown from each upstream `main` branch.
 
