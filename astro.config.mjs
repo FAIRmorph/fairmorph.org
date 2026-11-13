@@ -36,9 +36,9 @@ export default defineConfig({
         {
           label: 'Project',
           items: [
+            { label: 'Prototype Fund application (DE)', slug: 'guide/prototype-fund' },
             { label: 'Concept and status', slug: 'guide/overview' },
             { label: 'Installation and development', slug: 'guide/installation' },
-            { label: 'Prototype Fund application evidence', slug: 'guide/prototype-fund' },
           ],
         },
         {
