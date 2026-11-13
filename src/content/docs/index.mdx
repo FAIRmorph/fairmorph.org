@@ -1,88 +1,95 @@
 ---
-title: FAIRmorph Ecosystem
-description: Transparent, reliable, and low-barrier data curation designed for biodiversity and ecological researchers.
+title: FAIRmorph
+description: Curate research data once, prepare it for multiple formats and repositories, and repeat updates with transparent, verifiable processing.
 template: splash
 hero:
-  title: FAIR & Reproducible Ecological Data Curation Workspace
-  tagline: Locally transform heterogeneous field observations and media assets into verified, FAIR-compliant datasets through transparent provenance and repeatable curation workflows - 100% from your local Laptop.
+  title: Curate once. Reuse across formats and repositories.
+  tagline: FAIRmorph helps researchers turn diverse field data into traceable, reusable datasets. Define how your data should be interpreted, then aim to generate different publication packages from the same reviewed source—and repeat the process consistently when the data changes.
   actions:
-    - text: Read the Architectural Overview
-      link: guide/overview/
+    - text: See how it works
+      link: '#one-curation-workflow-many-outputs'
       icon: right-arrow
       variant: primary
-    - text: Explore GitHub Organization
-      link: https://www.fairmorph.org/fairmorph-engine
+    - text: Explore the working proof of concept
+      link: /validations/docs/cs-phoc-reproduction-and-results/
       icon: external
 ---
 
-import { Card, CardGrid, Badge } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-:::caution[Project Status: Pre-Alpha & Architectural Planning]
-**Active development is currently in the architectural planning phase.** 
+## Less repeated work. More reusable research data.
 
-FAIRmorph is establishing domain specifications, vocabulary mappings, and validation rule sets. Repositories will update continuously as development milestones are reached.
-:::
+When a dataset needs to serve a biodiversity network, a data repository, a project archive, or a collaborator, each destination may expect different files, terminology, and metadata. Preparing every version manually takes time—and repeating those steps after every correction makes results harder to compare and audit.
 
-## Core Value Proposition
+**FAIRmorph's goal is to separate the original observations from their scientific interpretation and destination-specific formatting.** Curate the source once, keep the decisions explicit, and reuse that documented work for different outputs and future dataset revisions.
 
 <CardGrid>
-  <Card title="Sensitive Data Sovereignty" icon="shield">
-    <Badge text="Pillar 1" variant="note" />
-    
-    Complete local data privacy. Red-list species coordinates, sensitive geolocations, and unpublished field observations remain strictly on your local machine—no mandatory cloud sync or external exposure.
+  <Card title="One source, multiple destinations" icon="share">
+    Prepare the same reviewed observations for different **formats and repository requirements**, rather than maintaining separate manual conversions for each destination. Darwin Core Archives, tabular data packages, and repository-specific submissions are part of the intended workflow.
   </Card>
-
-  <Card title="Zero Technical Overhead" icon="rocket">
-    <Badge text="Pillar 2" variant="note" />
-    
-    Designed specifically for domain scientists, not software engineers. Single-click native desktop launcher requiring no environment setup, runtime management, or command-line interaction.
+  <Card title="Repeat updates consistently" icon="setting">
+    When records are corrected or new observations arrive, reuse versioned definitions and transformations. Produce a new, traceable output without guessing which spreadsheet steps were used last time.
   </Card>
-
-  <Card title="Automated Media & Metadata Binding" icon="document">
-    <Badge text="Pillar 3" variant="note" />
-    
-    Seamlessly link field imagery with observation logs. Embedded EXIF spatial and temporal metadata is automatically parsed, cross-referenced, and bound into unified occurrence records.
-  </Card>
-
-  <Card title="Transparent & Verifiable Lineage" icon="list-format">
-    <Badge text="Pillar 4" variant="note" />
-    
-    Guaranteed scientific reproducibility. Every schema mapping, unit standardization, and record modification is recorded into human-readable, machine-inspectable provenance manifests.
-  </Card>
-
-  <Card title="Domain & GIS-Aware Quality Control" icon="approve-check">
-    <Badge text="Pillar 5" variant="note" />
-    
-    Catch spatial and biological anomalies before archiving. Automated offline sanity checks detect coordinate inversions (e.g., latitude/longitude swaps), datum shifts compatible with **QGIS** workflows, and TDWG vocabulary errors.
-  </Card>
-
-  <Card title="Turnkey FAIR Repository Deposit" icon="share">
-    <Badge text="Pillar 6" variant="note" />
-    
-    Streamlined package generation formatted natively for global biodiversity networks (**GBIF**, **OBIS** Darwin Core Archives) and generalist data repositories (**Zenodo**, **Dryad**) to secure persistent DOIs.
+  <Card title="Know exactly what changed" icon="list-format">
+    Preserve original files, explicit mapping decisions, run configurations, and integrity evidence. Compare releases and distinguish a **technically verified** transformation from a **scientifically approved** interpretation.
   </Card>
 </CardGrid>
 
----
+## One curation workflow, many outputs
 
-## Ecosystem Architecture
+**An illustrative research workflow:** Imagine a field team maintaining recurring wildlife surveys with observations, site information, counts, and photographs. A publication might require a Darwin Core Archive; a data repository might need a structured table and descriptive metadata; collaborators might need a GeoJSON overview.
 
 <CardGrid>
-  <Card title="Domain Validation Engine" icon="laptop">
-    <Badge text="In Planning" variant="note" />
-    
-    Encapsulates ecological data rules, spatial coordinate sanity algorithms, EXIF binding logic, and Darwin Core Archive compilation pipelines for GBIF and OBIS.
+  <Card title="1. Import and interpret" icon="document">
+    Keep the source files unchanged. Explain what each field means, how units and missing values work, and which mappings are supported by the research methods.
   </Card>
-
-  <Card title="Visual Field Data Studio" icon="setting">
-    <Badge text="In Planning" variant="note" />
-    
-    An intuitive desktop workspace for researchers to visually map tabular field data, inspect QGIS-compatible spatial layers, preview media links, and verify provenance logs.
+  <Card title="2. Review and transform" icon="approve-check">
+    Version the decisions, run a defined transformation, and retain checksums, output files, and a reproducible execution record.
   </Card>
-
-  <Card title="Docs-as-Code Infrastructure" icon="open-book">
-    <Badge text="Active" variant="success" />
-    
-    Automated documentation portal ensuring technical specifications, domain vocabularies, and curation workflows remain continuously synchronized.
+  <Card title="3. Prepare target formats" icon="document">
+    Use the **same curated data and provenance** as the basis for distinct output packages, with destination-specific schemas and metadata.
+  </Card>
+  <Card title="4. Update and repeat" icon="setting">
+    On the next survey release, apply the reviewed configuration to the new source revision, verify the outputs, and document what changed.
   </Card>
 </CardGrid>
+
+**The benefit:** different representations of the same research observations can remain consistent, attributable, and easier to update. Publication, repository acceptance, and DOI assignment still require the relevant repository's own submission and review process.
+
+## Designed for real field-data challenges
+
+<CardGrid>
+  <Card title="Keep sensitive data under local control" icon="shield">
+    The Engine runs locally and preserves original source bytes. Researchers can work with unpublished observations and sensitive species locations without a mandatory cloud-processing service.
+  </Card>
+  <Card title="Reduce specialist software overhead" icon="laptop">
+    The Workbench aims to make curation tasks accessible through a desktop interface. Its current proof of concept already supports project creation, file import, technical pipelines, RUN inspection, and verification; complete scientific mapping workflows remain in development.
+  </Card>
+  <Card title="Connect records, media, and metadata" icon="document">
+    Field imagery, EXIF timestamps, geographic context, and descriptive metadata should eventually be linked through explicit, reviewable rules rather than one-off manual matching. Full automated media binding is a planned capability.
+  </Card>
+  <Card title="Support domain-aware quality checks" icon="approve-check">
+    Make validation rules inspectable, including missing values, category counts, identifiers, vocabulary usage, and eventually spatial checks relevant to GIS and ecological workflows. Domain-wide GIS checks are not yet implemented.
+  </Card>
+</CardGrid>
+
+## What works today?
+
+FAIRmorph is in active development at **framework v0.13 (technical proof of concept)**. The vision of a fully integrated, one-click, multi-repository publishing workflow is **not yet a released product**.
+
+What has been demonstrated:
+
+- **Engine:** local import of unchanged source files, selected generic transformations, versioned review structures, verified RUN evidence, and technical integrity checks.
+- **Workbench:** a local desktop workflow for project setup, explicit source import, technical pipeline selection/execution, project verification, and dataset-title revisions.
+- **Real-data validation:** the original CS-PHOC seal-census dataset was used for a bounded reproducibility test. From the verified Engine run, **dataset-specific validation code** generated and independently audited Darwin Core Archive, PANGAEA-preparation TSV, and GeoJSON **test outputs**.
+
+The CS-PHOC demonstration shows that several representations of the **same real data** can be prepared and checked against a common source. It does **not** yet prove generic publication export for arbitrary datasets, publisher acceptance, a completed Workbench publishing workflow, or scientific approval of the source-field drafts.
+
+<CardGrid>
+  <LinkCard title="See the real-data demonstration" href="/validations/docs/cs-phoc-reproduction-and-results/" description="What was tested, expected results, how to reproduce it, and what the audit proves." />
+  <LinkCard title="Understand the Engine" href="/engine/" description="Data import, transformations, review contracts, and verified outputs." />
+  <LinkCard title="Explore the Workbench" href="/workbench/" description="Current desktop functionality and a practical walkthrough." />
+  <LinkCard title="Read the project concept" href="/guide/overview/" description="Architecture, scientific safeguards, implementation scope, and next steps." />
+</CardGrid>
+
+**FAIRmorph is open source.** The ambition is straightforward: **make a research dataset easier to curate once, reuse responsibly, and update reproducibly—without losing the link to its original observations.**
