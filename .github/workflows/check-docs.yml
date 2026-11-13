@@ -132,7 +132,7 @@ jobs:
           for (const phrase of ['Supporting researchers from field data to FAIR reuse', 'Bring ecological data together', 'Explain data through guided questions', 'Check and improve data with confidence', 'Make data easier for others to reuse', 'no-code interviews', 'already produces verified RUNs']) {
             if (!homepage.includes(phrase)) throw new Error('Missing researcher-focused benefit: ' + phrase);
           }
-          for (const phrase of ['## What works today?', 'Prototype Fund', 'CS-PHOC', 'NSIS', 'AppImage', 'PyInstaller', 'CI/CD', 'Tauri desktop Workbench']) {
+          for (const phrase of ['## What works today?', '### Demonstrated / In development', 'Demonstrated with technical evidence', 'In development or not yet demonstrated', '/guide/prototype-fund/', 'Prototype Fund', 'CS-PHOC', 'NSIS', 'AppImage', 'PyInstaller', 'CI/CD', 'Tauri desktop Workbench']) {
             if (!homepage.includes(phrase)) throw new Error('Missing Prototype Fund proof point: ' + phrase);
           }
           const concept = fs.readFileSync('src/content/docs/guide/overview.md', 'utf8');

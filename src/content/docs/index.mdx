@@ -144,9 +144,20 @@ For researchers, that means less dependence on forgotten spreadsheet edits. For 
 
 **This proof of concept supports the application to Germany's Prototype Fund.** The purpose is to demonstrate that FAIRmorph's planned system is technically feasible, reproducible, and ready for further feature development—not to present a finished tool for research-data publication.
 
-The prototype focuses on four concrete proof points:
+### Demonstrated / In development
 
-1. **A real scientific end-to-end test case.** A pinned, publicly available CS-PHOC ecological dataset is imported unchanged, processed by the generic Engine and verified through an immutable technical RUN. Separate **dataset-specific validation code** generates DwC-A, PANGAEA-preparation TSV and GeoJSON **test outputs**, which are independently checked against the source. This demonstrates the data path, **not** generic publishing or scientific approval.
+| Area | **Demonstrated with technical evidence** | **In development or not yet demonstrated** |
+| --- | --- | --- |
+| **Engine** | Unchanged source imports, declarative tabular pipelines, versioned review contracts and verifiable RUN/2 evidence ([Engine tests](https://github.com/FAIRmorph/fairmorph-engine/actions)). | Broader end-to-end scientific publication integration and production-level reliability. |
+| **Workbench** | Local project setup, source import, technical pipeline selection/execution and integrity checks ([Workbench CI](https://github.com/FAIRmorph/fairmorph-workbench/actions)). | Guided field-definition and mapping reviews, plus a complete no-code scientific workflow. |
+| **Real-data validation** | Pinned CS-PHOC test: **16,940 recorded category cells** checked against the source; dataset-specific DwC-A, TSV and GeoJSON **test exports** independently audited ([validation results](/validations/docs/cs-phoc-reproduction-and-results/)). | Validation with additional independent datasets and formally reviewed scientific interpretations. |
+| **Publication and delivery** | Engine Data Package and separate EML/DwC-A adapter tests; Windows/Linux packaging workflow configured. | General-purpose Workbench export, tested end-user installers, and publisher-ready releases or submissions. |
+
+**Evidence vs. roadmap:** A passed technical test is not scientific approval or proof of a finished user-facing product. Read the [Prototype Fund evidence and six-month development plan](/guide/prototype-fund/) for test links, limitations and the proposed milestones.
+
+The four technical proof points behind this summary are:
+
+1. **A technical end-to-end validation on real research data.** A pinned, publicly available CS-PHOC ecological dataset is imported unchanged, processed by the generic Engine and verified through an immutable technical RUN. Separate **dataset-specific validation code** generates DwC-A, PANGAEA-preparation TSV and GeoJSON **test outputs**, which are independently checked against the source. This demonstrates the data path, **not** generic publishing or scientific approval.
 2. **Desktop build and bundled Engine sidecar.** The Workbench uses Svelte/Tauri with the Python Engine as a separate local application. Its release workflow is configured to build **Windows (NSIS)** and **Linux (deb/AppImage)** packages, bundle the Engine using PyInstaller, and smoke-test the sidecar. **The build pipeline is implemented; successful packaged release builds and easy installation on end-user machines are not yet demonstrated here.**
 3. **Continuous integration and delivery structure.** Engine tests, Workbench Linux/Windows integration checks, the independent real-data validation CI, desktop packaging workflows, and automatic documentation deployment establish the intended repository and CI/CD structure. They provide a tested foundation for further features—not a guarantee that all future functionality or distributable packages already pass acceptance tests.
 4. **The intended two-component architecture in working code.** A separate **Python Engine** owns imported sources, mappings, processing, immutable RUN evidence and verification; the **Tauri desktop Workbench** invokes it through a defined local process interface. Current UI workflows demonstrate project setup, import, technical pipeline execution and verification, while full scientific curation and publishing remain under development.
