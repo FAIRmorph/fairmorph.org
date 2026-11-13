@@ -1,6 +1,6 @@
 # FAIRmorph.org — Documentation Portal
 
-> **Prototype Fund (Germany) · Proof of concept — not production software.** FAIRmorph is an experimental open-source prototype; general-purpose publication, complete no-code workflows and installer guarantees are not available yet. See the [concept and research evidence](src/content/docs/guide/overview.md).
+> **Prototype Fund application proof of concept — not a funded project.** FAIRmorph was developed solely to prepare an application to Germany’s [Prototype Fund](https://prototypefund.de/). No funding award or official endorsement is claimed. [Evidence and six-month development plan](https://www.fairmorph.org/guide/prototype-fund/).
 
 This repository hosts the **[FAIRmorph project documentation](https://www.fairmorph.org/)** using Astro Starlight. It combines a [research-backed explanation of the ecological FAIR implementation problem](src/content/docs/guide/overview.md#research-evidence-the-fair-implementation-gap) with **automatically updated** guides from three source repositories.
 
