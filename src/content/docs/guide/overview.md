@@ -53,7 +53,7 @@ Not every box is exposed through the Workbench yet, and the existence of a gener
 
 ## Current evidence from real data
 
-The [independent CS-PHOC validation guide](/validations/docs/CS-PHOC-REPRODUCTION-AND-RESULTS/) describes a fixed revision of original phocid census data and the exact reproduction procedure. For that **specific** case, the tested technical chain preserves source identity, verifies a generic Engine RUN, and checks the recorded count cells against locally generated test files.
+The [independent CS-PHOC validation guide](/validations/docs/cs-phoc-reproduction-and-results/) describes a fixed revision of original phocid census data and the exact reproduction procedure. For that **specific** case, the tested technical chain preserves source identity, verifies a generic Engine RUN, and checks the recorded count cells against locally generated test files.
 
 The validated source contains **322 survey-window rows**, **2,144 count rows**, **16,940 nonblank category values**, **11,599 explicit zeros**, and **4,500 blank category cells**. The test projection produces **536 site-specific Event rows**, **16,940 category Occurrences**, **16,940 tab-separated preparation rows**, and **536 site-event GeoJSON features**.
 
@@ -70,8 +70,8 @@ The project aims for transparency and low barriers to use, but **reproducible te
 ## Explore the documentation
 
 - [Engine introduction and usage](/engine/) — install and verify a synthetic project.
-- [Workbench desktop walkthrough](/workbench/docs/USER-GUIDE/) — what to click, what to expect, and how to connect the Engine.
-- [CS-PHOC independent evidence](/validations/docs/CS-PHOC-REPRODUCTION-AND-RESULTS/) — reproduce and interpret the real-data case.
+- [Workbench desktop walkthrough](/workbench/docs/user-guide/) — what to click, what to expect, and how to connect the Engine.
+- [CS-PHOC independent evidence](/validations/docs/cs-phoc-reproduction-and-results/) — reproduce and interpret the real-data case.
 - [Development installation](/guide/installation/) — prerequisites and current development paths.
 
 The portal **automatically mirrors** documentation from the three repositories. The navigation expands as they add or revise Markdown files; its own general project pages, including this concept page, are maintained here.

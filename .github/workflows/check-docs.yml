@@ -25,6 +25,61 @@ jobs:
         run: npm ci
       - name: Build portal with live upstream docs
         run: npm run build
+      - name: Verify Engine documentation links resolve to published site routes
+        run: |
+          node - <<'JS'
+          import fs from 'node:fs';
+          const index = fs.readFileSync('src/content/docs/engine/docs/index.md', 'utf8');
+          for (const url of [
+            '/engine/install/',
+            '/engine/docs/user-guide/',
+            '/engine/docs/project-driven-run/',
+            '/engine/docs/api-reference/',
+            '/engine/docs/architecture/',
+            '/engine/docs/data-contracts/',
+            '/engine/docs/operations/',
+            '/engine/docs/run-recovery/',
+            '/engine/docs/framework-v013-poc-scope/',
+            '/engine/examples/cs-phoc/',
+            '/engine/'
+          ]) {
+            if (!index.includes('](' + url + ')')) throw new Error('Missing transformed link in docs index: ' + url);
+            const output = 'dist' + url + 'index.html';
+            if (!fs.existsSync(output)) throw new Error('Unpublished documentation route: ' + url + ' (' + output + ')');
+          }
+          for (const url of ['/engine/install/', '/engine/docs/user-guide/']) {
+            if (!fs.readFileSync('src/content/docs/engine/index.md', 'utf8').includes('](' + url + ')')) {
+              throw new Error('README does not link into site: ' + url);
+            }
+          }
+          JS
+      - name: Verify other internal documentation links do not point to missing pages
+        run: |
+          node - <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const root = 'src/content/docs';
+          const pages = [];
+          function walk(dir) {
+            for (const entry of fs.readdirSync(dir, {withFileTypes: true})) {
+              const p = path.join(dir, entry.name);
+              if (entry.isDirectory()) walk(p);
+              else if (/\.mdx?$/.test(entry.name)) pages.push(p);
+            }
+          }
+          walk(root);
+          const missing = [];
+          for (const file of pages) {
+            const text = fs.readFileSync(file, 'utf8');
+            for (const [, href] of text.matchAll(/\]\((\/[^)#]+)(?:#[^)]*)?\)/g)) {
+              if (!href.startsWith('/engine/') && !href.startsWith('/workbench/') && !href.startsWith('/validations/') && !href.startsWith('/guide/')) continue;
+              const output = 'dist' + (href.endsWith('/') ? href : href + '/') + 'index.html';
+              if (!fs.existsSync(output)) missing.push(file + ': ' + href);
+            }
+          }
+          if (missing.length) throw new Error('Missing documentation routes:\\n' + missing.join('\\n'));
+          console.log('Verified internal links across ' + pages.length + ' Markdown pages');
+          JS
       - name: Check all three sources and navigation pages
         run: |
           node - <<'JS'
