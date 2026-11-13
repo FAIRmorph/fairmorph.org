@@ -1,6 +1,6 @@
 # FAIRmorph.org — Documentation Portal
 
-> **Prototype Fund application proof of concept — not a funded project.** FAIRmorph was developed solely to prepare an application to Germany’s [Prototype Fund](https://prototypefund.de/). No funding award or official endorsement is claimed. [Evidence and six-month development plan](https://www.fairmorph.org/guide/prototype-fund/).
+> **Applying to Germany’s Prototype Fund? [Start with FAIRmorph’s concrete application overview, PoC evidence and six-month development plan](https://www.fairmorph.org/guide/prototype-fund/) (in German).** The prototype was developed solely for this application; no grant, selection or official endorsement is claimed. The [detailed technical evidence](https://www.fairmorph.org/guide/prototype-fund-technical/) is available separately.
 
 This repository hosts the **[FAIRmorph project documentation](https://www.fairmorph.org/)** using Astro Starlight. It combines a [research-backed explanation of the ecological FAIR implementation problem](src/content/docs/guide/overview.md#research-evidence-the-fair-implementation-gap) with **automatically updated** guides from three source repositories.
 
