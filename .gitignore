@@ -19,3 +19,9 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# live upstream clones and mirrored Markdown (regenerated on every build)
+.docs-upstream/
+src/content/docs/engine/
+src/content/docs/workbench/
+src/content/docs/validations/

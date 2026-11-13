@@ -1,110 +1,68 @@
-<div align="center">
+# FAIRmorph.org — Documentation Portal
 
-# FAIRmorph Documentation Portal
+This repository hosts the **[FAIRmorph project documentation](https://www.fairmorph.org/)** using Astro Starlight. It combines general project information with **automatically updated** guides from three separate source repositories.
 
-**Docs-as-Code Infrastructure & Technical Specifications for the FAIRmorph Ecosystem**
+| Documentation section | Authoritative source | What readers will find |
+| --- | --- | --- |
+| [Project concept](src/content/docs/guide/overview.md) | This portal | FAIRmorph's goals, implemented scope, boundaries and repository responsibilities |
+| [Engine](https://github.com/FAIRmorph/fairmorph-engine) | `fairmorph-engine/main` | Installation, CLI/API, project pipelines, contracts, verification and expected results |
+| [Workbench](https://github.com/FAIRmorph/fairmorph-workbench) | `fairmorph-workbench/main` | Desktop installation, UI walkthrough, Engine integration and current limits |
+| [Validations](https://github.com/FAIRmorph/fairmorph-validations) | `fairmorph-validations/main` | Reproducible real-data CS-PHOC evidence, configurations and interpretation of the audit |
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#license)
-[![Astro Starlight](https://img.shields.io/badge/Astro-Starlight-FF5D01?logo=astro&logoColor=white)](https://starlight.astro.build/)
-[![Node.js](https://img.shields.io/badge/Node.js-24%2B-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![Deploy Status](https://github.com/FAIRmorph/fairmorph-documentation/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/FAIRmorph/fairmorph-documentation/actions)
+The navigation groups all four sources. **New Markdown pages in the three upstream repositories appear in the relevant navigation section automatically**, without updating `astro.config.mjs`.
 
-</div>
+## Automatic documentation updates
 
----
+The portal intentionally does **not** freeze documentation at historical Git submodule commits:
 
-## 📌 Overview
+1. Every `npm run dev` or `npm run build` runs `scripts/sync-docs.js` first.
+2. The synchronizer clones or fetches the **latest `main` revision** of all three public source repositories, reads their Markdown, and rebuilds their generated documentation sections.
+3. Each generated page contains attribution to its source repository and commit. `.docs-upstream/revisions.json` records the exact source commits used in that build.
+4. The Astro sidebar automatically lists current Engine, Workbench, and Validations pages; removed upstream Markdown disappears on the next build.
+5. GitHub Actions rebuilds and deploys on portal `main` pushes, manual workflow dispatch, and authenticated `repository_dispatch` events such as `code-updated` or `docs-updated`. The existing **[fairmorph-docs-dispatcher GitHub App](https://github.com/apps/fairmorph-docs-dispatcher)** has already triggered a successful `code-updated` deployment ([November 7, 2026 run](https://github.com/FAIRmorph/fairmorph.org/actions/runs/42329694425)). This is the established event-driven integration to retain.
 
-This repository contains the source code, Astro Starlight configuration, and automation scripts for the official **[FAIRmorph Documentation Portal](https://fairmorph.github.io/fairmorph-documentation/)**. 
+**There is no hourly polling and no shared PAT or Actions secret introduced by this portal change.** The upstream GitHub App/webhook configuration is managed in GitHub, not in this repository. The cited run demonstrates that the dispatcher worked for at least one event, but does not independently prove that **every** Engine, Workbench, and Validations `main` push is already covered by its current installation/subscription. A repository administrator should verify those three repositories in the [FAIRmorph organization's GitHub App installations](https://github.com/organizations/FAIRmorph/settings/installations) and ensure the dispatcher is subscribed to the desired `main` push events. The portal accepts either `code-updated` or `docs-updated`.
 
-Operating as an automated **Docs-as-Code** hub, it pulls manual guides and docstring specifications directly from the core ecosystem submodules (`fairmorph-engine` and `fairmorph-app`), compiling them into a single, high-performance static website.
+Build failures are visible in [Actions](https://github.com/FAIRmorph/fairmorph.org/actions/workflows/deploy-docs.yml) and must be fixed rather than silently publishing old docs. For an immediate manual refresh use **Actions → Deploy FAIRmorph documentation → Run workflow**. On every trigger, the portal fetches the latest Markdown from **all three** upstream `main` branches, so no submodule SHA update is necessary.
 
-> 🔒 **Single Source of Truth:** High-level architectural guides, scientific data value pillars, and API specifications are maintained continuously alongside the codebase to ensure complete consistency across releases.
+## Local development
 
----
-
-## 🏗️ Ecosystem Architecture & Submodules
-
-The documentation pipeline aggregates content across multiple repositories using Git submodules:
-
-```text
-fairmorph-documentation/
-├── .github/workflows/       <-- Deploy to GitHub Pages (Node 24 / Python 3.11)
-├── external/                <-- Linked Submodules
-│   ├── engine/              <-- fairmorph-engine (Python domain logic)
-│   └── app/                 <-- fairmorph-app (Tauri / Rust / Svelte GUI)
-├── scripts/
-│   ├── sync-docs.js         <-- Ingests manual markdown & formats frontmatter
-│   ├── gen-engine-docs.py   <-- Extracts Python docstrings into API references
-│   └── gen-gui-docs.js      <-- Compiles app architecture & IPC specifications
-├── src/content/docs/        <-- Astro Starlight content tree
-│   ├── index.mdx            <-- Portal landing page (6 Core Pillars)
-│   ├── guide/               <-- Architectural overview, installation, workflows
-│   ├── engine/              <-- Synced engine documentation & API docs
-│   └── app/                 <-- Synced desktop app guides & specifications
-└── astro.config.mjs         <-- Starlight theme, sidebar, & plugin setup
-```
-
----
-
-## ✨ Key Infrastructure Features
-
-- 📚 **Unified Knowledge Base:** Combines high-level domain guides (OBIS/GBIF standards, QGIS integration, EXIF binding, transparent provenance) with deep technical references.
-- 🔄 **Automated Submodule Synchronization:** Scripts extract and normalize Markdown files directly from source repositories (`external/engine` and `external/app`).
-- 🧮 **LaTeX & Mathematical Notation Support:** Native rendering for scientific formulas and mathematical models using `remark-math` and `rehype-katex`.
-- ⚡ **Automated GitHub Pages Deployment:** Continuous deployment triggered on `main` branch pushes or cross-repository updates (`code-updated` dispatches).
-
----
-
-## 🛠️ Local Development & Build Workflow
-
-### Prerequisites
-
-- **Node.js**: `v24+`
-- **Python**: `v3.11+`
-- **Git**: Installed with submodule support
-
-### Setup & Launch
+Prerequisites: Node.js **24+**, npm and Git, plus network access to read the public source repositories.
 
 ```bash
-# 1. Clone repository with submodules
-git clone --recurse-submodules https://github.com/FAIRmorph/fairmorph-documentation.git
-cd fairmorph-documentation
-
-# 2. Install Node dependencies
-npm install
-
-# 3. Prepare Python environment for API doc generation
-pip install -e ./external/engine pydoc-markdown
-
-# 4. Prepare content & start local preview server
+git clone https://github.com/FAIRmorph/fairmorph.org.git
+cd fairmorph.org
+npm ci
 npm run dev
 ```
 
-Open your browser at `http://localhost:4321/fairmorph-documentation/`.
+The local Starlight server normally runs at `http://localhost:4321/`.
 
----
+```bash
+npm run sync            # Fetch current upstream main revisions; regenerate sections
+npm run build           # Sync again and build the production website
+npm run preview         # Preview the compiled site
+```
 
-## ⚙️ Available Scripts
+The synchronizer uses **`.docs-upstream/`** for shallow working checkouts (ignored by Git) and publishes their Markdown under:
 
-| Command | Action |
-| :--- | :--- |
-| `npm run dev` | Executes `npm run prepare-docs` and launches local Starlight dev server. |
-| `npm run build` | Prepares docs and compiles production static site output to `./dist`. |
-| `npm run prepare-docs` | Runs sync and doc-generation scripts sequentially (`sync`, `gen-engine`, `gen-gui`). |
-| `npm run sync` | Copies raw Markdown from submodules into Starlight, auto-injecting YAML headers. |
-| `npm run gen-engine` | Extracts Python docstrings from `fairmorph-engine` into Starlight Markdown. |
-| `npm run preview` | Previews the compiled production build locally. |
+```text
+src/content/docs/
+  index.mdx                 # Portal-owned main homepage: left untouched
+  guide/                   # Portal-owned project concept and installation
+  engine/                  # Generated from fairmorph-engine
+  workbench/               # Generated from fairmorph-workbench
+  validations/             # Generated from fairmorph-validations
+```
 
----
+Generated sections should not be hand-edited or committed. Fix factual mistakes in the upstream source repository; the next build will reflect the change. The older `external/engine` and `external/gui` Git submodule references may still appear in the repository for historical reasons, but **the current documentation pipeline does not checkout or depend on them**. Do **not** use `--recurse-submodules` for a new portal checkout.
 
-## 🔗 Related Ecosystem Repositories
+## Build and verification
 
-- **[fairmorph-engine](https://github.com/FAIRmorph/fairmorph-engine):** Core Python domain validation, EXIF binding, change audit logging, and packaging engine.
-- **[fairmorph-app](https://github.com/FAIRmorph/fairmorph-app):** Local-first desktop user interface built with Tauri, Rust, and Svelte.
+The [Docs check workflow](.github/workflows/check-docs.yml) validates the fetched current docs and builds the complete site on pull requests. [Deploy documentation](.github/workflows/deploy-docs.yml) builds the same content before publication. A failed upstream fetch or missing README fails the build: it does **not** silently skip a documentation section.
 
----
+FAIRmorph v0.13 is a **technical vertical proof of concept**, not an automatically approved scientific publication system. The Engine has no AI runtime requirement, the Workbench does not yet expose every scientific mapping/review workflow, and the CS-PHOC validation repository's three output formats are **dataset-specific test exports**. The portal's [concept page](src/content/docs/guide/overview.md) explains these boundaries.
 
-## 📄 License
+## License
 
-This documentation portal is licensed under the [MIT License](LICENSE). Individual submodules in `external/` are governed by their respective repository licenses.
+This portal is licensed under [MIT](LICENSE). Imported documentation remains owned and licensed by its respective source repository. Original CS-PHOC scientific data retains its own source attribution and licensing.

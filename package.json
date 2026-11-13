@@ -4,9 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "sync": "node scripts/sync-docs.js",
-    "gen-engine": "python3 scripts/gen-engine-docs.py",
-    "gen-gui": "node scripts/gen-gui-docs.js",
-    "prepare-docs": "npm run sync && npm run gen-engine && npm run gen-gui",
+    "prepare-docs": "npm run sync",
     "predev": "npm run prepare-docs",
     "prebuild": "npm run prepare-docs",
     "dev": "astro dev",

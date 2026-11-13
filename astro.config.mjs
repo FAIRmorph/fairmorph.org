@@ -19,12 +19,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'FAIRmorph Ecosystem',
-      description: 'Locally transform heterogeneous field observations and media assets into verified, FAIR-compliant datasets through transparent provenance and repeatable curation workflows' , 
-      logo: {
-        src: '/public/img/logo.png',
-        alt: 'FAIRmorph Ecosystem Logo',
-        replacesTitle: false,
-      },
+      description: 'FAIRmorph project, Engine, Workbench and independently reproduced validation documentation', 
       customCss: [
         'katex/dist/katex.min.css',
       ],
@@ -35,14 +30,28 @@ export default defineConfig({
           href: 'https://github.com/fairmorph',
         },
       ],
+      // Every upstream README and Markdown guide is mirrored automatically.
+      // Autogenerate ensures newly added upstream pages appear without a portal PR.
       sidebar: [
         {
-          label: 'Getting Started',
+          label: 'FAIRmorph Project',
           items: [
-            { label: 'Overview', slug: 'guide/overview' },
-            { label: 'Installation', slug: 'guide/installation' },
+            { label: 'Concept and status', slug: 'guide/overview' },
+            { label: 'Installation and development', slug: 'guide/installation' },
           ],
-        }
+        },
+        {
+          label: 'FAIRmorph Engine',
+          items: [{ autogenerate: { directory: 'engine' } }],
+        },
+        {
+          label: 'FAIRmorph Workbench',
+          items: [{ autogenerate: { directory: 'workbench' } }],
+        },
+        {
+          label: 'Real-data Validations',
+          items: [{ autogenerate: { directory: 'validations' } }],
+        },
       ],
     }),
   ],
