@@ -9,6 +9,8 @@ The intended experience is a **guided, no-code desktop workflow** with ecology-s
 
 Underneath that experience, a separate Python Engine already provides source preservation, versioned definitions and review contracts, technical transformations and verifiable execution evidence. Support for standards such as **Darwin Core (DwC)** and preparation for repositories such as **PANGAEA** is one useful outcome of well-curated data—not the sole purpose of FAIRmorph.
 
+**Open-source architecture:** FAIRmorph reuses Polars and Svelte/Tauri instead of rebuilding a general data engine or desktop framework. Its own contribution is the connection of scientific field definitions, explicit review and verifiable RUN/audit evidence. Frictionless is planned for technical Data Package descriptions and validation, **not** as today's transformation engine; target repositories need distinct export paths. [FOSS components, current limits and roadmap](/guide/prototype-fund/).
+
 :::caution[Prototype Fund (Germany) — experimental research prototype]
 This software was developed **solely to prepare an application to Germany's [Prototype Fund](https://prototypefund.de/)**; the project does not claim that funding has been awarded. See the [application evidence and six-month development plan](/guide/prototype-fund/). It is **not production-ready**: no general-purpose one-click export to multiple repositories, complete no-code curation, guaranteed installation package, or automatic scientific/publication approval is available. The documentation distinguishes implemented behavior from research and product goals.
 :::
