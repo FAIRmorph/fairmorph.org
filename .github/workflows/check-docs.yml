@@ -119,7 +119,12 @@ jobs:
               // Imported installation guide source retains its original filename.
               if (!fs.existsSync(file)) throw new Error('Missing source documentation: ' + file);
               const doc = fs.readFileSync(file, 'utf8');
-              if (!/Prototype Fund/.test(doc) || !/not (?:a )?production(?:[- ]ready)?(?: software| system)?|not a (?:finished|complete|published)/i.test(doc)) throw new Error('Missing prototype warning: ' + file);
+              if (!/Prototype Fund/.test(doc)) throw new Error('Missing Prototype Fund context: ' + file);
+              if (name === 'INSTALL.md' && !/not production software/i.test(doc)) throw new Error('Missing developer-install warning: ' + file);
+              if (name === 'index.md') {
+                if (!doc.includes('/guide/prototype-fund/')) throw new Error('Missing link to concrete application: ' + file);
+                if (!/not (?:a )?production[- ]ready|not a finished|neither an approved/i.test(doc)) throw new Error('Missing clear scope boundary: ' + file);
+              }
             }
           }
           for (const file of ['src/content/docs/index.mdx', 'src/content/docs/guide/overview.md']) {
