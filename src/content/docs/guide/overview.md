@@ -1,9 +1,7 @@
 ---
-title: FAIRmorph — concept and current scope
+title: Concept and scope
 description: Why FAIRmorph exists, how the Engine, Workbench and independent validations relate, and what has actually been demonstrated.
 ---
-
-# FAIRmorph: transparent, reproducible research-data curation
 
 FAIRmorph is an open-source, **local-first framework** for turning heterogeneous research data into **explicit, inspectable and reproducible data products**. The central idea is to keep original observations, their interpretation, transformation decisions, technical execution, and scientific approval **separate and traceable**.
 
