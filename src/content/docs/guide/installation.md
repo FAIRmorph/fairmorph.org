@@ -21,7 +21,7 @@ fairmorph-engine --help
 fairmorph-engine handshake
 ```
 
-On Windows PowerShell, activate `.venv\Scripts\Activate.ps1` instead. Continue with the [Engine installation instructions](/engine/INSTALL/) and the [first complete example](/engine/docs/USER-GUIDE/).
+On Windows PowerShell, activate `.venv\Scripts\Activate.ps1` instead. Continue with the [Engine installation instructions](/engine/install/) and the [first complete example](/engine/docs/user-guide/).
 
 ## FAIRmorph Workbench
 
@@ -37,13 +37,13 @@ pnpm check
 pnpm tauri dev
 ```
 
-When the Engine virtual environment is not in the expected sibling directory, set `FAIRMORPH_ENGINE_PYTHON` to its Python executable before launching Tauri. Follow the [Workbench user guide](/workbench/docs/USER-GUIDE/) for a full synthetic two-file example. Some existing UI labels are still German; the English guide quotes them for navigation.
+When the Engine virtual environment is not in the expected sibling directory, set `FAIRMORPH_ENGINE_PYTHON` to its Python executable before launching Tauri. Follow the [Workbench user guide](/workbench/docs/user-guide/) for a full synthetic two-file example. Some existing UI labels are still German; the English guide quotes them for navigation.
 
 A locally runnable development UI **does not** imply that a release installer or full field-semantic/publication workflow has been completed.
 
 ## Independently reproduce the real-data validation
 
-The [CS-PHOC validation guide](/validations/docs/CS-PHOC-REPRODUCTION-AND-RESULTS/) pins the external original research data and an Engine revision, then guides you through import, a verified technical RUN, **dataset-specific** test exports, and an independent content audit. It also explains which conclusions the audit does and does not support.
+The [CS-PHOC validation guide](/validations/docs/cs-phoc-reproduction-and-results/) pins the external original research data and an Engine revision, then guides you through import, a verified technical RUN, **dataset-specific** test exports, and an independent content audit. It also explains which conclusions the audit does and does not support.
 
 These files and tests are **not** an automated Workbench UI demonstration.
 
