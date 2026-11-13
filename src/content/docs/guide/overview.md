@@ -3,9 +3,24 @@ title: Concept and scope
 description: Why FAIRmorph exists, how the Engine, Workbench and independent validations relate, and what has actually been demonstrated.
 ---
 
-FAIRmorph is an open-source, **local-first framework** for turning heterogeneous research data into **explicit, inspectable and reproducible data products**. The central idea is to keep original observations, their interpretation, transformation decisions, technical execution, and scientific approval **separate and traceable**.
+FAIRmorph is an open-source, **local-first software project** for turning heterogeneous research data into **explicit, inspectable and reproducible data products**. The central idea is to keep original observations, their interpretation, transformation decisions, technical execution, and scientific approval **separate and traceable**.
 
-Rather than define new scientific exchange standards, FAIRmorph aims to help researchers prepare their own data for established formats and archives when the necessary metadata, mappings and approvals are available. **The current framework v0.13 is a vertical proof of concept**, not an all-purpose biodiversity publishing product.
+Rather than define new scientific exchange standards, FAIRmorph aims to help researchers prepare their own data for established formats and archives when the necessary metadata, mappings and approvals are available. **FAIRmorph is a Prototype Fund (Germany) proof of concept**, not production-ready biodiversity publishing software.
+
+:::caution[Prototype Fund (Germany) — experimental research prototype]
+This software is a **proof of concept for Germany's [Prototype Fund](https://prototypefund.de/)**. It is **not production-ready**: no general-purpose one-click export to multiple repositories, complete no-code curation, guaranteed installation package, or automatic scientific/publication approval is available. The documentation distinguishes implemented behavior from research and product goals.
+:::
+
+## Research evidence: the FAIR implementation gap
+
+**The challenge is not the absence of FAIR principles, libraries or data standards. It is making ecological data understandable, correctly described, consistently transformed and reusable without extensive one-off specialist effort.** The following research motivates FAIRmorph's workflow design, but it does not demonstrate that FAIRmorph itself solves each problem.
+
+- **FAIR principles are necessary but difficult to operationalize.** [Wilkinson et al. (2016)](https://doi.org/10.1038/sdata.2016.18) formulated the Findable, Accessible, Interoperable and Reusable principles for data, metadata and supporting workflows. [Jantzen & Vriend (2026)](https://doi.org/10.1016/j.ecoinf.2026.103712) identify the difficulty of converting these abstract requirements into actionable ecological data-management steps despite existing guidance and tools.
+- **Archiving is not enough for reuse.** [Roche et al. (2015)](https://doi.org/10.1371/journal.pbio.1002295) assessed **100** archived ecology/evolution datasets; **56%** were incomplete and **64%** were partly or wholly unsuitable for reuse because of metadata, raw-data or format limitations. These percentages characterize their studied sample and period, not the current state of all ecological archives. A later [assessment of 362 datasets (2022)](https://pmc.ncbi.nlm.nih.gov/articles/PMC9114975/) also found persistent completeness and reusability gaps.
+- **Curation requires resources and training.** [*Affording reusable data* (2025)](https://doi.org/10.1038/s41597-025-04565-0) describes the time, coordination and funding costs of data preparation in a multidisciplinary research project. [Gomes et al. (2022)](https://doi.org/10.1098/rspb.2022.1113) discuss knowledge barriers, concerns about sharing and scientific incentive structures. A tool can reduce some technical friction but does not eliminate those institutional barriers.
+- **The process itself matters.** [Wilkinson et al. (2016)](https://doi.org/10.1038/sdata.2016.18) also treat workflows as FAIR research objects; recommendations for [FAIR computational workflows (2025)](https://doi.org/10.1038/s41597-025-04451-9) reinforce the importance of reproducible, reusable processing methods.
+
+**Design implication:** FAIRmorph aims to preserve original research bytes alongside explicit field meanings, reviewed mapping decisions, versioned transformation recipes and verifiable output evidence. That foundation could let researchers create multiple destination-specific packages and repeat future releases without silently reconstructing manual steps. Scientific judgments still require the responsible research team; producing a technically verified file does not establish publication acceptance.
 
 ## Why distinguish source data from scientific interpretation?
 
