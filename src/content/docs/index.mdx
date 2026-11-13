@@ -29,6 +29,45 @@ Existing standards do not automatically explain what a source column means or ho
 
 **FAIRmorph's proposed answer is a repeatable curation workflow**, not another file converter: keep the original data, document field meaning and review decisions, track transformations, then reuse that evidence for different outputs and later dataset revisions. [Read the scientific background and limitations](/guide/overview/#research-evidence-the-fair-implementation-gap).
 
+## From fragmented preparation to reusable curation
+
+<CardGrid>
+  <Card title="Conventional workflow" icon="document">
+    **Source data**
+
+    ↓
+
+    **Separate scripts · Spreadsheets · Metadata · Exports**
+
+    ↓
+
+    **Manual coordination and repeated preparation**
+
+    Each destination can require its own conversion, documentation and checks. When source data change, those steps may need to be reconstructed.
+  </Card>
+  <Card title="FAIRmorph's approach" icon="list-format">
+    **Original ecological data**
+
+    ↓
+
+    **One reviewed curation workflow**
+
+    Definitions · Mappings · Provenance
+
+    ↓
+
+    **DwC · PANGAEA · Other formats · New revisions**
+
+    Reuse documented scientific decisions and versioned transformations as the common basis for different outputs and later updates.
+  </Card>
+</CardGrid>
+
+*Conceptual comparison:* FAIRmorph aims to make reviewed curation reusable across multiple formats and updates. **General-purpose multi-destination publishing is not yet implemented** in the proof of concept.
+
+The distinction is **not simply a graphical interface instead of code**. Other tools already offer graphical interfaces, FAIR assessments and guided workflows. FAIRmorph's proposed differentiation is the **reusable, reviewable curation record between original research data and multiple publication destinations**.
+
+That approach serves both ecological researchers who do not want to become data engineers and technical data managers who need explicit, inspectable, repeatable transformations.
+
 ## Less repeated work. More reusable research data.
 
 When a dataset needs to serve a biodiversity network, a data repository, a project archive, or a collaborator, each destination may expect different files, terminology, and metadata. Preparing every version manually takes time—and repeating those steps after every correction makes results harder to compare and audit.
