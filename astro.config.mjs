@@ -47,15 +47,15 @@ export default defineConfig({
         },
         {
           label: 'FAIRmorph Engine',
-          autogenerate: { directory: 'engine' },
+          items: [{ autogenerate: { directory: 'engine' } }],
         },
         {
           label: 'FAIRmorph Workbench',
-          autogenerate: { directory: 'workbench' },
+          items: [{ autogenerate: { directory: 'workbench' } }],
         },
         {
           label: 'Real-data Validations',
-          autogenerate: { directory: 'validations' },
+          items: [{ autogenerate: { directory: 'validations' } }],
         },
       ],
     }),
