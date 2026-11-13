@@ -30,6 +30,23 @@ A column called `count` is not automatically a population estimate, an `Occurren
 
 The Engine already keeps imported **source bytes as immutable evidence** and supports separately versioned field definitions, mappings and review decisions. The proposed Workbench interviews would guide people through these choices in accessible language, with room for expert review. Technical verification establishes defined integrity and repeatability checks; it **does not prove a biological interpretation is correct or approved for publication**.
 
+## Transparent, versioned and reproducible by design
+
+**A curated dataset should come with a clear account of what was changed, why decisions were made, and which sources and configurations produced each result.** FAIRmorph treats that documentation as part of the research workflow—not an optional note added only at publication time.
+
+| What remains traceable | Current Engine mechanism | Why it helps researchers and data stewards |
+| --- | --- | --- |
+| **Original data** | Imported source bytes are preserved as immutable, content-addressed objects with source identities and checksums. | Researchers can return to the original observations and distinguish them from derived tables. |
+| **Scientific field descriptions** | Source-field meanings, units and interpretation evidence are managed through versioned `SourceFieldDefinition` revisions. | A collaborator can see which definition a dataset or mapping refers to, instead of relying on an ambiguous column name. |
+| **Mapping and review decisions** | Mapping profiles describe intended transformations and missing/zero-value rules; review and approval actions are explicit and revision-bound. | Decisions can be examined and revised deliberately. Storing a draft is not the same as scientific approval. |
+| **Processing RUNs** | Completed RUNs retain source/configuration snapshots, artifact manifests, hashes and verification evidence; generic pipelines record step-level information and selected value-change evidence. | Teams can identify the inputs and configuration for a particular result and check its technical integrity when preparing updates. |
+
+**For example:** if the meaning of a species-count field needs clarification, its scientific description can be revised without silently modifying the original observations or rewriting a completed RUN. A subsequent, explicitly configured RUN can reference the applicable revisions, while the earlier evidence remains identifiable.
+
+The Engine implements these technical foundations today. The intended **guided, no-code Workbench interviews** would help ecologists supply and review these descriptions without writing JSON contracts by hand. That end-to-end user experience is still under development.
+
+**Scope of the evidence:** RUN audit coverage differs by processing path; a generic DAG does **not** automatically produce a complete cell-by-cell history of every operation. Checksums and verification establish defined technical properties, **not** biological correctness or publication approval. See the [Engine data contracts](/engine/docs/data-contracts/) and [scope and development policy](/engine/docs/scope-and-development/) for the precise implementation boundaries.
+
 ## Three complementary repositories
 
 | Repository | Responsibility | Current demonstrated scope |
