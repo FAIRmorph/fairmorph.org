@@ -25,6 +25,34 @@ jobs:
         run: npm ci
       - name: Build portal with live upstream docs
         run: npm run build
+      - name: Verify Engine documentation links resolve to published site routes
+        run: |
+          node - <<'JS'
+          import fs from 'node:fs';
+          const index = fs.readFileSync('src/content/docs/engine/docs/index.md', 'utf8');
+          for (const url of [
+            '/engine/INSTALL/',
+            '/engine/docs/USER-GUIDE/',
+            '/engine/docs/project-driven-run/',
+            '/engine/docs/API-REFERENCE/',
+            '/engine/docs/ARCHITECTURE/',
+            '/engine/docs/DATA-CONTRACTS/',
+            '/engine/docs/OPERATIONS/',
+            '/engine/docs/RUN-RECOVERY/',
+            '/engine/docs/FRAMEWORK-v0.13-POC-SCOPE/',
+            '/engine/examples/cs-phoc/',
+            '/engine/'
+          ]) {
+            if (!index.includes('](' + url + ')')) throw new Error('Missing transformed link in docs index: ' + url);
+            const output = 'dist' + url + 'index.html';
+            if (!fs.existsSync(output)) throw new Error('Unpublished documentation route: ' + url + ' (' + output + ')');
+          }
+          for (const url of ['/engine/INSTALL/', '/engine/docs/USER-GUIDE/']) {
+            if (!fs.readFileSync('src/content/docs/engine/index.md', 'utf8').includes('](' + url + ')')) {
+              throw new Error('README does not link into site: ' + url);
+            }
+          }
+          JS
       - name: Check all three sources and navigation pages
         run: |
           node - <<'JS'
