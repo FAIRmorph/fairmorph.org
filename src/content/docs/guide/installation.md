@@ -3,8 +3,6 @@ title: Installation and development
 description: Practical setup for the FAIRmorph Engine, desktop Workbench and automatically synchronized documentation portal.
 ---
 
-# Installation and development
-
 FAIRmorph currently consists of **separate source repositories**, not a single ready-to-install scientific publication product. The Python Engine can be used independently, while the desktop Workbench requires the Engine during development. The validation scripts provide a reproducible real-data proof of concept.
 
 ## FAIRmorph Engine
