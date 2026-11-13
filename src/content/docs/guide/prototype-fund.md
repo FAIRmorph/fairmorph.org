@@ -1,6 +1,6 @@
 ---
 title: Prototype Fund – Bewerbung, Nachweise und Entwicklungsplan
-description: Konkreter Überblick zur FAIRmorph-Bewerbung: Problem, Lösungsansatz, nachgewiesener Prototyp, Grenzen und sechsmonatiger Entwicklungsplan.
+description: "Konkreter Überblick zur FAIRmorph-Bewerbung: Problem, Lösungsansatz, nachgewiesener Prototyp, Grenzen und sechsmonatiger Entwicklungsplan."
 ---
 
 **Stand: 14. November 2026 · Bewerbungsprojekt, keine bewilligte Förderung**
