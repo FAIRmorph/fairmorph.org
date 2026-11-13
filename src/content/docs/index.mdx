@@ -1,10 +1,10 @@
 ---
 title: FAIRmorph
-description: Curate research data once, prepare it for multiple formats and repositories, and repeat updates with transparent, verifiable processing.
+description: Make ecological research data easier to combine, clean, describe and reuse—with guided curation, transparent provenance and reproducible workflows.
 template: splash
 hero:
   title: Making ecological data FAIR shouldn't be this complicated.
-  tagline: Standards and software already exist. What is missing is an accessible way to connect ecological observations, scientific metadata, reviewed transformations, and different publication requirements. FAIRmorph aims to make that work easier to repeat—with a local-first, researcher-friendly desktop workflow.
+  tagline: You do the research. FAIRmorph aims to make the data work easier—from bringing together field observations and cleaning tables to describing what they mean and helping others reuse them. Guided, no-code ecological curation, transparent decisions and repeatable workflows in a local-first desktop application.
   actions:
     - text: Explore the concept
       link: /guide/overview/
@@ -21,15 +21,15 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 **FAIRmorph is an open-source prototype for Germany's [Prototype Fund](https://prototypefund.de/), not a production-ready application.** The no-code desktop experience, general-purpose publication to multiple repositories, and one-click installation are goals under development. Current Engine, Workbench and validation capabilities are documented and testable; scientific approval and publisher acceptance are separate steps.
 :::
 
-**The promise:** guided, no-code ecological data curation; reusable scientific decisions; repeatable preparation for **Darwin Core (DwC), PANGAEA and other repository formats**—without manually rebuilding every export when data changes. These are the project's intended benefits, **not yet a complete end-to-end product**.
+**The promise:** less time wrestling with spreadsheets, scripts and metadata—and more time doing ecological research. FAIRmorph aims to guide researchers through **collecting, combining, cleaning, describing and checking data**, using accessible, domain-specific questions instead of requiring them to design every transformation themselves. The result should be research data that colleagues can **understand, trust and reuse**, with repeatable updates and support for established standards such as Darwin Core (DwC) and destinations such as PANGAEA. **The full guided, no-code experience remains a development goal.**
 
 ## Why FAIR data remains difficult
 
 Existing standards do not automatically explain what a source column means or how to document, verify and publish it. A [2026 study on FAIR practices for ecologists](https://doi.org/10.1016/j.ecoinf.2026.103712) describes the gap between FAIR principles and actionable steps for researchers. In a [study of 100 archived ecology/evolution datasets](https://doi.org/10.1371/journal.pbio.1002295), **56% were incomplete** and **64% had limitations that partly or fully prevented reuse**. Those figures refer to that study's sample, not all published data.
 
-**FAIRmorph's proposed answer is a repeatable curation workflow**, not another file converter: keep the original data, document field meaning and review decisions, track transformations, then reuse that evidence for different outputs and later dataset revisions. [Read the scientific background and limitations](/guide/overview/#research-evidence-the-fair-implementation-gap).
+**The challenge is the work between collecting data and making them genuinely reusable.** Researchers must bring together different sources, resolve inconsistent values, explain what fields mean, document methods and prepare metadata that another researcher can actually understand. FAIRmorph aims to guide this process through **ecology-specific, no-code interviews and reviewable steps**—while retaining the original data and making later updates repeatable. [Read the scientific background and limitations](/guide/overview/#research-evidence-the-fair-implementation-gap).
 
-## From fragmented preparation to reusable curation
+## From scattered data work to guided, reusable curation
 
 <CardGrid>
   <Card title="Conventional workflow" icon="document">
@@ -37,52 +37,54 @@ Existing standards do not automatically explain what a source column means or ho
 
     ↓
 
-    **Separate scripts · Spreadsheets · Metadata · Exports**
+    **Spreadsheets · Scripts · Manual matching · Metadata**
 
     ↓
 
-    **Manual coordination and repeated preparation**
+    **Repeated cleanup, documentation and handovers**
 
-    Each destination can require its own conversion, documentation and checks. When source data change, those steps may need to be reconstructed.
+    Combining observations, resolving inconsistencies and explaining fields can demand specialist knowledge. When data are shared or updated, colleagues may need to reconstruct what was done.
   </Card>
   <Card title="FAIRmorph's approach" icon="list-format">
     **Original ecological data**
 
     ↓
 
-    **One reviewed curation workflow**
+    **Guided, ecology-aware curation**
 
-    Definitions · Mappings · Provenance
+    Combine · Clean · Describe · Review
 
     ↓
 
-    **DwC · PANGAEA · Other formats · New revisions**
+    **Understandable, reusable data**
 
-    Reuse documented scientific decisions and versioned transformations as the common basis for different outputs and later updates.
+    Transparent provenance · Repeatable updates · Standards-ready outputs
+
+    Step-by-step, domain-specific questions aim to help researchers explain their data once, keep the decisions visible and make the results easier for others to reuse.
   </Card>
 </CardGrid>
 
-*Conceptual comparison:* FAIRmorph aims to make reviewed curation reusable across multiple formats and updates. **General-purpose multi-destination publishing is not yet implemented** in the proof of concept.
+*Conceptual comparison:* FAIRmorph aims to reduce the effort of combining, cleaning and documenting ecological data, so results are easier to interpret, reuse and update. **Guided domain-specific interviews and complete no-code curation are planned capabilities**, not yet end-to-end features of the proof of concept.
 
-The distinction is **not simply a graphical interface instead of code**. Other tools already offer graphical interfaces, FAIR assessments and guided workflows. FAIRmorph's proposed differentiation is the **reusable, reviewable curation record between original research data and multiple publication destinations**.
+**Good ecological research already takes care, knowledge and time. Preparing its data for others should not add an entirely new specialist project.** FAIRmorph's goal is to help with the whole journey: bring field observations together, tidy inconsistencies, explain scientific meanings through guided, domain-specific questions, check results and retain a clear record of every decision. This makes the data easier for **other researchers to find, understand and confidently reuse**—not just easier to export.
 
-That approach serves both ecological researchers who do not want to become data engineers and technical data managers who need explicit, inspectable, repeatable transformations.
+For researchers, that means less manual data wrangling and a more approachable, no-code path toward FAIR data. For data stewards, it means explicit definitions, inspectable review decisions and reproducible transformations. **Different formats and repositories are a useful outcome of well-curated data—not the only reason to curate them.**
 
-## Less repeated work. More reusable research data.
+## Better-prepared data. Less repeated work.
 
-When a dataset needs to serve a biodiversity network, a data repository, a project archive, or a collaborator, each destination may expect different files, terminology, and metadata. Preparing every version manually takes time—and repeating those steps after every correction makes results harder to compare and audit.
+Ecological research rarely arrives as one tidy, self-explanatory table. Field records, species counts, locations, measurements and images may be collected at different times or by different people. Before another team can reuse them, somebody must bring them together, resolve ambiguities and document what the observations mean.
 
-**FAIRmorph's goal is to separate the original observations from their scientific interpretation and destination-specific formatting.** Curate the source once, keep the decisions explicit, and reuse that documented work for different outputs and future dataset revisions.
+**FAIRmorph aims to make that work manageable through a guided desktop process.** Rather than hiding scientific choices inside an ad hoc script or spreadsheet, the researcher can document them explicitly, a data steward can review them, and future collaborators can follow how the cleaned dataset was produced. Those decisions can then be reused when observations change or another format is needed.
 
 <CardGrid>
-  <Card title="One source, multiple destinations" icon="share">
-    Prepare the same reviewed observations for different **formats and repository requirements**, rather than maintaining separate manual conversions for each destination. Darwin Core Archives, tabular data packages, and repository-specific submissions are part of the intended workflow.
+  <Card title="Combine and clean with guidance" icon="share">
+    Bring together observations, measurements and supporting records. Planned **ecology-specific interviews** guide source-field meaning, missing values and mapping choices—without assuming every researcher writes code.
   </Card>
-  <Card title="Repeat updates consistently" icon="setting">
-    When records are corrected or new observations arrive, reuse versioned definitions and transformations. Produce a new, traceable output without guessing which spreadsheet steps were used last time.
+  <Card title="Make data understandable and reusable" icon="setting">
+    Capture how observations were collected, what each field means and which decisions were reviewed. Help colleagues and future researchers interpret the dataset without relying on undocumented local knowledge.
   </Card>
-  <Card title="Know exactly what changed" icon="list-format">
-    Preserve original files, explicit mapping decisions, run configurations, and integrity evidence. Compare releases and distinguish a **technically verified** transformation from a **scientifically approved** interpretation.
+  <Card title="Repeat updates and share with confidence" icon="list-format">
+    Preserve original files, reviewed mappings and verifiable processing evidence. Reuse the workflow for new observations and prepare different output formats where supported—without confusing technical verification with scientific approval.
   </Card>
 </CardGrid>
 
