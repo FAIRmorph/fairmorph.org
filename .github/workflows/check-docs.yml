@@ -136,7 +136,7 @@ jobs:
           for (const phrase of ['## Das Vorhaben auf einen Blick', '## Was der Proof of Concept heute nachweist', '## Was in sechs Fördermonaten entstehen soll', 'v0.1.1', '/guide/prototype-fund-technical/']) {
             if (!fundDoc.includes(phrase)) throw new Error('Missing concrete Prototype Fund application evidence: ' + phrase);
           }
-          for (const phrase of ['## Offene Infrastruktur, Datenstandards und Frictionless', 'Frictionless ersetzt nicht die bestehende Transformations- und Audit-Engine', 'repository-neutraler RUN', 'Table Schemas', 'Frictionless-validierte Data Packages', 'wissenschaftliche Freigabe']) {
+          for (const phrase of ['## Offene Infrastruktur, Datenstandards und Frictionless', 'Frictionless ersetzt nicht die bestehende Transformations- und Audit-Engine', 'Repository-neutraler RUN/2', 'Table Schemas', 'Frictionless-validierte Data Packages', 'wissenschaftliche Freigabe']) {
             if (!technicalEvidence.includes(phrase)) throw new Error('FOSS architecture and Frictionless scope missing from technical appendix: ' + phrase);
           }
           const homepage = fs.readFileSync('src/content/docs/index.mdx', 'utf8');
