@@ -20,11 +20,6 @@ export default defineConfig({
     starlight({
       title: 'FAIRmorph Ecosystem',
       description: 'FAIRmorph project, Engine, Workbench and independently reproduced validation documentation', 
-      logo: {
-        src: '/img/logo.png',
-        alt: 'FAIRmorph Ecosystem Logo',
-        replacesTitle: false,
-      },
       customCss: [
         'katex/dist/katex.min.css',
       ],
