@@ -6,19 +6,21 @@ hero:
   title: Making ecological data FAIR shouldn't be this complicated.
   tagline: You do the research. FAIRmorph aims to make the data work easier—from bringing together field observations and cleaning tables to describing what they mean and helping others reuse them. Guided, no-code ecological curation, transparent decisions and repeatable workflows in a local-first desktop application.
   actions:
-    - text: Explore the concept
-      link: /guide/overview/
+    - text: Prototype Fund application (DE)
+      link: /guide/prototype-fund/
       icon: right-arrow
       variant: primary
-    - text: What works today?
-      link: '#what-works-today'
+    - text: Explore the concept
+      link: /guide/overview/
       icon: right-arrow
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-:::caution[Prototype Fund (Germany) · Proof of concept — not production software]
-**FAIRmorph was built exclusively to prepare an application to Germany's [Prototype Fund](https://prototypefund.de/). No funding award is claimed.** It is not a production-ready application. [Technical evidence and six-month development plan](/guide/prototype-fund/). The no-code desktop experience, general-purpose publication to multiple repositories, and one-click installation are goals under development. Current Engine, Workbench and validation capabilities are documented and testable; scientific approval and publisher acceptance are separate steps.
+:::tip[Prototype Fund application — start here (German)]
+**[FAIRmorph's concrete Prototype Fund application: problem, working proof of concept, verifiable results and six-month development plan](/guide/prototype-fund/)**
+
+This is the central page for reviewers. The prototype was developed exclusively to prepare an application; **no funding award, selection or endorsement is claimed**. The released Windows/Linux packages demonstrate technical feasibility, but this is **not production-ready software**: the complete no-code scientific workflow is still a development goal.
 :::
 
 **The promise:** less time wrestling with spreadsheets, scripts and metadata—and more time doing ecological research. FAIRmorph aims to guide researchers through **collecting, combining, cleaning, describing and checking data**, using accessible, domain-specific questions instead of requiring them to design every transformation themselves. The result should be research data that colleagues can **understand, trust and reuse**, with repeatable updates and support for established standards such as Darwin Core (DwC) and destinations such as PANGAEA. **The full guided, no-code experience remains a development goal.**
@@ -123,18 +125,18 @@ For researchers, that means less dependence on forgotten spreadsheet edits. For 
 | **Engine** | Unchanged source imports, declarative tabular pipelines, versioned review contracts and verifiable RUN/2 evidence ([Engine tests](https://github.com/FAIRmorph/fairmorph-engine/actions)). | Broader end-to-end scientific publication integration and production-level reliability. |
 | **Workbench** | Local project setup, source import, technical pipeline selection/execution and integrity checks ([Workbench CI](https://github.com/FAIRmorph/fairmorph-workbench/actions)). | Guided field-definition and mapping reviews, plus a complete no-code scientific workflow. |
 | **Real-data validation** | Pinned CS-PHOC test: **16,940 recorded category cells** checked against the source; dataset-specific DwC-A, TSV and GeoJSON **test exports** independently audited ([validation results](/validations/docs/cs-phoc-reproduction-and-results/)). | Validation with additional independent datasets and formally reviewed scientific interpretations. |
-| **Publication and delivery** | Engine Data Package and separate EML/DwC-A adapter tests; Windows/Linux packaging workflow configured. | General-purpose Workbench export, tested end-user installers, and publisher-ready releases or submissions. |
+| **Publication and delivery** | Engine Data Package and separate EML/DwC-A adapter tests; [v0.1.1](https://github.com/FAIRmorph/fairmorph-workbench/releases/tag/v0.1.1) built and automatically published Windows/Linux packages with a bundled Engine. Linux DEB/AppImage and portable Windows startup have been manually tested. | General-purpose Workbench export, fully verified graphical end-to-end workflows, publisher acceptance and production-scale reliability; [Windows console flash](https://github.com/FAIRmorph/fairmorph-workbench/issues/17) remains open. |
 
 **Evidence vs. roadmap:** A passed technical test is not scientific approval or proof of a finished user-facing product. Read the [Prototype Fund evidence and six-month development plan](/guide/prototype-fund/) for test links, limitations and the proposed milestones.
 
 The four technical proof points behind this summary are:
 
 1. **A technical end-to-end validation on real research data.** A pinned, publicly available CS-PHOC ecological dataset is imported unchanged, processed by the generic Engine and verified through an immutable technical RUN. Separate **dataset-specific validation code** generates DwC-A, PANGAEA-preparation TSV and GeoJSON **test outputs**, which are independently checked against the source. This demonstrates the data path, **not** generic publishing or scientific approval.
-2. **Desktop build and bundled Engine sidecar.** The Workbench uses Svelte/Tauri with the Python Engine as a separate local application. Its release workflow is configured to build **Windows (NSIS)** and **Linux (deb/AppImage)** packages, bundle the Engine using PyInstaller, and smoke-test the sidecar. **The build pipeline is implemented; successful packaged release builds and easy installation on end-user machines are not yet demonstrated here.**
-3. **Continuous integration and delivery structure.** Engine tests, Workbench Linux/Windows integration checks, the independent real-data validation CI, desktop packaging workflows, and automatic documentation deployment establish the intended repository and CI/CD structure. They provide a tested foundation for further features—not a guarantee that all future functionality or distributable packages already pass acceptance tests.
+2. **Desktop build and bundled Engine sidecar.** The Svelte/Tauri Workbench runs the Python Engine as a separate local application. The successful [v0.1.1 release run](https://github.com/FAIRmorph/fairmorph-workbench/actions/runs/43516992967) built, smoke-tested and automatically attached Windows (NSIS/ZIP) and Linux (DEB/AppImage) packages. Linux packages were manually launched or installed and the Windows portable app starts and reaches the Engine; a brief Windows terminal flash is a [known issue](https://github.com/FAIRmorph/fairmorph-workbench/issues/17).
+3. **Tested integration and delivery.** Engine tests, Workbench Linux/Windows checks, independent real-data validation, a [successful multi-platform release and asset upload](https://github.com/FAIRmorph/fairmorph-workbench/actions/runs/43516992967), and automated documentation deployment demonstrate the CI/CD chain. They do not replace full manual desktop acceptance or future production-hardening tests.
 4. **The intended two-component architecture in working code.** A separate **Python Engine** owns imported sources, mappings, processing, immutable RUN evidence and verification; the **Tauri desktop Workbench** invokes it through a defined local process interface. Current UI workflows demonstrate project setup, import, technical pipeline execution and verification, while full scientific curation and publishing remain under development.
 
-**What is not yet proven:** one-click installation, complete no-code scientific review, multi-repository publication for arbitrary ecological datasets, publisher acceptance or production reliability. Those are the next product and validation milestones.
+**What is not yet proven:** complete guided scientific review, end-to-end graphical processing on every target platform, generic publication from the Workbench, publisher acceptance, or production reliability. Those are upcoming development and validation milestones.
 
 
 <CardGrid>
