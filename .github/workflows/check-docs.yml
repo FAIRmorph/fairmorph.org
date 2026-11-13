@@ -168,7 +168,8 @@ jobs:
           }
           if (homepage.length > 8000) throw new Error('Homepage is too long for a concise entry point');
           const concept = fs.readFileSync('src/content/docs/guide/overview.md', 'utf8');
-          for (const message of ['guided, no-code desktop workflow', 'Supporting scientific meaning without guessing', 'The intended researcher journey', 'What the prototype demonstrates', 'For researchers', 'For data stewards']) {
+          if (concept.length > 11000) throw new Error('Concept page should stay focused and link to detailed evidence');
+          for (const message of ['guided, no-code desktop workflow', 'Supporting scientific meaning without guessing', 'The intended researcher journey', 'What the prototype demonstrates', 'For researchers', 'For data stewards', 'they are not tests of FAIRmorph', '/guide/prototype-fund/', '/guide/prototype-fund-technical/']) {
             if (!concept.includes(message)) throw new Error('Concept page not aligned to researcher-focused homepage: ' + message);
           }
           for (const phrase of ['versioned', 'RUNs', '/guide/overview/#transparent-versioned-and-reproducible-by-design']) {
