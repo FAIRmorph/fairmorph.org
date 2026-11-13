@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="875" viewBox="0 0 1460 875" role="img" aria-labelledby="flow-title flow-desc">
+<title id="flow-title">Conventional ecological data preparation compared with FAIRmorph's approach</title>
+<desc id="flow-desc">Conventional workflows may require Python or R programming, manual configuration and mapping, specialist data-curation knowledge, repeated cleanup and hard-to-transfer documentation. FAIRmorph's planned guided workflow combines original ecological data, explicit reviews, versioned decisions and verifiable results. Guided no-code scientific review and general exports remain under development.</desc>
+<defs>
+  <linearGradient id="leftBG" x2="0" y2="1"><stop offset="0" stop-color="#f7f8fa"/><stop offset="1" stop-color="#f1f3f6"/></linearGradient>
+  <linearGradient id="rightBG" x2="0" y2="1"><stop offset="0" stop-color="#f3fcf8"/><stop offset="1" stop-color="#e9f7f1"/></linearGradient>
+  <style>
+   .h{font:700 36px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#17263a}
+   .greenh{fill:#075e49}
+   .sub{font:400 22px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#52616f}
+   .subg{fill:#3b7061}
+   .step{font:700 28px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#192d43}
+   .detail{font:400 22px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#435468}
+   .foot{font:500 19px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#556675}
+   .num{font:700 26px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#6a7684}
+   .numg{fill:#138469}
+  </style>
+  <filter id="soft"><feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#17263a" flood-opacity=".08"/></filter>
+</defs>
+<rect width="1460" height="875" fill="white"/>
+<rect x="20" y="15" width="690" height="835" rx="25" fill="url(#leftBG)" stroke="#d5dde5" stroke-width="2"/>
+<rect x="750" y="15" width="690" height="835" rx="25" fill="url(#rightBG)" stroke="#a5dacc" stroke-width="2"/>
+<rect x="20" y="15" width="690" height="118" rx="25" fill="#e5e9ee"/>
+<path d="M20 108h690v25H20z" fill="#e5e9ee"/>
+<rect x="750" y="15" width="690" height="118" rx="25" fill="#d0f0e4"/>
+<path d="M750 108h690v25H750z" fill="#d0f0e4"/>
+<text x="61" y="67" class="h">Conventional workflow</text>
+<text x="61" y="101" class="sub">Often manual, fragmented and specialist-led</text>
+<text x="790" y="67" class="h greenh">FAIRmorph’s approach</text>
+<text x="790" y="101" class="sub subg">Transparent curation — the intended workflow</text>
+<g filter="url(#soft)">
+  <rect x="45" y="157" width="640" height="139" rx="19" fill="white"/>
+  <rect x="45" y="344" width="640" height="186" rx="19" fill="white"/>
+  <rect x="45" y="580" width="640" height="166" rx="19" fill="white"/>
+  <rect x="775" y="157" width="640" height="139" rx="19" fill="white"/>
+  <rect x="775" y="344" width="640" height="186" rx="19" fill="white"/>
+  <rect x="775" y="580" width="640" height="166" rx="19" fill="white"/>
+</g>
+<circle cx="98" cy="214" r="28" fill="#edf0f4"/>
+<text x="98" y="223" text-anchor="middle" class="num">01</text>
+<circle cx="828" cy="214" r="28" fill="#e2f5ed"/>
+<text x="828" y="223" text-anchor="middle" class="num numg">01</text>
+<text x="143" y="209" class="step">Heterogeneous source data</text>
+<text x="143" y="249" class="detail">CSV, Excel, field notes and sensor exports</text>
+<text x="873" y="209" class="step">Original ecological data</text>
+<text x="873" y="249" class="detail">Preserved unchanged with traceable identities</text>
+<path d="M364 302v30m-10-10 10 10 10-10" fill="none" stroke="#788698" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1095 302v30m-10-10 10 10 10-10" fill="none" stroke="#11866b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="98" cy="407" r="28" fill="#edf0f4"/>
+<text x="98" y="416" text-anchor="middle" class="num">02</text>
+<circle cx="828" cy="407" r="28" fill="#e2f5ed"/>
+<text x="828" y="416" text-anchor="middle" class="num numg">02</text>
+<text x="143" y="403" class="step">Custom coding and mapping</text>
+<text x="143" y="440" class="detail">Python / R programming</text>
+<text x="143" y="477" class="detail">Manual configuration, field and unit mapping</text>
+<text x="143" y="514" class="detail">Specialist data-curation knowledge</text>
+<text x="873" y="403" class="step">Guided, ecology-aware review</text>
+<text x="873" y="440" class="detail">Combine · Clean · Describe · Review</text>
+<text x="873" y="477" class="detail">Field meanings and choices made explicit</text>
+<text x="873" y="514" class="detail">Complete no-code guidance is planned</text>
+<path d="M364 537v31m-10-10 10 10 10-10" fill="none" stroke="#788698" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1095 537v31m-10-10 10 10 10-10" fill="none" stroke="#11866b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="98" cy="644" r="28" fill="#edf0f4"/>
+<text x="98" y="653" text-anchor="middle" class="num">03</text>
+<circle cx="828" cy="644" r="28" fill="#e2f5ed"/>
+<text x="828" y="653" text-anchor="middle" class="num numg">03</text>
+<text x="143" y="636" class="step">Repeated cleanup and handovers</text>
+<text x="143" y="675" class="detail">Rules scattered across scripts and notes</text>
+<text x="143" y="711" class="detail">Harder for others to audit or reproduce</text>
+<text x="873" y="636" class="step">Understandable, reusable data</text>
+<text x="873" y="675" class="detail">Versioned decisions · Verifiable RUNs</text>
+<text x="873" y="711" class="detail">Standards-based exports in development</text>
+<text x="61" y="794" class="foot">Typical challenges, not universal requirements</text>
+<text x="790" y="794" class="foot">Built on FOSS; scientific review stays explicit</text>
+</svg>
