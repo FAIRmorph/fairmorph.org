@@ -3,8 +3,6 @@ title: Prototype Fund – Bewerbungsnachweis und Entwicklungsplan
 description: Ehrliche Bestandsaufnahme des FAIRmorph-Prototyps, seiner Tests und der verbleibenden sechsmonatigen Produktentwicklung.
 ---
 
-# FAIRmorph: Technischer Machbarkeitsnachweis für die Prototype-Fund-Bewerbung
-
 **Stand: 13. November 2026.**
 
 FAIRmorph ist als **technischer Proof of Concept ausschließlich zur Vorbereitung einer Bewerbung beim deutschen [Prototype Fund](https://prototypefund.de/)** entstanden. Ziel ist es, die Umsetzbarkeit der Grundidee, die Qualität der technischen Arbeit und die Fähigkeiten zur reproduzierbaren Softwareentwicklung nachzuweisen. **Es wird keine bereits erhaltene Förderung, Auswahl oder offizielle Unterstützung durch den Prototype Fund behauptet.**
