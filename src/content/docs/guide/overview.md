@@ -1,65 +1,77 @@
 ---
-title: Architectural Overview
-description: Design principles, core pillars, and ecosystem architecture for FAIRmorph.
+title: FAIRmorph — concept and current scope
+description: Why FAIRmorph exists, how the Engine, Workbench and independent validations relate, and what has actually been demonstrated.
 ---
 
-FAIRmorph provides a zero-friction, offline-first workflow for standardizing, validating, and publishing ecological observation data. 
+# FAIRmorph: transparent, reproducible research-data curation
 
-Rather than proposing a new data standard, FAIRmorph streamlines compliance with established biodiversity frameworks (such as GBIF and OBIS Darwin Core standards, as well as TDWG vocabularies) through a secure, native desktop interface and a decoupled validation engine.
+FAIRmorph is an open-source, **local-first framework** for turning heterogeneous research data into **explicit, inspectable and reproducible data products**. The central idea is to keep original observations, their interpretation, transformation decisions, technical execution, and scientific approval **separate and traceable**.
 
----
+Rather than define new scientific exchange standards, FAIRmorph aims to help researchers prepare their own data for established formats and archives when the necessary metadata, mappings and approvals are available. **The current framework v0.13 is a vertical proof of concept**, not an all-purpose biodiversity publishing product.
 
-## 🏛️ Core Architectural Pillars
+## Why distinguish source data from scientific interpretation?
 
-The ecosystem architecture is engineered around six primary operational requirements:
+A column called `count` is not automatically a population estimate, an `Occurrence`, or an individual organism. Similarly, an empty cell is not necessarily a recorded zero. Different datasets require source-supported definitions, documented missing-value rules and informed choices about target schemas.
 
-1. **Sensitive Data Sovereignty**  
-   Complete local data privacy. All raw observation datasets, unpublished research, and sensitive spatial coordinates (such as red-list species geolocations) remain strictly on your local machine. No mandatory cloud accounts or external data uploads are required during core parsing, editing, or validation.
+FAIRmorph therefore treats imported **source bytes as immutable evidence**, and manages field definitions, mappings and review decisions separately. A technically verified transformation demonstrates repeatability and integrity. It **does not itself prove that a scientific interpretation is correct or authorized for publication**.
 
-2. **Zero Technical Overhead**  
-   Designed specifically for domain scientists, not software engineers. The application packages the visual interface, native bridge, and execution runtime into a single-click native launcher—requiring no separate Python, Docker, or Java installations and zero command-line interaction.
+## Three complementary repositories
 
-3. **Automated Media & Metadata Binding**  
-   Seamlessly link field imagery with observation logs. Embedded EXIF/IPTC spatial and temporal metadata is automatically extracted, cross-referenced against spatial coordinates and timestamps, and bound into unified occurrence records.
+| Repository | Responsibility | Current demonstrated scope |
+| --- | --- | --- |
+| **[FAIRmorph Engine](/engine/)** | Python project runtime, source identities, declarative pipelines, revisioned definitions, review records, immutable RUN evidence and technical verification | Import, selected generic operations, explicit review contracts and RUN/2 verification |
+| **[FAIRmorph Workbench](/workbench/)** | Svelte/Tauri desktop interface calling the local Engine | New/existing project setup, file import, technical template registration/selection, RUN/verification and dataset-title revisions |
+| **[FAIRmorph Validations](/validations/)** | Independent test configurations, source-grounded expectations and audit scripts for real datasets | Reproduction of a pinned CS-PHOC research case, three **dataset-specific test exports** and independent content checks |
 
-4. **Transparent & Verifiable Lineage**  
-   Guaranteed scientific reproducibility. Every schema mapping, unit standardization, coordinate adjustment, and record modification is recorded into human-readable, machine-inspectable provenance manifests to ensure an unbroken chain of custody from field collection to deposit.
+The Workbench is **not** a separate processing or scientific approval authority. It must use the Engine's existing contract-backed decisions. Neither the Engine nor Workbench depends on AI.
 
-5. **Domain & GIS-Aware Quality Control**  
-   Catch anomalies before archiving by combining structural schema validation with offline ecological and spatial sanity rules:
-   - **Spatial & GIS Checks:** Automated detection of coordinate inversions (e.g., latitude/longitude swaps), datum mismatches, and spatial layer validations fully compatible with **QGIS** mapping workflows.
-   - **Vocabulary Integrity:** Validation against TDWG controlled vocabularies and local taxonomy tables.
-   - **Reconciliation:** Optional online taxonomic matching via external APIs when network connectivity is available.
-
-6. **Turnkey FAIR Repository Deposit**  
-   Streamlined generation of dual-target, standards-compliant export packages:
-   - **Domain Networks:** Darwin Core Archives (DwC-A, EML) formatted natively for global terrestrial and marine repositories (**GBIF** and **OBIS**).
-   - **Generalist Repositories:** Frictionless Data Packages formatted for direct deposit to **Zenodo**, **Dryad**, or institutional repositories to secure persistent DOIs.
-
----
-
-## 📐 High-Level Ecosystem Topology
-
-The architecture separates user interaction, operating system file access, and domain validation logic across three distinct, decoupled layers:
+## The intended processing model
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                        Visual Field Data Studio                        │
-│                                                                        │
-│  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │                     Reactive User Interface                      │  │
-│  │  (Visual field mapper, GIS spatial inspector, media preview)     │  │
-│  └──────────────────────────────────┬───────────────────────────────┘  │
-│                                     │ IPC Bridge                        │
-│  ┌──────────────────────────────────▼───────────────────────────────┐  │
-│  │                     Native Execution Engine                      │  │
-│  │   (File-system access, EXIF extraction, process management)      │  │
-│  └──────────────────────────────────┬───────────────────────────────┘  │
-└─────────────────────────────────────┼──────────────────────────────────┘
-                                      │ Subprocess / Native Binding
-┌─────────────────────────────────────▼──────────────────────────────────┐
-│                        Domain Validation Engine                        │
-│                                                                        │
-│   • Darwin Core Schema Mapper       • Spatial Sanity & QGIS Checks     │
-│   • EXIF/Media Record Binder        • GBIF/OBIS & Zenodo Exporter      │
-└────────────────────────────────────────────────────────────────────────┘
+Original scientific source files
+       |
+       v
+Engine imports unchanged bytes and records source identities
+       |
+       v
+Documented field meaning + separately reviewed mapping decisions
+       |
+       v
+Selected, version-pinned technical or semantic pipeline
+       |
+       v
+Immutable RUN outputs, manifests and integrity verification
+       |
+       v
+Target-specific publication projection (only when fully specified)
+       |
+       v
+Test package or scientifically reviewed publication, as appropriate
+```
+
+Not every box is exposed through the Workbench yet, and the existence of a generic Engine adapter does not mean every target format or dataset is production-ready.
+
+## Current evidence from real data
+
+The [independent CS-PHOC validation guide](/validations/docs/CS-PHOC-REPRODUCTION-AND-RESULTS/) describes a fixed revision of original phocid census data and the exact reproduction procedure. For that **specific** case, the tested technical chain preserves source identity, verifies a generic Engine RUN, and checks the recorded count cells against locally generated test files.
+
+The validated source contains **322 survey-window rows**, **2,144 count rows**, **16,940 nonblank category values**, **11,599 explicit zeros**, and **4,500 blank category cells**. The test projection produces **536 site-specific Event rows**, **16,940 category Occurrences**, **16,940 tab-separated preparation rows**, and **536 site-event GeoJSON features**.
+
+Those results mean **the particular data transformation and test formats were technically checked**, not that 16,940 individual animals were identified, that zero always proves ecological absence, or that a population estimate was established. The Darwin Core Archive, PANGAEA-preparation TSV and GeoJSON files were generated by **CS-PHOC-specific code in the validation repository**, **not** by a generic multi-format Engine export operation. Their status is **test only; not approved for publication**. The Workbench UI was not part of that automated test.
+
+## What is implemented, and what remains an aim?
+
+**Implemented or technically demonstrated in the present PoC:** local source preservation and checksums, explicit project configuration and immutable RUN evidence; selected review/versioning contracts; a basic Workbench project and technical-pipeline workflow; and independently audited real-data **test** exports.
+
+**Not yet demonstrated as general product capabilities:** a complete Workbench scientific field-definition/mapping interview, comprehensive GIS/media inspection and EXIF-based binding, domain-wide quality-control coverage, a turnkey signed desktop distribution, automatic repository submission or DOI assignment, or publication-ready export for arbitrary datasets. Supporting such workflows will require additional implementation and validation.
+
+The project aims for transparency and low barriers to use, but **reproducible technical evidence, scientific approval, external publishing permissions and editorial acceptance are distinct requirements**.
+
+## Explore the documentation
+
+- [Engine introduction and usage](/engine/) — install and verify a synthetic project.
+- [Workbench desktop walkthrough](/workbench/docs/USER-GUIDE/) — what to click, what to expect, and how to connect the Engine.
+- [CS-PHOC independent evidence](/validations/docs/CS-PHOC-REPRODUCTION-AND-RESULTS/) — reproduce and interpret the real-data case.
+- [Development installation](/guide/installation/) — prerequisites and current development paths.
+
+The portal **automatically mirrors** documentation from the three repositories. The navigation expands as they add or revise Markdown files; its own general project pages, including this concept page, are maintained here.
