@@ -1,75 +1,120 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="875" viewBox="0 0 1460 875" role="img" aria-labelledby="flow-title flow-desc">
-<title id="flow-title">Conventional ecological data preparation compared with FAIRmorph's approach</title>
-<desc id="flow-desc">Conventional workflows may require Python or R programming, manual configuration and mapping, specialist data-curation knowledge, repeated cleanup and hard-to-transfer documentation. FAIRmorph's planned guided workflow combines original ecological data, explicit reviews, versioned decisions and verifiable results. Guided no-code scientific review and general exports remain under development.</desc>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1752" height="897" viewBox="0 0 1752 897" role="img" aria-labelledby="svgTitle svgDesc">
+<title id="svgTitle">From scattered data work to guided, reusable curation</title>
+<desc id="svgDesc">Comparison of a conventional ecological-data workflow involving Python or R programming, manual mapping and specialist curation, with FAIRmorph’s approach to guided ecological data curation, traceable original data and reusable outputs.</desc>
 <defs>
-  <linearGradient id="leftBG" x2="0" y2="1"><stop offset="0" stop-color="#f7f8fa"/><stop offset="1" stop-color="#f1f3f6"/></linearGradient>
-  <linearGradient id="rightBG" x2="0" y2="1"><stop offset="0" stop-color="#f3fcf8"/><stop offset="1" stop-color="#e9f7f1"/></linearGradient>
-  <style>
-   .h{font:700 36px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#17263a}
-   .greenh{fill:#075e49}
-   .sub{font:400 22px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#52616f}
-   .subg{fill:#3b7061}
-   .step{font:700 28px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#192d43}
-   .detail{font:400 22px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#435468}
-   .foot{font:500 19px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#556675}
-   .num{font:700 26px system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#6a7684}
-   .numg{fill:#138469}
-  </style>
-  <filter id="soft"><feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#17263a" flood-opacity=".08"/></filter>
+  <linearGradient id="leftPanel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f8f9fa"/><stop offset="1" stop-color="#f3f5f7"/></linearGradient>
+  <linearGradient id="leftHead" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e6ebef"/><stop offset="1" stop-color="#edf0f3"/></linearGradient>
+  <linearGradient id="leftFooter" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e8ecf1"/><stop offset="1" stop-color="#dfe5eb"/></linearGradient>
+  <linearGradient id="rightPanel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f8fdfa"/><stop offset="1" stop-color="#eff9f2"/></linearGradient>
+  <linearGradient id="rightHead" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e0f4e8"/><stop offset="1" stop-color="#eefbf2"/></linearGradient>
+  <linearGradient id="curationCard" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e9f7e8"/><stop offset="1" stop-color="#e3f6e6"/></linearGradient>
+  <linearGradient id="rightFooter" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#edf9ed"/><stop offset="1" stop-color="#e8f6e8"/></linearGradient>
+  <filter id="shadow" x="-10%" y="-15%" width="120%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="5" flood-color="#6b7e89" flood-opacity=".085"/></filter>
+  <clipPath id="clipLeft"><rect x="22" y="140" width="823" height="725" rx="27"/></clipPath>
+  <clipPath id="clipRight"><rect x="866" y="140" width="848" height="725" rx="27"/></clipPath>
 </defs>
-<rect width="1460" height="875" fill="white"/>
-<rect x="20" y="15" width="690" height="835" rx="25" fill="url(#leftBG)" stroke="#d5dde5" stroke-width="2"/>
-<rect x="750" y="15" width="690" height="835" rx="25" fill="url(#rightBG)" stroke="#a5dacc" stroke-width="2"/>
-<rect x="20" y="15" width="690" height="118" rx="25" fill="#e5e9ee"/>
-<path d="M20 108h690v25H20z" fill="#e5e9ee"/>
-<rect x="750" y="15" width="690" height="118" rx="25" fill="#d0f0e4"/>
-<path d="M750 108h690v25H750z" fill="#d0f0e4"/>
-<text x="61" y="67" class="h">Conventional workflow</text>
-<text x="61" y="101" class="sub">Often manual, fragmented and specialist-led</text>
-<text x="790" y="67" class="h greenh">FAIRmorph’s approach</text>
-<text x="790" y="101" class="sub subg">Transparent curation — the intended workflow</text>
-<g filter="url(#soft)">
-  <rect x="45" y="157" width="640" height="139" rx="19" fill="white"/>
-  <rect x="45" y="344" width="640" height="186" rx="19" fill="white"/>
-  <rect x="45" y="580" width="640" height="166" rx="19" fill="white"/>
-  <rect x="775" y="157" width="640" height="139" rx="19" fill="white"/>
-  <rect x="775" y="344" width="640" height="186" rx="19" fill="white"/>
-  <rect x="775" y="580" width="640" height="166" rx="19" fill="white"/>
+<style>
+ text { font-family: Inter, "Inter Display", "Segoe UI", Arial, sans-serif; }
+</style>
+
+<rect x="0" y="0" width="1752" height="897" rx="0" fill="#ffffff" stroke="none" stroke-width="1" />
+<text x="876" y="52" font-size="43" font-weight="750" fill="#142338" text-anchor="middle" >From scattered data work to guided, reusable curation</text>
+<text x="876" y="96" font-size="25" font-weight="420" fill="#4d6073" text-anchor="middle" >The same ecological data – two workflows with very different effort, transparency and reuse potential.</text>
+<rect x="22" y="140" width="823" height="725" rx="27" fill="url(#leftPanel)" stroke="#dce3e9" stroke-width="1.6" />
+<rect x="866" y="140" width="848" height="725" rx="27" fill="url(#rightPanel)" stroke="#74cfa0" stroke-width="2" />
+<g clip-path="url(#clipLeft)">
+<rect x="22" y="140" width="823" height="102" rx="0" fill="url(#leftHead)" stroke="none" stroke-width="1" />
+<rect x="22" y="727" width="823" height="138" rx="0" fill="url(#leftFooter)" stroke="none" stroke-width="1" />
 </g>
-<circle cx="98" cy="214" r="28" fill="#edf0f4"/>
-<text x="98" y="223" text-anchor="middle" class="num">01</text>
-<circle cx="828" cy="214" r="28" fill="#e2f5ed"/>
-<text x="828" y="223" text-anchor="middle" class="num numg">01</text>
-<text x="143" y="209" class="step">Heterogeneous source data</text>
-<text x="143" y="249" class="detail">CSV, Excel, field notes and sensor exports</text>
-<text x="873" y="209" class="step">Original ecological data</text>
-<text x="873" y="249" class="detail">Preserved unchanged with traceable identities</text>
-<path d="M364 302v30m-10-10 10 10 10-10" fill="none" stroke="#788698" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M1095 302v30m-10-10 10 10 10-10" fill="none" stroke="#11866b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="98" cy="407" r="28" fill="#edf0f4"/>
-<text x="98" y="416" text-anchor="middle" class="num">02</text>
-<circle cx="828" cy="407" r="28" fill="#e2f5ed"/>
-<text x="828" y="416" text-anchor="middle" class="num numg">02</text>
-<text x="143" y="403" class="step">Custom coding and mapping</text>
-<text x="143" y="440" class="detail">Python / R programming</text>
-<text x="143" y="477" class="detail">Manual configuration, field and unit mapping</text>
-<text x="143" y="514" class="detail">Specialist data-curation knowledge</text>
-<text x="873" y="403" class="step">Guided, ecology-aware review</text>
-<text x="873" y="440" class="detail">Combine · Clean · Describe · Review</text>
-<text x="873" y="477" class="detail">Field meanings and choices made explicit</text>
-<text x="873" y="514" class="detail">Complete no-code guidance is planned</text>
-<path d="M364 537v31m-10-10 10 10 10-10" fill="none" stroke="#788698" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M1095 537v31m-10-10 10 10 10-10" fill="none" stroke="#11866b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="98" cy="644" r="28" fill="#edf0f4"/>
-<text x="98" y="653" text-anchor="middle" class="num">03</text>
-<circle cx="828" cy="644" r="28" fill="#e2f5ed"/>
-<text x="828" y="653" text-anchor="middle" class="num numg">03</text>
-<text x="143" y="636" class="step">Repeated cleanup and handovers</text>
-<text x="143" y="675" class="detail">Rules scattered across scripts and notes</text>
-<text x="143" y="711" class="detail">Harder for others to audit or reproduce</text>
-<text x="873" y="636" class="step">Understandable, reusable data</text>
-<text x="873" y="675" class="detail">Versioned decisions · Verifiable RUNs</text>
-<text x="873" y="711" class="detail">Standards-based exports in development</text>
-<text x="61" y="794" class="foot">Typical challenges, not universal requirements</text>
-<text x="790" y="794" class="foot">Built on FOSS; scientific review stays explicit</text>
+<g clip-path="url(#clipRight)">
+<rect x="866" y="140" width="848" height="102" rx="0" fill="url(#rightHead)" stroke="none" stroke-width="1" />
+<rect x="866" y="727" width="848" height="138" rx="0" fill="url(#rightFooter)" stroke="none" stroke-width="1" />
+</g>
+<path d="M74 174 L103 161 L136 175 L106 190 Z" stroke="#334d5f" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M74 188 L104 204 L136 189 M74 188 L85 182 M136 189 L126 183" stroke="#334d5f" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M74 202 L105 218 L136 203 L126 198 M74 202 L85 197" stroke="#334d5f" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<text x="168" y="185" font-size="30" font-weight="750" fill="#152538" >Conventional workflow</text>
+<text x="168" y="219" font-size="21.5" font-weight="400" fill="#1e3045" >Flexible, but often manual, fragmented and hard to reproduce.</text>
+<path d="M920 217 C952 213 954 192 962 180 M941 206 C927 205 917 194 918 182 C934 180 944 191 941 206" stroke="#307a40" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M938 193 C933 175 946 163 970 164 C975 184 960 203 938 193 Z" stroke="#85ae63" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="#c5e4b0" />
+<path d="M939 193 C947 183 954 178 964 173" stroke="#4c8840" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<text x="1007" y="185" font-size="30" font-weight="750" fill="#145434" >FAIRmorph’s approach</text>
+<text x="1007" y="219" font-size="21.5" font-weight="400" fill="#203c35" >Structured, transparent and reusable – tailored to ecological data.</text>
+<rect x="47" y="249" width="775" height="115" rx="18" fill="#ffffff" stroke="#e5ebef" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="47" y="401" width="775" height="148" rx="18" fill="#ffffff" stroke="#e5ebef" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="47" y="588" width="775" height="123" rx="18" fill="#ffffff" stroke="#e5ebef" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="889" y="248" width="801" height="116" rx="19" fill="#ffffff" stroke="#d5f0e4" stroke-width="1.6" filter="url(#shadow)"/>
+<rect x="889" y="401" width="801" height="169" rx="20" fill="url(#curationCard)" stroke="#d9f2de" stroke-width="1.2" />
+<rect x="889" y="602" width="801" height="111" rx="20" fill="#ffffff" stroke="#d5f0e4" stroke-width="1.6" filter="url(#shadow)"/>
+<path d="M445 369 V395 L435 385 M445 395 L455 385" stroke="#304a5c" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M445 555 V581 L435 571 M445 581 L455 571" stroke="#304a5c" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M1294 368 V395 L1284 385 M1294 395 L1304 385" stroke="#328c5a" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M1294 575 V598 L1284 588 M1294 598 L1304 588" stroke="#328c5a" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M87 283 H120 L135 298 V334 H87 Z" stroke="#354e5d" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M120 283 V298 H135" stroke="#354e5d" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<rect x="95" y="309" width="33" height="16" rx="1" fill="none" stroke="#354e5d" stroke-width="2.8" />
+<path d="M106 309 V325 M117 309 V325 M95 316 H128" stroke="#354e5d" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<text x="183" y="287" font-size="24" font-weight="750" fill="#152538" >Source data</text>
+<text x="183" y="314" font-size="20.4" font-weight="400" fill="#243c4d" >Heterogeneous files (e.g. CSV, Excel, field sheets, sensor data)</text>
+<text x="183" y="340" font-size="20.4" font-weight="400" fill="#243c4d" >with different formats, terms and levels of detail.</text>
+<rect x="76" y="441" width="70" height="55" rx="7" fill="none" stroke="#354e5d" stroke-width="3.6" />
+<path d="M84 449 H86 M94 449 H96 M94 469 L104 460 M94 469 L104 478 M126 460 L136 469 L126 478 M119 459 L112 479" stroke="#354e5d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<text x="183" y="444" font-size="24" font-weight="750" fill="#152538" >Custom data work</text>
+<text x="183" y="471" font-size="20.2" font-weight="400" fill="#243c4d" >Scripting in Python or R, manual configuration and mapping</text>
+<text x="183" y="496" font-size="20.2" font-weight="400" fill="#243c4d" >(e.g. merging files, harmonising fields, unit and taxon handling),</text>
+<text x="183" y="521" font-size="20.2" font-weight="400" fill="#243c4d" >often relying on specialist data curation know-how.</text>
+<path d="M102 619 H125 L137 632 V669 M102 619 H125 L137 632" stroke="#354e5d" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M92 625 H116 L130 640 V672 M116 625 V640 H130" stroke="#354e5d" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M85 635 H109 L120 646 V676 H85 Z M109 635 V646 H120" stroke="#354e5d" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<text x="183" y="631" font-size="22.8" font-weight="750" fill="#152538" >Repeated cleanup, documentation and handovers</text>
+<text x="183" y="658" font-size="19.8" font-weight="400" fill="#243c4d" >Ad hoc decisions are documented in scripts, notebooks or notes,</text>
+<text x="183" y="684" font-size="19.8" font-weight="400" fill="#243c4d" >which can be hard to interpret, maintain or reuse by others.</text>
+<path d="M929 288 C929 276 974 276 974 288 V319 C974 333 929 333 929 319 Z" stroke="#137443" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<ellipse cx="951.5" cy="288" rx="22.5" ry="10" fill="#fff" stroke="#137443" stroke-width="3.6"/>
+<path d="M929 303 C929 317 974 317 974 303" stroke="#137443" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<text x="1022" y="286" font-size="24" font-weight="750" fill="#16273b" >Original ecological data</text>
+<text x="1022" y="315" font-size="20.5" font-weight="400" fill="#243b4a" >Your data, kept in their original form and fully traced</text>
+<text x="1022" y="340" font-size="20.5" font-weight="400" fill="#243b4a" >(e.g. field observations, monitoring, sensor or survey data).</text>
+<rect x="917" y="439" width="68" height="50" rx="5" fill="#ffffff" stroke="#147544" stroke-width="3.5" />
+<path d="M911 489 H990 C989 495 982 496 975 496 H925 C919 496 911 494 911 489 Z" stroke="#729c58" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#d6e6b4" />
+<path d="M948 479 V463 M947 471 C937 469 938 462 940 458 C947 458 951 466 947 471" stroke="#4d8d4d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M947 467 C954 467 965 463 963 451 C951 451 943 458 947 467" stroke="#4d8d4d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="#bfe0a0" />
+<text x="1022" y="438" font-size="24" font-weight="750" fill="#16273b" >Guided, ecology-aware curation</text>
+<text x="1022" y="465" font-size="20.5" font-weight="400" fill="#243b4a" >Interactive, step-by-step workflow with domain-specific questions,</text>
+<text x="1022" y="490" font-size="20.5" font-weight="400" fill="#243b4a" >supported by built-in checks and clear documentation.</text>
+<rect x="1019" y="509" width="159" height="44" rx="24" fill="#e4f6eb" stroke="#c6e9d7" stroke-width="1.6" filter="url(#shadow)"/>
+<text x="1067" y="538" font-size="20" font-weight="720" fill="#17583a" >Combine</text>
+<rect x="1194" y="509" width="130" height="44" rx="24" fill="#e4f6eb" stroke="#c6e9d7" stroke-width="1.6" filter="url(#shadow)"/>
+<text x="1242" y="538" font-size="20" font-weight="720" fill="#17583a" >Clean</text>
+<rect x="1339" y="509" width="163" height="44" rx="24" fill="#e4f6eb" stroke="#c6e9d7" stroke-width="1.6" filter="url(#shadow)"/>
+<text x="1387" y="538" font-size="20" font-weight="720" fill="#17583a" >Describe</text>
+<rect x="1517" y="509" width="151" height="44" rx="24" fill="#e4f6eb" stroke="#c6e9d7" stroke-width="1.6" filter="url(#shadow)"/>
+<text x="1565" y="538" font-size="20" font-weight="720" fill="#17583a" >Review</text>
+<path d="M1043 536 L1055 523 L1054 536" stroke="#286f4b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<circle cx="1043" cy="536" r="3.8" fill="#f9fffb" stroke="#286f4b" stroke-width="2.3"/>
+<circle cx="1055" cy="523" r="3.8" fill="#f9fffb" stroke="#286f4b" stroke-width="2.3"/>
+<circle cx="1055" cy="536" r="3.8" fill="#f9fffb" stroke="#286f4b" stroke-width="2.3"/>
+<path d="M1221 520 L1225 528 L1233 532 L1225 536 L1221 544 L1217 536 L1209 532 L1217 528 Z" stroke="#286f4b" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M1360 520 H1375 L1385 532 L1373 542 L1360 529 Z" stroke="#286f4b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<circle cx="1366" cy="525" r="2.2" fill="#286f4b"/>
+<circle cx="1548" cy="531" r="11" fill="none" stroke="#286f4b" stroke-width="2.5"/>
+<path d="M1543 531 L1547 535 L1554 527" stroke="#286f4b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M923 641 L953 627 L979 641 L950 655 Z" stroke="#137443" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M924 655 L950 669 L979 655 M924 655 L934 650 M979 655 L970 650" stroke="#137443" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<path d="M924 669 L950 685 L979 669 M924 669 L934 665 M979 669 L970 665" stroke="#137443" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<text x="1022" y="638" font-size="24" font-weight="750" fill="#16273b" >Understandable, reusable data</text>
+<text x="1022" y="667" font-size="19.1" font-weight="400" fill="#243b4a" >Transparent provenance · Repeatable updates · Standards-ready outputs</text>
+<text x="1022" y="693" font-size="19.1" font-weight="400" fill="#243b4a" >(e.g. Darwin Core Archive for GBIF, structured packages for repositories).</text>
+<circle cx="79" cy="771" r="21" fill="none" stroke="#435e72" stroke-width="3.5"/>
+<path d="M79 759 V773 M79 782 V784" stroke="#435e72" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<circle cx="922" cy="771" r="21" fill="none" stroke="#7b9e55" stroke-width="3.5"/>
+<path d="M910 770 L919 779 L934 763" stroke="#1b7541" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<text x="122" y="765" font-size="19.3" fill="#17283b"><tspan font-weight="750">The challenge:</tspan><tspan font-weight="400"> Combining observations, resolving inconsistencies</tspan></text>
+<text x="122" y="791" font-size="18.7" font-weight="400" fill="#17283b" >and explaining fields typically requires programming skills (Python or R),</text>
+<text x="122" y="816" font-size="18.7" font-weight="400" fill="#17283b" >manual data configuration and domain expertise. When data are shared</text>
+<text x="122" y="841" font-size="18.7" font-weight="400" fill="#17283b" >or updated, colleagues often have to reconstruct and re-validate the workflow.</text>
+<text x="964" y="765" font-size="19.3" fill="#16462e"><tspan font-weight="750">The result:</tspan><tspan font-weight="400"> Step-by-step, domain-specific guidance helps researchers</tspan></text>
+<text x="964" y="791" font-size="18.7" font-weight="400" fill="#16462e" >explain their data once, keep the decisions visible and produce well-documented,</text>
+<text x="964" y="816" font-size="18.7" font-weight="400" fill="#16462e" >reusable data for sharing, publication and long-term use.</text>
 </svg>
