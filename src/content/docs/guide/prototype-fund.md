@@ -29,6 +29,10 @@ Wer die technischen Einzelheiten, Standardgrenzen und Abnahmekriterien prüfen m
 
 **Zwei Zugänge, ein gemeinsamer Kern:** Die **grafische No-Code-Workbench** soll Forschende mit interviewartigen Formularen durch Import, Feldzuordnung und Konfiguration von Prüfregeln führen. Die **eigenständig nutzbare Python-Engine** übernimmt reproduzierbare Verarbeitung, technische Prüfungen und die nachvollziehbare Dokumentation von Änderungen; Forschungsdatenmanager*innen können sie auch unabhängig von der Desktop-App einsetzen. Der PoC belegt die technische Trennung, erste Workbench-Abläufe und verifizierbare Engine-RUNs. **Ein durchgängiger, nutzerfreundlicher Ablauf ist das Ziel der sechsmonatigen Förderung.**
 
+## Gesellschaftlicher Nutzen – wissenschaftlich begründet
+
+Studien dokumentieren **unzureichend dokumentierte und eingeschränkt nachnutzbare ökologische Forschungsdaten** sowie Hürden bei der praktischen Umsetzung der FAIR-Prinzipien ([Roche et al., 2015](https://doi.org/10.1371/journal.pbio.1002295); [Jantzen & Vriend, 2026](https://doi.org/10.1016/j.ecoinf.2026.103712)). **FAIRmorph adressiert diesen belegten Bedarf:** Geführte, regelbasierte Aufbereitung und nachvollziehbare Verarbeitung sollen vorhandene – häufig öffentlich finanzierte – Forschungsdaten für erneute Auswertungen, langfristige Vergleiche und die Biodiversitätsforschung besser nutzbar machen. Das kann Doppelarbeit reduzieren und Umweltmonitoring sowie Naturschutz unterstützen. **Die konkrete Wirkung von FAIRmorph wird in geplanten Praxis- und Nutzendentests überprüft.**
+
 ## Was der Proof of Concept heute nachweist
 
 ### 1. Datenintegrität und reproduzierbare Verarbeitung
