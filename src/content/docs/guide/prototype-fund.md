@@ -7,7 +7,7 @@ description: "Konkreter Überblick zur FAIRmorph-Bewerbung: Problem, Lösungsans
 
 **Diese Seite ist der zentrale Einstieg zur Bewerbung von FAIRmorph beim deutschen [Prototype Fund](https://prototypefund.de/).** Sie erklärt, welches Forschungsproblem FAIRmorph lösen soll, was der eigens für die Bewerbung entwickelte Proof of Concept (PoC) bereits kann und wofür die beantragte sechsmonatige Entwicklungszeit gebraucht wird.
 
-**Einordnung:** FAIRmorph hat den öffentlich überprüfbaren PoC zur Vorbereitung der Bewerbung entwickelt. Eine Förderentscheidung liegt noch nicht vor. Die beantragte Förderung überführt den nachgewiesenen Kern in eine breit nachnutzbare Python-Infrastruktur mit geführter Desktop-Anwendung.
+**Wichtig:** Der bestehende Prototyp wurde ausschließlich zur Vorbereitung der Bewerbung entwickelt. Es wird **weder eine Förderzusage noch eine Auswahl oder offizielle Unterstützung** durch den Prototype Fund behauptet. Der PoC ist keine fertige Anwendung für wissenschaftliche Datenkuratierung.
 
 Wer die technischen Einzelheiten, Standardgrenzen und Abnahmekriterien prüfen möchte, findet sie im [ergänzenden technischen Nachweis](/guide/prototype-fund-technical/).
 
