@@ -7,35 +7,35 @@ description: Detaillierte technische Bestandsaufnahme, FOSS-Komponenten, Standar
 
 **Technischer Anhang zur [Prototype-Fund-Bewerbung von FAIRmorph](/guide/prototype-fund/).** Für Problem, Nutzen, aktuellen Stand und die sechsmonatigen Ziele in kompakter Form bitte zuerst die [Bewerbungsübersicht](/guide/prototype-fund/) lesen.
 
-FAIRmorph ist als **technischer Proof of Concept ausschließlich zur Vorbereitung einer Bewerbung beim deutschen [Prototype Fund](https://prototypefund.de/)** entstanden. Ziel ist es, die Umsetzbarkeit der Grundidee, die Qualität der technischen Arbeit und die Fähigkeiten zur reproduzierbaren Softwareentwicklung nachzuweisen. **Es wird keine bereits erhaltene Förderung, Auswahl oder offizielle Unterstützung durch den Prototype Fund behauptet.**
+Der öffentlich dokumentierte **technische Proof of Concept** bildet die Grundlage für die Bewerbung beim deutschen [Prototype Fund](https://prototypefund.de/). Die offenen Repositories machen Entwicklung, Tests und Ergebnisse nachvollziehbar. **Eine Förderentscheidung liegt noch nicht vor.**
 
-Der Prototyp ist bewusst **kein fertiges Forschungsdatenprodukt**. Die beantragte sechsmonatige Entwicklung soll die nachgewiesenen Komponenten zu einer **unabhängig nutzbaren Python-Runtime mit No-Code-Desktop-Referenzanwendung** verbinden: Forschende sollen heterogene ökologische Daten ohne Programmierkenntnisse importieren, beschreiben, fachlich prüfen, transformieren und mit nachvollziehbaren Entscheidungen für die Wiederverwendung vorbereiten können.
+Die beantragte sechsmonatige Entwicklung verbindet die nachgewiesenen Komponenten zu einer **eigenständig nutzbaren Python-Runtime mit No-Code-Desktop-Referenzanwendung**: Forschende sollen heterogene ökologische Daten importieren, beschreiben, fachlich prüfen, transformieren und mit transparenten Entscheidungen zur Wiederverwendung vorbereiten können.
 
 ## Fördergegenstand und nachgewiesene Trennung von Runtime und Oberfläche
 
 **Neuer wiederverwendbarer Infrastrukturbaustein:** Eine lokal betreibbare **Python-Runtime für wissenschaftlich überprüfbare Datenkuratierung** soll im Förderzeitraum zu einem dokumentierten, unabhängig nutzbaren Kern für Quellenverwaltung, explizite Feld-/Mappingentscheidungen, reproduzierbare RUNs, Prüfberichte und formatgetrennte Exporte weiterentwickelt werden. Die **No-Code-Desktop-Workbench** ist die für Forschende maßgebliche **Referenzanwendung** auf demselben Kern, nicht dessen einzige Einsatzform.
 
-**Heute belegbar:** Die [Engine-Installationsanleitung](https://github.com/FAIRmorph/fairmorph-engine/blob/main/INSTALL.md) benötigt weder Node.js/Tauri noch die Workbench. Die [Typer-CLI](https://github.com/FAIRmorph/fairmorph-engine/blob/main/src/fairmorph_engine/cli.py) bietet strukturierte NDJSON-Ereignisse; die [Engine-Architektur](https://github.com/FAIRmorph/fairmorph-engine/blob/main/docs/ARCHITECTURE.md) beschreibt unabhängig ausführbare Importe, explizite Pipelinewahl, versionierte RUN/2-Artefakte und Wiederholungsprüfungen. [Engine-CI](https://github.com/FAIRmorph/fairmorph-engine/actions) und [CS-PHOC-Reproduktion](/validations/docs/cs-phoc-reproduction-and-results/) nutzen den Kern ohne GUI. **Nicht belegt** sind eine stabile öffentliche Integrations-API, produktionsreifer Serverbetrieb oder ein universeller Export.
+**Bereits nachgewiesen:** Die [Engine-Installationsanleitung](https://github.com/FAIRmorph/fairmorph-engine/blob/main/INSTALL.md) ermöglicht den Betrieb unabhängig von Node.js/Tauri und der Workbench. Die [Typer-CLI](https://github.com/FAIRmorph/fairmorph-engine/blob/main/src/fairmorph_engine/cli.py) bietet NDJSON-Ereignisse; die [Engine-Architektur](https://github.com/FAIRmorph/fairmorph-engine/blob/main/docs/ARCHITECTURE.md) dokumentiert Importe, Pipelinewahl, RUN/2-Artefakte und Prüfungen. [Engine-CI](https://github.com/FAIRmorph/fairmorph-engine/actions) und [CS-PHOC-Reproduktion](/validations/docs/cs-phoc-reproduction-and-results/) nutzen den Kern ohne GUI. **Die Förderung ergänzt stabile Integrationsverträge, Betriebsrobustheit und wiederverwendbare Exporte.**
 
-**Förderabnahme:** Derselbe reale Beispieldatensatz durchläuft (1) einen dokumentierten **Engine-only-CLI-Workflow** und (2) eine geführte **No-Code-Desktop-Strecke** mit denselben Versionsbindungen und verifizierbaren RUN-Nachweisen. Die Runtime erhält eigenständige Tests, nachvollziehbare Schnittstellenverträge und wiederverwendbare Beispiele; Nutzendentests prüfen die Desktop-Anwendung. Ein Mehrnutzer-Server ist nicht Teil dieser Zusage.
+**Förderabnahme:** Derselbe reale Beispieldatensatz durchläuft (1) einen dokumentierten **Engine-only-CLI-Workflow** und (2) eine geführte **No-Code-Desktop-Strecke** mit denselben Versionsbindungen und überprüfbaren RUN-Nachweisen. Eigenständige Tests, Schnittstellenverträge und Nutzendentests belegen die Nachnutzbarkeit.
 
 ## Was bereits implementiert ist
 
-| Bereich | Nachgewiesener Funktionsumfang | Bewusste Grenze des PoC |
+| Bereich | Im PoC nachgewiesen | Nächster Entwicklungs- oder Prüfschritt |
 | --- | --- | --- |
-| **Quellenschutz und Projekte** | Lokaler SHA-256-Objektspeicher für unveränderte Eingangsdateien, getrennte Ressourcenidentitäten, SQLite-Projektkatalog und virtuelle Paketzuordnungen. | Kein vollständig wiederaufnehmbarer Massendaten-/Medienimport oder produktionsreifer Backup-/Restore-Betrieb. |
-| **Verarbeitung** | Explizit gewählte, deklarative Python/Polars-Pipelines mit Select, Filter, Derive, Distinct, Unpivot und Join; Speicherung benannter Parquet-Ergebnisse. | Nur implementierte Operatoren und begrenzte fachliche Projektionen; keine bestätigten Lastgrenzen großer Datenbestände. |
-| **Wissenschaftliche Bedeutung** | Versionierte Quelldefinitionen und Reviews, ausgewählte fachliche Event-/Occurrence-/Messwert-Projektionen, festgeschriebene Schema-/Profilbindungen, Relationen und Metadatenrevisionen. | Die Workbench bietet noch keinen vollständigen geführten wissenschaftlichen Definitions- und Freigabeprozess. |
-| **Reproduzierbare Verarbeitung** | RUN/2 mit Konfigurations- und Eingabesnapshots, Prüfsummen, Prüffunktionen, Schritt-/Mengen-Audit und begrenzten Nachweisen tatsächlich geänderter Werte. | Keine universelle persistierte Zell-für-Zell-Lineage über jede generische Transformation; keine vollständige Produktions-/Recovery-Garantie. |
-| **Desktopintegration** | Svelte-/Tauri-/Rust-Workbench: Projekte anlegen/öffnen, Quellen importieren, technische Pipeline konfigurieren/ausführen, Resultate und Projektintegrität prüfen, Titelrevisionen bearbeiten. | Kein fertiger No-Code-Mappingeditor oder durchgängiger wissenschaftlicher Publikationsdialog. |
-| **Exportbausteine** | Eng begrenzter, Data-Package-artiger CSV-/JSON-Export und separate EML-/DwC-A-Adapter in der Engine. | Noch keine Frictionless-validierte universelle Data-Package-Ausgabe oder generische, vollständig integrierte Mehrformat-Publikation aus der Workbench. |
-| **Release-Pipeline** | Der [v0.1.1-Release-Run](https://github.com/FAIRmorph/fairmorph-workbench/actions/runs/43516992967) hat Linux-DEB/AppImage, Windows-NSIS/ZIP, Engine-Bündelung, Smoke-Tests und den automatischen Upload aller vier Pakete erfolgreich ausgeführt. DEB und AppImage wurden praktisch getestet; die portable Windows-Workbench startet und erreicht die Engine. | Der Windows-Verbindungscheck zeigt noch kurz ein [Terminalfenster](https://github.com/FAIRmorph/fairmorph-workbench/issues/17); eine vollständige grafische End-to-End-Abnahme auf frischen Systemen sowie ein manueller Windows-Installer-Test sind nicht nachgewiesen. |
+| **Quellenschutz und Projekte** | Lokaler SHA-256-Objektspeicher für unveränderte Eingangsdateien, getrennte Ressourcenidentitäten, SQLite-Projektkatalog und virtuelle Paketzuordnungen. | Batch-Import, Wiederaufnahme sowie geprüfte Backup-/Restore-Abläufe für größere Bestände. |
+| **Verarbeitung** | Explizit gewählte, deklarative Python/Polars-Pipelines mit Select, Filter, Derive, Distinct, Unpivot und Join; Speicherung benannter Parquet-Ergebnisse. | Fachliche Projektionen erweitern, Nutzerabläufe integrieren und Lastgrenzen messen. |
+| **Wissenschaftliche Bedeutung** | Versionierte Quelldefinitionen und Reviews, ausgewählte fachliche Event-/Occurrence-/Messwert-Projektionen, festgeschriebene Schema-/Profilbindungen, Relationen und Metadatenrevisionen. | Geführte, nutzergetestete Workbench-Strecke für Felddefinition und Freigabe. |
+| **Reproduzierbare Verarbeitung** | RUN/2 mit Konfigurations- und Eingabesnapshots, Prüfsummen, Prüffunktionen, Schritt-/Mengen-Audit und begrenzten Nachweisen tatsächlich geänderter Werte. | Nachweise kritischer Quellbezüge und Recovery-/Restore-Tests ausbauen. |
+| **Desktopintegration** | Svelte-/Tauri-/Rust-Workbench: Projekte anlegen/öffnen, Quellen importieren, technische Pipeline konfigurieren/ausführen, Resultate und Projektintegrität prüfen, Titelrevisionen bearbeiten. | No-Code-Mapping und integrierte Review-/Exportabläufe entwickeln. |
+| **Exportbausteine** | Eng begrenzter, Data-Package-artiger CSV-/JSON-Export und separate EML-/DwC-A-Adapter in der Engine. | Frictionless-validierte Data Packages mit Table Schemas und wiederverwendbare Mehrformat-Exporte. |
+| **Release-Pipeline** | Der [v0.1.1-Release-Run](https://github.com/FAIRmorph/fairmorph-workbench/actions/runs/43516992967) hat Linux-DEB/AppImage, Windows-NSIS/ZIP, Engine-Bündelung, Smoke-Tests und den automatischen Upload aller vier Pakete erfolgreich ausgeführt. DEB und AppImage wurden praktisch getestet; die portable Windows-Workbench startet und erreicht die Engine. | Windows-UX-Fix (kurz sichtbares [Terminalfenster](https://github.com/FAIRmorph/fairmorph-workbench/issues/17)) und grafische End-to-End-Tests einschließlich NSIS-Installation. |
 
-Die Python-Engine arbeitet grundsätzlich datensatzunabhängig. Fachlich spezifische Annahmen gehören nicht in die Workbench und werden nicht aus Spaltennamen erraten. Ein erfolgreich technisch überprüfter RUN ist **keine wissenschaftliche Freigabe**.
+Die Python-Engine verarbeitet Daten grundsätzlich datensatzunabhängig. Wissenschaftliche Feldbedeutungen werden durch explizite Definitionen und Freigaben festgehalten. **Technische RUN-Verifikation und fachliche Bewertung sind eigenständige Qualitätsstufen.**
 
 ## Offene Infrastruktur, Datenstandards und Frictionless
 
-**FAIRmorph ist keine proprietäre Neuerfindung einer Datenverarbeitungsplattform.** Das Projekt baut auf freier und quelloffener Software (FOSS) und bestehenden Austauschstandards auf. Eigene Software entsteht vor allem für die Verbindung von **unveränderten Forschungsquellen, explizit bestätigter wissenschaftlicher Bedeutung, versionierten Entscheidungen und verifizierbaren RUN-/Audit-Nachweisen**. Die [Engine](https://github.com/FAIRmorph/fairmorph-engine), [Workbench](https://github.com/FAIRmorph/fairmorph-workbench) und [Website](https://github.com/FAIRmorph/fairmorph.org) stehen unter MIT-Lizenz; das [Validations-Repository](https://github.com/FAIRmorph/fairmorph-validations) unter Apache-2.0. Fremde Forschungsdaten und übernommene Standardschemata behalten ihre eigene Herkunft und Lizenzierung. Die Wiederverwendung von FOSS ist **nicht** mit einem bereits geleisteten Upstream-Beitrag gleichzusetzen.
+**FAIRmorph erweitert das bestehende FOSS-Ökosystem:** Das Projekt verbindet etablierte freie Software und offene Austauschstandards mit **unveränderten Forschungsquellen, wissenschaftlichen Entscheidungen und verifizierbaren RUN-/Audit-Nachweisen**. Die [Engine](https://github.com/FAIRmorph/fairmorph-engine), [Workbench](https://github.com/FAIRmorph/fairmorph-workbench) und [Website](https://github.com/FAIRmorph/fairmorph.org) stehen unter MIT-Lizenz, das [Validations-Repository](https://github.com/FAIRmorph/fairmorph-validations) unter Apache-2.0. Rechte und Herkunft übernommener Daten und Standardschemata bleiben dokumentiert.
 
 ### Bereits im ausführbaren Code eingesetzte FOSS-Bausteine
 
@@ -47,19 +47,19 @@ Die Python-Engine arbeitet grundsätzlich datensatzunabhängig. Fachlich spezifi
 | **Desktop und Engine-Anbindung** | [Svelte](https://svelte.dev/), [Tauri](https://tauri.app/), Rust, TypeScript, [Zod](https://zod.dev/) | Lokale Workbench, kontrollierter Python-Prozessaufruf und Validierung der Nachrichtenstruktur; siehe [Workbench-Abhängigkeiten](https://github.com/FAIRmorph/fairmorph-workbench/blob/main/package.json). |
 | **Qualität, Distribution, Dokumentation** | pytest, Ruff, Vitest, PyInstaller, [Astro](https://astro.build/) und [Starlight](https://starlight.astro.build/) | Automatisierte Tests, Linting, vorbereitete Engine-Sidecar-Builds sowie das öffentliche Dokumentationsportal. |
 
-Das [Engine-Paketmanifest](https://github.com/FAIRmorph/fairmorph-engine/blob/main/pyproject.toml) enthält neben **Polars** auch **Frictionless** sowie Geo- und Bildbibliotheken (**pyogrio**, **Shapely**, **Pillow**, **ExifRead**). **DuckDB ist keine Laufzeitabhängigkeit mehr.** Diese Bibliotheken sind als technische Grundlage für weitere Funktionen vorgesehen. Ihre bloße Deklaration belegt jedoch **nicht**, dass die entsprechenden GIS-, Medien- oder Validierungsfunktionen bereits vollständig eingebunden und getestet sind.
+Das [Engine-Paketmanifest](https://github.com/FAIRmorph/fairmorph-engine/blob/main/pyproject.toml) enthält neben **Polars** auch **Frictionless** sowie Geo- und Bildbibliotheken (**pyogrio**, **Shapely**, **Pillow**, **ExifRead**). Der Einsatz zusätzlicher Bibliotheken wird anhand realer Anwendungsfälle und automatisierter Tests weiterentwickelt.
 
-**Aktueller Stand:** Die generischen Tabellentransformationen werden mit **Polars** ausgeführt. Frictionless ist zwar als Abhängigkeit vorhanden, übernimmt dort bislang aber weder die Transformationen noch die geplante generische Data-Package-Validierung. Die konkrete spätere Rolle der Bibliotheken wird im folgenden Entwicklungsplan abgegrenzt.
+**Aktueller Stand und Ausbau:** Polars führt bereits die generischen Tabellentransformationen aus. Frictionless ist als Abhängigkeit vorhanden; seine Integration für technische Datenbeschreibung und Data-Package-Validierung ist ein geplanter Fördermeilenstein.
 
 ### Bereits genutzte offene Datenformate und ihre Grenzen
 
 | Standard oder Format | Stand im Proof of Concept |
 | --- | --- |
 | **CSV, JSON, Apache Parquet** | Tatsächlich genutzte Eingabe-, Konfigurations-, Audit- und Ausgabeformate. |
-| **[JSON Schema](https://json-schema.org/)** | Validiert FAIRmorph-eigene Projekt-, Mapping-, RUN- und Publikationsverträge. Diese internen Verträge sind **keine** Data-Package-Standardprofile. |
-| **[Ecological Metadata Language (EML 2.2.0)](https://eml.ecoinformatics.org/)** | Separate Engine-Adapter erzeugen und prüfen EML-XML gegen lokal vorgehaltene offizielle XSD-Dateien; kein vollständiger Publikationsdialog. |
-| **[Darwin Core Archive (DwC-A)](https://dwc.tdwg.org/text/)** | Separate Engine-Bausteine erzeugen ZIP, `meta.xml` und deklarierte Tabellen und prüfen deren technische Struktur; kein allgemeiner Workbench-Export. |
-| **[Data Package](https://datapackage.org/standard/data-package/), [Data Resource](https://datapackage.org/standard/data-resource/), [Table Schema](https://datapackage.org/standard/table-schema/)** | **Teilweise umgesetzt:** Ein eng begrenzter Engine-Export schreibt bereits `datapackage.json` mit CSV-/JSON-Ressourcen. Das allein belegt weder vollständige Standardkonformität noch Frictionless-Paketvalidierung, durchgängige Table Schemas oder den Export beliebiger generischer RUN-Ergebnisse. |
+| **[JSON Schema](https://json-schema.org/)** | Validiert FAIRmorph-eigene Projekt-, Mapping-, RUN- und Publikationsverträge. Data-Package-Standards bilden die separate interoperable Austauschschicht. |
+| **[Ecological Metadata Language (EML 2.2.0)](https://eml.ecoinformatics.org/)** | Engine-Adapter erzeugen und prüfen EML-XML gegen vorgehaltene offizielle XSD-Dateien; der allgemeine Workbench-Export ist Förderziel. |
+| **[Darwin Core Archive (DwC-A)](https://dwc.tdwg.org/text/)** | Engine-Bausteine erzeugen ZIP, `meta.xml` und Tabellen und validieren deren Struktur; der integrierte Exportworkflow folgt während der Förderung. |
+| **[Data Package](https://datapackage.org/standard/data-package/), [Data Resource](https://datapackage.org/standard/data-resource/), [Table Schema](https://datapackage.org/standard/table-schema/)** | **Erster Export vorhanden:** `datapackage.json` beschreibt CSV-/JSON-Ressourcen für einen begrenzten RUN-Pfad. Geplant sind allgemeine Table Schemas, Frictionless-Validierung und Unterstützung benannter generischer RUN-Ergebnisse. |
 
 ### Projektcontainer, RUN und Zielpaket sind verschiedene Ebenen
 
@@ -90,17 +90,17 @@ Der Mehrwert des [Frictionless Frameworks](https://framework.frictionlessdata.io
 - **Datenverträge und Review (Monate 2–3):** Standardisierte Data Resources und Table Schemas werden mit den eigenständigen, versionierten FAIRmorph-Quelldefinitionen verknüpft; technische Regelverletzungen werden im Prüfbericht von wissenschaftlich offenen Entscheidungen unterschieden. Die unveränderten Originaldateien bleiben maßgeblich.
 - **Export und Interoperabilität (Monat 4):** Aus **beliebigen ausdrücklich ausgewählten, verifizierten RUN-Tabellen** sollen Data-Package-Deskriptoren mit maschinenlesbaren Table Schemas entstehen und durch Frictionless validiert werden. Separate Exportadapter übersetzen dieselben RUN-Ergebnisse in die jeweils geforderten Formate (z. B. DwC-A oder PANGAEA-Vorbereitung). Technische Paketvalidierung ersetzt weder wissenschaftliche Freigabe noch die Annahme durch ein Repositorium.
 
-**Prüfbare Abnahmekriterien:** (a) Zwei unterschiedlich strukturierte Tabellen lassen sich unverändert importieren, technisch mit Frictionless beschreiben und validieren; (b) Typvorschläge und Fehlwertannahmen werden nicht stillschweigend wissenschaftlich bestätigt; (c) mindestens zwei unterschiedlich benannte RUN-Ergebnisse lassen sich als Data Packages mit Table Schemas ausgeben und durch Frictionless prüfen; (d) ein und derselbe verifizierte RUN kann ohne erneute Transformation sowohl ein generisches Austauschpaket als auch einen zielsystemspezifischen Testexport liefern. **Diese Integration ist Förderziel, kein bereits bestandener PoC-Test.**
+**Prüfbare Abnahmekriterien:** (a) Zwei unterschiedlich strukturierte Tabellen werden unverändert importiert, mit Frictionless beschrieben und technisch validiert; (b) technische Typvorschläge und wissenschaftlich bestätigte Felddefinitionen bleiben getrennt; (c) mindestens zwei unterschiedlich benannte RUN-Ergebnisse werden als Data Packages mit Table Schemas ausgegeben und von Frictionless validiert; (d) ein verifizierter RUN speist sowohl ein generisches Austauschpaket als auch einen zielsystemspezifischen Testexport.
 
 ## Bestehende Lösungen: Überschneidung, Abgrenzung und Innovationshöhe
 
-| FOSS-Lösung | Bereits gelöste Aufgaben | FAIRmorphs zusätzliche, noch zu integrierende Leistung |
+| FOSS-Lösung | Bewährte Funktionen | FAIRmorphs ergänzender Beitrag |
 | --- | --- | --- |
-| **[OpenRefine](https://openrefine.org/)** | Lokale interaktive Bereinigung, Transformation, Clustering, Reconciliation **und Änderungshistorie**. | Ökologische Felddefinition und expliziten Review mit unveränderten Quellen, revisionsgebundenen RUN-/Audit-Artefakten und einem **unabhängigen Python-Kern** verbinden. Keine Behauptung, OpenRefine könne Änderungen nicht nachvollziehen. |
-| **[Frictionless](https://framework.frictionlessdata.io/)** | Tabellenschemata, Datenbeschreibung, Validierung, Data Packages und eigene Transformationsmöglichkeiten. | Für technische Beschreibungen und Paketvalidierung **wiederverwenden**; wissenschaftliche Zustimmung, Polars-RUNs und Auditverträge in FAIRmorph belassen. Die API-Integration ist **geplant**, nicht PoC-Realität. |
+| **[OpenRefine](https://openrefine.org/)** | Interaktive Bereinigung, Transformation, Clustering, Reconciliation **und Änderungshistorie**. | Ökologische Felddefinitionen und explizite Reviews mit unveränderten Quellen, RUN-/Audit-Artefakten und einem **unabhängigen Python-Kern** verbinden. |
+| **[Frictionless](https://framework.frictionlessdata.io/)** | Tabellenschemata, Datenbeschreibung, Validierung, Data Packages und Transformationsfunktionen. | Beschreibung und Paketvalidierung **integrieren**; FAIRmorph ergänzt wissenschaftliche Reviews, Polars-RUNs und Auditverträge. |
 | **[GBIF IPT](https://ipt.gbif.org/manual/en/ipt/latest/)** | Mapping auf Darwin Core, Metadatenverwaltung, DwC-A-Bereitstellung und GBIF-Publikation. | Heterogene ökologische Originalquellen **vor** dem Publikationsschritt kuratieren und den Entscheidungs-/Transformationsweg reproduzierbar belegen; IPT bleibt zuständiger Publikationsweg. |
 
-**Innovationshöhe:** Eine **Integrations- und Infrastrukturinnovation**, keine neue generische Datenbank, Reinigungsfunktion oder Publikationsplattform. Der eigenständige Mehrwert ist die wiederverwendbare **Kopplung wissenschaftlicher Freigaben mit versionierten, prüfbaren Daten-RUNs** – gleicher Kern für CLI und No-Code-Desktop. Der PoC belegt getrennte Bausteine; die durchgängige Bedienung, Frictionless-Interoperabilität und breitere Forschungsvalidierung sind Förderaufgaben.
+**Innovationshöhe:** FAIRmorph schafft eine **wiederverwendbare Integrations- und Kuratierungsinfrastruktur**, die fachliche Freigaben mit versionierten, prüfbaren Daten-RUNs verbindet – eigenständig per CLI und über die No-Code-Desktop-App. Der PoC weist wesentliche Bausteine nach; **die Förderphase realisiert den durchgängigen Nutzungsablauf und die offene Interoperabilität**.
 
 ## Warum es mehrere Repositories gibt
 
@@ -115,9 +115,9 @@ Diese Trennung verhindert eine Vermischung von **Produktcode, Bedienoberfläche,
 
 ## Welche Tests die Machbarkeit belegen
 
-**Engine – technische Korrektheit.** [Aktueller grüner Linux-/Windows-CI-Lauf](https://github.com/FAIRmorph/fairmorph-engine/actions/runs/43483953310) mit Lint und automatisierten Python-Tests. Geprüft werden unter anderem projektbezogene Identitäten, deklarative Verarbeitung, explizite Entscheidungsschritte, Integritäts- und Fehlerverhalten. Das ersetzt weder wissenschaftliche Begutachtung noch Last- und Wiederherstellungstests.
+**Engine – technische Korrektheit.** [Erfolgreicher Linux-/Windows-CI-Lauf](https://github.com/FAIRmorph/fairmorph-engine/actions/runs/43526050078) mit Lint und automatisierten Python-Tests. Geprüft werden technische Verträge, deklarative Verarbeitung, Entscheidungsschritte sowie Integritäts- und Fehlerverhalten. Das bildet die Grundlage für die fachliche Erprobung.
 
-**Workbench – Integration.** [Frontend-/Rust-/Engine-CI](https://github.com/FAIRmorph/fairmorph-workbench/actions/runs/43483962852) und [Windows-Prüfungen](https://github.com/FAIRmorph/fairmorph-workbench/actions/runs/43483962919) belegen UI- und Integrationspfade. Sie sind nicht mit einem vollständigen manuellen Anwendungstest auf einem frisch installierten Zielsystem gleichzusetzen.
+**Workbench – Integration.** [Frontend-/Rust-/Engine-CI](https://github.com/FAIRmorph/fairmorph-workbench/actions/runs/43483962852) und [Windows-Prüfungen](https://github.com/FAIRmorph/fairmorph-workbench/actions/runs/43483962919) belegen technische Desktop-Abläufe. Nutzendentests und grafische End-to-End-Prüfungen bauen darauf auf.
 
 **Validations – echte ökologische Daten.** [Erfolgreicher CS-PHOC-Lauf](https://github.com/FAIRmorph/fairmorph-validations/actions/runs/43484257722) und [Reproduktionsanleitung](/validations/docs/cs-phoc-reproduction-and-results/): 322 Ereigniszeilen und 2.144 Zählzeilen werden quellentreu verarbeitet; 16.940 belegte Kategorieeinträge enthalten 11.599 explizite Nullen, zusätzlich existieren 4.500 leere Zellen. Der generische Engine-RUN wird verifiziert. **Ein separates datensatzspezifisches Testskript** erzeugt 536 standortbezogene Events, 16.940 Occurrence-Zeilen sowie DwC-A-/TSV-/GeoJSON-Testausgaben. Ein unabhängiger Auditor vergleicht die tatsächlich geschriebenen Daten mit den Originalen. Diese Ausgaben sind **Testartefakte**, keine wissenschaftlich freigegebene Veröffentlichung und **kein Nachweis eines vollständigen Workbench-Exports**.
 
@@ -125,7 +125,7 @@ Diese Trennung verhindert eine Vermischung von **Produktcode, Bedienoberfläche,
 
 ## Verbleibende Arbeiten in sechs Fördermonaten
 
-Die Schwerpunkte sind priorisierte **Arbeitspakete eines beantragten Vorhabens**, keine Aussagen über bereits erreichte Produktreife. Der vorhandene Kern soll weiterverwendet werden; Erweiterungen müssen an Nutzerbedarf, realen Datensätzen und expliziten Abnahmekriterien gemessen werden.
+Die sechs Arbeitspakete führen die vorhandenen Grundlagen zu **wiederverwendbarer Python-Infrastruktur mit nutzendenfreundlicher Desktop-Referenzanwendung** zusammen. Jeder Schritt erhält überprüfbare Ergebnisse anhand realer Forschungsdaten.
 
 ### Monat 1 – Import, Dateninventar und technische Betriebsgrundlage
 
@@ -151,9 +151,9 @@ Mit Forschenden und mindestens einem zweiten unabhängigen Datensatz den vollst�
 
 Desktop-Bedienung, Tests, Fehlerbehandlung, Windows-/Linux-Distribution mit integrierter Engine, reproduzierbare Build-Pins und versionsgleiche Dokumentation zu einem benutzbaren Beta-Release konsolidieren. Auf frischen Zielsystemen Installation, Start, Dateiimport, RUN, Export, Abbruch, Neustart und Restore prüfen. **Abnahme:** Installierbare, nachvollziehbar getestete Beta mit reproduzierbaren Beispielen, bekannten Grenzen und einer priorisierten Liste weiterer Produktionsanforderungen.
 
-## Was für einen vollständig produktiven Betrieb zusätzlich nötig ist
+## Qualitätssicherung und Skalierbarkeit über den Beta-Stand hinaus
 
-Ein **funktionierender Beta-Workflow** und ein **dauerhaft betriebssicheres Produkt für große Datenmengen** sind unterschiedliche Reifegrade. Folgende Punkte gehören deshalb ausdrücklich in die technische Planung, müssen anhand konkreter Lastprofile bewertet und gegebenenfalls über die sechs Fördermonate hinaus weiterentwickelt werden:
+Der geplante **nutzendengetestete Beta-Workflow** erhält überprüfbare Qualitätskriterien. Für langfristige Nutzung mit großen Datenbeständen werden folgende weiterführende Themen anhand realer Lastprofile priorisiert:
 
 - **Große lokale Datenmengen:** Streaming/Lazy-Ausführung statt unkontrollierter vollständiger Materialisierung, messbare CPU-/RAM-/Plattenbudgets, Parquet-Partitionierung, begrenzte Parallelität, Abbruch und Fortschritt bei großen CSV-/Excel-/Medienbeständen; Benchmarks mit reproduzierbaren Referenzdaten.
 - **Datenintegrität und Lebenszyklus:** Transaktionale Katalogschritte trotz getrennter SQLite-/Dateisystemgrenzen, atomare Veröffentlichung, Orphan-Reconciliation, Wiederaufnahme unterbrochener Importe und RUNs, konsistente Backups von Katalog **und** Original-/Ergebnisdateien, Restore-Proben und nachvollziehbare Aufbewahrungsregeln.
@@ -161,19 +161,12 @@ Ein **funktionierender Beta-Workflow** und ein **dauerhaft betriebssicheres Prod
 - **Sicherheit und Distribution:** Pfad-/Dateivalidierung, Ressourcenlimits, Schutz sensibler Standort-/Personendaten, dokumentierte Lizenzen, gepinnte Abhängigkeiten, Builds aus festen Engine-Versionen, Plattformtests, gegebenenfalls Codesignierung und eine klare Update-/Kompatibilitätspolitik.
 - **Optionaler Engine-only-Serverbetrieb:** Die Python-Engine ist heute bereits *headless* per CLI nutzbar. Ein verlässlich betreibbarer Server- oder Batchdienst erfordert **zusätzlich** eine definierte Service-/Job-Schnittstelle, Authentifizierung und Autorisierung, Mandanten-/Projektisolation, kontrollierte Dateizugriffe, Job-Queue/Abbruch, Monitoring, Logging, Betriebs-Backups und Lasttests. **Ein solcher Mehrnutzer-Server ist nicht bereits implementiert und keine stillschweigende Zusage für den sechsmonatigen Desktop-MVP.** Er ist ein möglicher weiterer Betriebsweg, der die daten- und fachliche Logik der Engine wiederverwenden soll.
 
-Die lokale, offlinefähige **No-Code-Desktop-Anwendung ist die zentrale Referenzanwendung für Forschende**; die **eigenständig nutzbare Python-Runtime ist der zweite Fördergegenstand**. Beide sollen dieselben geprüften Verträge verwenden. Ein vollständiger produktiver Mehrnutzer-Server wird weder vorausgesetzt noch für den sechsmonatigen MVP zugesagt.
+Die lokale, offlinefähige **No-Code-Desktop-Anwendung ist die zentrale Referenzanwendung für Forschende**; die **eigenständig nutzbare Python-Runtime ist der zweite Fördergegenstand**. Beide verwenden die gleichen geprüften Verträge. Ein Mehrnutzer-Server kann später als eigenständiger Betriebsweg auf dieser Architektur aufbauen.
 
-## Bewusst nicht behauptet
+## Aussagekraft und nächster Nachweisstand
 
-- Die aktuellen Repositories seien bereits ein vollständiges No-Code-Forschungsdatenprodukt.
-- Ein erfolgreicher RUN beweise korrekte ökologische Interpretation, fachliche Autorenfreigabe oder Repositoriumsannahme.
-- Die CS-PHOC-Testexporte seien generische Workbench-Publikationsfunktionen.
-- Die Frictionless-Transformations-Engine oder eine vollständige Frictionless-Validierung von FAIRmorph-Paketen sei bereits implementiert.
-- Die internen FAIRmorph-Projekt- und virtuellen Paketdeskriptoren seien selbst schon standardkonforme Data Packages.
-- Jede Transformation besitze bereits eine vollständige gespeicherte Quellzellen-Lineage.
-- Automatisierte CI-Tests ersetzten Lasttests, Restore-Prüfungen und echte Installationstests.
-- Der Prototype Fund habe FAIRmorph bereits ausgewählt oder gefördert.
+**Nachgewiesen:** Quellenschutz, technische RUN-Prüfung, ausgewählte Review-Verträge, separate Exportbausteine, datensatzgebundene Echtdatenvalidierung sowie Desktop-/Release-Integration. **Förderziele:** durchgängige No-Code-Reviews, standardisierte Interoperabilität und robuste Nutzung größerer Bestände. **Wissenschaftliche Freigaben und die Annahme durch Repositorien** bleiben getrennte Schritte. Der jeweilige Auditumfang ist in den verlinkten Engine-Verträgen präzise dokumentiert.
 
-**Die Aussage dieses PoC ist bewusst begrenzt:** Die kritischen technischen Grundlagen lassen sich umsetzen, getrennt testen und an realen Daten überprüfen. Die geplante Förderung dient der nutzerorientierten Integration und der überprüfbaren Weiterentwicklung in Richtung eines stabilen, offen verfügbaren Forschungsdatenwerkzeugs.
+**Der PoC ist damit ein überprüfbarer Ausgangspunkt für die beantragte Integrations- und Produktentwicklung.**
 
 [FAIRmorph Engine](https://github.com/FAIRmorph/fairmorph-engine) · [Workbench](https://github.com/FAIRmorph/fairmorph-workbench) · [Independent Validations](https://github.com/FAIRmorph/fairmorph-validations) · [Releases](https://github.com/FAIRmorph/fairmorph-workbench/releases)

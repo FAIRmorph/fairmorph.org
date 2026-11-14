@@ -7,7 +7,7 @@ description: "Konkreter Überblick zur FAIRmorph-Bewerbung: Problem, Lösungsans
 
 **Diese Seite ist der zentrale Einstieg zur Bewerbung von FAIRmorph beim deutschen [Prototype Fund](https://prototypefund.de/).** Sie erklärt, welches Forschungsproblem FAIRmorph lösen soll, was der eigens für die Bewerbung entwickelte Proof of Concept (PoC) bereits kann und wofür die beantragte sechsmonatige Entwicklungszeit gebraucht wird.
 
-**Wichtig:** Der bestehende Prototyp wurde ausschließlich zur Vorbereitung der Bewerbung entwickelt. Es wird **weder eine Förderzusage noch eine Auswahl oder offizielle Unterstützung** durch den Prototype Fund behauptet. Der PoC ist keine fertige Anwendung für wissenschaftliche Datenkuratierung.
+**Einordnung:** FAIRmorph hat den öffentlich überprüfbaren PoC zur Vorbereitung der Bewerbung entwickelt. Eine Förderentscheidung liegt noch nicht vor. Die beantragte Förderung überführt den nachgewiesenen Kern in eine breit nachnutzbare Python-Infrastruktur mit geführter Desktop-Anwendung.
 
 Wer die technischen Einzelheiten, Standardgrenzen und Abnahmekriterien prüfen möchte, findet sie im [ergänzenden technischen Nachweis](/guide/prototype-fund-technical/).
 
@@ -27,7 +27,7 @@ Wer die technischen Einzelheiten, Standardgrenzen und Abnahmekriterien prüfen m
 
 **FAIRmorph soll diesen aufwendigen Zwischenschritt erleichtern.** Forschende sollen ihre Originaldateien unverändert behalten, die Bedeutung ihrer Daten ausdrücklich festlegen, technische Prüfungen verstehen und freigegebene Verarbeitungsschritte später reproduzieren können. FAIRmorph trifft dabei **keine wissenschaftlichen Entscheidungen stillschweigend**: Beispielsweise bleibt die Unterscheidung zwischen dem Zählwert Null und einem fehlenden Eintrag eine prüfbare fachliche Entscheidung.
 
-Für Forschende bleibt die **lokal nutzbare No-Code-Workbench** der wichtigste Zugang. Sie ist die nutzendenorientierte **Referenzanwendung** für eine daneben eigenständig einsetzbare Python-Runtime; die vorhandene technische Oberfläche ist noch nicht der fertige wissenschaftliche No-Code-Ablauf.
+Für Forschende ist die **lokale No-Code-Workbench** der wichtigste Zugang. Als Referenzanwendung macht sie die eigenständig nutzbare Python-Runtime zugänglich; die **geführte wissenschaftliche Kuratierung** baut während der Förderung auf der bestehenden technischen Oberfläche auf.
 
 ## Was der Proof of Concept heute nachweist
 
@@ -35,25 +35,25 @@ Für Forschende bleibt die **lokal nutzbare No-Code-Workbench** der wichtigste Z
 
 Die eigenständige [FAIRmorph Engine](https://github.com/FAIRmorph/fairmorph-engine) speichert Originaldateien unverändert und identifiziert sie mit SHA-256. Sie führt ausdrücklich konfigurierte Tabellenoperationen aus, hält Definitionen und Entscheidungen versioniert fest und erstellt prüfbare RUNs mit Eingabe-/Konfigurationssnapshots sowie Parquet-Ergebnissen.
 
-Die [Engine-Tests](https://github.com/FAIRmorph/fairmorph-engine/actions) überprüfen technische Verträge, Verarbeitung und Integritätsprüfungen. Ein korrekt abgeschlossener RUN belegt **technische Reproduzierbarkeit**, aber keine automatische wissenschaftliche Freigabe.
+Die [Engine-Tests](https://github.com/FAIRmorph/fairmorph-engine/actions) belegen die Prüfung technischer Verträge, der Verarbeitung und der Datenintegrität. Wissenschaftliche Freigaben werden ergänzend als eigenständige, nachvollziehbare Entscheidungen dokumentiert.
 
 ### 2. Funktionierende Desktop-Integration
 
 Die [Workbench](https://github.com/FAIRmorph/fairmorph-workbench) auf Basis von Svelte, Tauri und Rust kann lokale Projekte erstellen und öffnen, Datenquellen importieren, vorhandene technische Pipelinevorlagen konfigurieren und ausführen, RUN-Ergebnisse anzeigen und die Projektintegrität prüfen. Dataset-Titel können als getrennte Revisionen bearbeitet und bestätigt werden.
 
-**Noch nicht vorhanden** ist ein vollständiger geführter Ablauf zur wissenschaftlichen Felddefinition, Mappingprüfung und Publikationsfreigabe.
+**Nächster Entwicklungsschritt:** Die bestehende Desktop-Integration wird zu einem nutzergetesteten No-Code-Ablauf für wissenschaftliche Felddefinitionen, Mappingprüfung und Freigaben ausgebaut.
 
 ### 3. Unabhängige Prüfung mit echten Forschungsdaten
 
 Das separate [Validations-Repository](https://github.com/FAIRmorph/fairmorph-validations) prüft einen festgelegten CS-PHOC-Datensatz gegen die Originalwerte: **322 Erhebungsfenster, 2.144 Zählzeilen und 16.940 belegte Kategorieeinträge**, darunter **11.599 explizite Nullen**; weitere **4.500 Zellen sind leer**. Ein generischer Engine-RUN wird technisch verifiziert.
 
-Zusätzlicher **datensatzspezifischer Testcode** erzeugt Darwin-Core-Archive-, TSV- und GeoJSON-Testausgaben und kontrolliert die ausgegebenen Werte unabhängig gegen die Quelle. Das ist **kein** Beleg dafür, dass die Workbench bereits beliebige wissenschaftliche Datensätze selbstständig in diese Formate publizieren kann. [Reproduktion und Ergebnisse](/validations/docs/cs-phoc-reproduction-and-results/).
+Zusätzlicher **datensatzspezifischer Testcode** erzeugt Darwin-Core-Archive-, TSV- und GeoJSON-Testausgaben, die unabhängig mit den Originalwerten abgeglichen werden. Diese nachgewiesene technische Exportkette ist die Grundlage für **wiederverwendbare Exportadapter** im Fördervorhaben. [Reproduktion und Ergebnisse](/validations/docs/cs-phoc-reproduction-and-results/).
 
 ### 4. Tatsächlich gebaute und veröffentlichte Desktop-Pakete
 
 Der [Release-Workflow v0.1.1](https://github.com/FAIRmorph/fairmorph-workbench/actions/runs/43516992967) lief erfolgreich: Windows- und Linux-Builds, PyInstaller-Bündelung und Smoke-Tests der integrierten Python-Engine sowie das **automatische Anhängen von vier Downloadpaketen** sind nachgewiesen. Auf der [Release-Seite](https://github.com/FAIRmorph/fairmorph-workbench/releases/tag/v0.1.1) stehen Windows-Installer, portables Windows-ZIP, Debian-Paket und Linux-AppImage bereit.
 
-**Zusätzliche praktische Tests:** Unter Linux ließen sich DEB und AppImage installieren beziehungsweise ausführen. Die portable Windows-Workbench startet und erhält die Antwort der eingebundenen Engine. Dabei erscheint bislang kurz ein unerwünschtes Terminalfenster ([bekannter Windows-Fehler](https://github.com/FAIRmorph/fairmorph-workbench/issues/17)). Ein vollständiger grafischer End-to-End-RUN und der Windows-Installer sind damit nicht als unabhängig abgenommen behauptet. Der Release-Tag heißt v0.1.1, die enthaltene Engine meldet weiterhin ihre eigene Paketversion 0.1.0.
+**Zusätzliche praktische Tests:** Linux-DEB und AppImage wurden installiert beziehungsweise ausgeführt; die portable Windows-Workbench startet und erreicht ihre eingebundene Engine. Weitere Release-Qualitätssicherung umfasst den dokumentierten [Windows-UX-Fix](https://github.com/FAIRmorph/fairmorph-workbench/issues/17) und grafische End-to-End-Tests. Der Release trägt v0.1.1, die gebündelte Engine meldet 0.1.0.
 
 **Die Aussage des PoC:** Der kritische technische Kern ist vorhanden, getrennt testbar und plattformübergreifend paketierbar. **Die vorgesehene wissenschaftliche No-Code-Nutzung ist erst das Entwicklungsziel.**
 
@@ -61,19 +61,19 @@ Der [Release-Workflow v0.1.1](https://github.com/FAIRmorph/fairmorph-workbench/a
 
 In sechs Fördermonaten soll ein **wiederverwendbarer FOSS-Baustein für wissenschaftlich kontrollierte Datenkuratierung** entstehen: eine unabhängig von der Oberfläche ausführbare Python-Runtime, die unveränderte Quellen, explizite Felddefinitionen und Reviews, deklarative Transformationen sowie versionierte RUN-/Audit-Nachweise verbindet. Technische Datenbeschreibung mit Frictionless und getrennt validierte Austauschformate sollen diese Infrastruktur interoperabler machen.
 
-**Der PoC belegt die technische Trennung bereits:** Die [Engine lässt sich allein als Python-Paket mit CLI installieren](https://github.com/FAIRmorph/fairmorph-engine/blob/main/INSTALL.md) und bietet strukturierte NDJSON-Ereignisse, Projekt-/Quellenverwaltung, Polars-Pipelines und RUN-Verifikation. Ihre [eigenen Tests](https://github.com/FAIRmorph/fairmorph-engine/actions) und die [separate CS-PHOC-Validierung](/validations/docs/cs-phoc-reproduction-and-results/) arbeiten ohne die Desktopoberfläche. Das ist **noch keine stabile externe API, kein Produktionsdienst und kein generischer Publikationsservice**.
+**Der PoC belegt die technische Trennung bereits:** Die [Engine lässt sich allein als Python-Paket mit CLI installieren](https://github.com/FAIRmorph/fairmorph-engine/blob/main/INSTALL.md) und bietet strukturierte NDJSON-Ereignisse, Projekt-/Quellenverwaltung, Polars-Pipelines und RUN-Verifikation. Ihre [eigenen Tests](https://github.com/FAIRmorph/fairmorph-engine/actions) und die [separate CS-PHOC-Validierung](/validations/docs/cs-phoc-reproduction-and-results/) laufen ohne Desktopoberfläche. **Die Förderung erweitert diesen funktionsfähigen Kern** um dokumentierte Integrationsverträge, Betriebsrobustheit und wiederverwendbare Exportadapter.
 
-Die **No-Code-Desktop-App** bleibt der für Forschende zentrale Nutzungsweg und die Referenzanwendung zur Erprobung. Sie soll dieselbe Runtime verwenden, die künftig auch unabhängig per CLI in lokalen, skriptgesteuerten Arbeitsabläufen nachgenutzt werden kann. **Fördergegenstand ist damit die Kombination aus wiederverwendbarem Kern und zugänglicher Anwendung – nicht nur eine neue Oberfläche.**
+Die **No-Code-Desktop-App** bleibt der zentrale Nutzungsweg und die Referenzanwendung zur Erprobung. Sie nutzt dieselbe Runtime, die auch unabhängig per CLI in lokalen, skriptgesteuerten Arbeitsabläufen einsetzbar ist. **Fördergegenstand ist die Kombination aus wiederverwendbarem Kern und zugänglicher Anwendung.**
 
 ## Abgrenzung zu bestehenden Open-Source-Lösungen
 
 | Lösung | Bereits vorhandene Stärke | Ergänzender Ansatz von FAIRmorph |
 | --- | --- | --- |
 | **[OpenRefine](https://openrefine.org/)** | Interaktive Tabellenbereinigung, Clustering, Abgleich mit externen Daten und wiederholbare Änderungshistorie. | Wissenschaftliche Feldbedeutungen und Freigaben **zusammen mit** unveränderten Quellen, revisionsgebundenen RUNs und domänenspezifischen Exportvorbereitungen als eigenständige Runtime verknüpfen. |
-| **[Frictionless](https://framework.frictionlessdata.io/)** | Technische Tabellenbeschreibung, Table Schemas, Data Packages, Validierung und auch Transformationsfunktionen. | Diese Standards **nachnutzen**; fachliche Entscheidungen, Verarbeitung und Audits verbleiben im FAIRmorph-Kern. Die geplante Frictionless-Integration ist noch nicht implementiert. |
-| **[GBIF IPT](https://ipt.gbif.org/manual/en/ipt/latest/)** | Darwin-Core-Mapping, Metadatenpflege und Veröffentlichung von Biodiversitätsdaten über GBIF. | Die **vorgelagerte**, quellenübergreifende wissenschaftliche Kuratierung und reproduzierbare Nachweisführung unterstützen; IPT **nicht** als Publikationsdienst ersetzen. |
+| **[Frictionless](https://framework.frictionlessdata.io/)** | Technische Tabellenbeschreibung, Table Schemas, Data Packages, Validierung und Transformationsfunktionen. | Technische Beschreibung und Paketvalidierung **gezielt integrieren**; FAIRmorph ergänzt fachliche Entscheidungen und RUN-Audits. |
+| **[GBIF IPT](https://ipt.gbif.org/manual/en/ipt/latest/)** | Darwin-Core-Mapping, Metadatenpflege und Veröffentlichung von Biodiversitätsdaten über GBIF. | **Vorgelagerte wissenschaftliche Kuratierung und überprüfbare Verarbeitung** für die spätere Publikation ergänzen. |
 
-**Innovationshöhe:** FAIRmorph erfindet weder Tabellenbereinigung noch Paketstandards oder Biodiversitätspublikation neu. Der zusätzliche Nutzen liegt in der **durchgängigen Verbindung** von fachlichem Review, nachvollziehbarer Verarbeitung und austauschbaren Exporten über **eine auch ohne GUI nutzbare Open-Source-Runtime**. Teile sind im PoC belegt; die zugängliche, vollständige Integration muss in der Förderphase erst entstehen.
+**Innovationshöhe:** FAIRmorph **verbindet bestehende FOSS-Bausteine zu einer neuen, wiederverwendbaren Kuratierungsinfrastruktur**: fachliche Reviews, transparente Transformationen und standardisierte Exporte nutzen denselben, auch ohne GUI ausführbaren Python-Kern. Der PoC belegt technische Grundlagen; die Förderphase schafft den zusammenhängenden Forschungsworkflow.
 
 ## Was in sechs Fördermonaten entstehen soll
 
@@ -88,21 +88,21 @@ Die beantragte Arbeit baut auf den vorhandenen Bausteinen auf. **Beide Zugänge 
 | **Monat 5** | Tests mit Forschenden und zusätzlichen Datensätzen; Performance, Speicherverbrauch, Wiederaufnahme und Backup/Restore. | Reale Nutzungshürden und Stabilitätsgrenzen sind gemessen und dokumentiert. |
 | **Monat 6** | Überarbeitete Windows-/Linux-Pakete, Oberfläche, Fehlerbehandlung, Tests und Dokumentation. | Eine installierbare, nachvollziehbar getestete Beta mit benannten Grenzen und reproduzierbaren Beispielen. |
 
-Die einzelnen Arbeitspakete und ihre technischen Abnahmekriterien sind im [ausführlichen Entwicklungs- und Nachweisanhang](/guide/prototype-fund-technical/) beschrieben. Eine serverseitige Mehrnutzerplattform ist **nicht** stillschweigend Teil dieses sechsmonatigen Desktop-Ziels.
+Die einzelnen Arbeitspakete und ihre technischen Abnahmekriterien sind im [technischen Entwicklungs- und Nachweisanhang](/guide/prototype-fund-technical/) beschrieben. Im Mittelpunkt stehen die unabhängige Python-Runtime und die No-Code-Desktop-Referenzanwendung.
 
 ## Warum Open Source und bestehende Standards?
 
 FAIRmorph verfolgt einen **FOSS-Ansatz**: Die Engine und die Workbench sind unter der MIT-Lizenz veröffentlicht, die unabhängigen Validierungen unter Apache-2.0. Der Prototyp verwendet etablierte Werkzeuge wie Python, Polars, SQLite, Svelte und Tauri.
 
-FAIRmorph soll **nicht** deren Funktionalität proprietär nachbauen. Der eigene Beitrag liegt in der Verbindung von unveränderten Forschungsquellen, explizit bestätigter wissenschaftlicher Bedeutung, nachvollziehbaren Transformationen und überprüfbaren Ergebnissen. Formate wie Parquet, Darwin Core Archive und EML spielen dabei je nach Verarbeitungs- oder Austauschzweck unterschiedliche Rollen.
+FAIRmorph **nutzt etablierte FOSS-Werkzeuge** und ergänzt sie um unveränderte Forschungsquellen, wissenschaftlich bestätigte Feldbedeutungen, nachvollziehbare Transformationen und überprüfbare Ergebnisse. Parquet, Darwin Core Archive und EML übernehmen unterschiedliche Aufgaben innerhalb dieser Architektur.
 
-**Wichtig für die Förderplanung:** Frictionless wird heute als Abhängigkeit geführt, übernimmt aber **noch nicht** die generische Transformationsausführung. Die geplante Nutzung für technische Beschreibungen, Table Schemas und Paketvalidierung ist ein Entwicklungsziel. Aus vorhandenen Exportbausteinen folgt noch kein universeller, wissenschaftlich freigegebener Publikationsworkflow.
+**Frictionless-Entwicklungsschritt:** Polars führt bereits die generischen Transformationen aus. Frictionless ist als Abhängigkeit deklariert und soll technische Datenbeschreibung, Table Schemas und Paketvalidierung ergänzen. Verifizierte RUNs bilden die Grundlage für zielsystemspezifische Exporte.
 
-## Grenzen und Förderbedarf
+## Was die Förderung als Nächstes ermöglicht
 
-Der aktuelle Prototyp ist **keine produktionsreife Software**. Insbesondere fehlen ein durchgängiger wissenschaftlicher No-Code-Review, allgemein nutzbare Publikationsabläufe, ausreichend getestete große Datenmengen, robuste Recovery-/Restore-Verfahren und eine umfassend abgenommene Desktop-Bedienung.
+**Der PoC liefert eine überprüfbare Ausgangsbasis:** Engine, Workbench, RUN-Integritätsprüfungen, Echtdatenvalidierung und plattformübergreifende Pakete sind getrennt nachgewiesen. Die sechs Fördermonate konzentrieren sich auf **geführte wissenschaftliche Reviews, wiederverwendbare Exporte, zuverlässige Betriebsabläufe und Nutzendentests**.
 
-Der Förderbedarf liegt gerade darin, diesen Abstand zwischen funktionierender Technik und einem **benutzbaren, verlässlichen Forschungswerkzeug** zu schließen. Tests und offene Repositories machen den Ausgangspunkt überprüfbar; sie ersetzen weder Nutzererprobung noch wissenschaftliche Qualitätssicherung.
+Mit der Förderung soll aus diesen funktionsfähigen Bausteinen eine **verständlich bedienbare, eigenständig nachnutzbare und zuverlässig geprüfte Open-Source-Infrastruktur** für ökologische Forschungsdaten entstehen.
 
 ## Weiterführende Nachweise
 
@@ -112,4 +112,4 @@ Der Förderbedarf liegt gerade darin, diesen Abstand zwischen funktionierender T
 - **[FAIRmorph Validations](https://github.com/FAIRmorph/fairmorph-validations)** – unabhängig überprüfbarer Echtdatentest.
 - **[Projektkonzept und Forschungsbezug](/guide/overview/)** – Motivation und wissenschaftliche Einordnung.
 
-**FAIRmorph bewirbt sich um Förderung. Die bereitgestellten technischen Ergebnisse sind Nachweise der Machbarkeit – nicht die Behauptung eines bereits geförderten oder fertigen Produkts.**
+**FAIRmorph stellt einen öffentlich dokumentierten PoC als technische Grundlage bereit und beantragt Förderung für dessen nutzendenorientierte Weiterentwicklung.**
