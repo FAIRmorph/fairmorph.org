@@ -17,9 +17,9 @@ Wer die technischen Einzelheiten, Standardgrenzen und Abnahmekriterien prüfen m
 | --- | --- |
 | **Für wen?** | Ökologisch Forschende und Datenverantwortliche, die heterogene Beobachtungs-, Zähl- und Metadaten aufbereiten müssen. |
 | **Welches Problem?** | Zwischen Datenerhebung und wissenschaftlich verständlicher Nachnutzung liegen oft manuelle Bereinigung, Feldinterpretation, Metadatenarbeit und schwer reproduzierbare Einzelschritte. |
-| **Was ist geplant?** | Eine lokale, quelloffene Desktop-Anwendung, die durch Import, fachliche Beschreibung, Prüfung, Transformation und Aufbereitung zur Wiederverwendung führt – ohne selbst geschriebene Skripte. |
+| **Was ist geplant?** | Eine wiederverwendbare, unabhängig nutzbare Python-Runtime für geprüfte Forschungsdatenverarbeitung **und** eine lokale No-Code-Desktop-Referenzanwendung für Forschende. |
 | **Was gibt es bereits?** | Eine getrennt testbare Python-Engine, eine technische Desktop-Workbench, reproduzierbare Verarbeitungsnachweise, reale Datensatzvalidierung und automatisierte Windows-/Linux-Pakete. |
-| **Wofür wird Förderung benötigt?** | Um diese technischen Komponenten in sechs Monaten zu einem verständlichen, durchgängig bedienbaren und überprüfbaren Forschungswerkzeug weiterzuentwickeln. |
+| **Wofür wird Förderung benötigt?** | Um Engine, wissenschaftliche Reviews, technische Prüfungen und Exporte als nachnutzbare Infrastruktur zu integrieren und sie über eine verständliche Desktop-Anwendung erproben zu können. |
 
 ## Warum FAIRmorph gebraucht wird
 
@@ -27,7 +27,7 @@ Wer die technischen Einzelheiten, Standardgrenzen und Abnahmekriterien prüfen m
 
 **FAIRmorph soll diesen aufwendigen Zwischenschritt erleichtern.** Forschende sollen ihre Originaldateien unverändert behalten, die Bedeutung ihrer Daten ausdrücklich festlegen, technische Prüfungen verstehen und freigegebene Verarbeitungsschritte später reproduzieren können. FAIRmorph trifft dabei **keine wissenschaftlichen Entscheidungen stillschweigend**: Beispielsweise bleibt die Unterscheidung zwischen dem Zählwert Null und einem fehlenden Eintrag eine prüfbare fachliche Entscheidung.
 
-Das Produktziel ist eine **lokal nutzbare No-Code-Workbench**. Die heute bereits vorhandene technische Benutzeroberfläche ist dafür die Ausgangsbasis, nicht die fertige Umsetzung.
+Für Forschende bleibt die **lokal nutzbare No-Code-Workbench** der wichtigste Zugang. Sie ist die nutzendenorientierte **Referenzanwendung** für eine daneben eigenständig einsetzbare Python-Runtime; die vorhandene technische Oberfläche ist noch nicht der fertige wissenschaftliche No-Code-Ablauf.
 
 ## Was der Proof of Concept heute nachweist
 
@@ -57,9 +57,27 @@ Der [Release-Workflow v0.1.1](https://github.com/FAIRmorph/fairmorph-workbench/a
 
 **Die Aussage des PoC:** Der kritische technische Kern ist vorhanden, getrennt testbar und plattformübergreifend paketierbar. **Die vorgesehene wissenschaftliche No-Code-Nutzung ist erst das Entwicklungsziel.**
 
+## Fördergegenstand: offene Python-Infrastruktur plus Desktop-Referenzanwendung
+
+In sechs Fördermonaten soll ein **wiederverwendbarer FOSS-Baustein für wissenschaftlich kontrollierte Datenkuratierung** entstehen: eine unabhängig von der Oberfläche ausführbare Python-Runtime, die unveränderte Quellen, explizite Felddefinitionen und Reviews, deklarative Transformationen sowie versionierte RUN-/Audit-Nachweise verbindet. Technische Datenbeschreibung mit Frictionless und getrennt validierte Austauschformate sollen diese Infrastruktur interoperabler machen.
+
+**Der PoC belegt die technische Trennung bereits:** Die [Engine lässt sich allein als Python-Paket mit CLI installieren](https://github.com/FAIRmorph/fairmorph-engine/blob/main/INSTALL.md) und bietet strukturierte NDJSON-Ereignisse, Projekt-/Quellenverwaltung, Polars-Pipelines und RUN-Verifikation. Ihre [eigenen Tests](https://github.com/FAIRmorph/fairmorph-engine/actions) und die [separate CS-PHOC-Validierung](/validations/docs/cs-phoc-reproduction-and-results/) arbeiten ohne die Desktopoberfläche. Das ist **noch keine stabile externe API, kein Produktionsdienst und kein generischer Publikationsservice**.
+
+Die **No-Code-Desktop-App** bleibt der für Forschende zentrale Nutzungsweg und die Referenzanwendung zur Erprobung. Sie soll dieselbe Runtime verwenden, die künftig auch unabhängig per CLI in lokalen, skriptgesteuerten Arbeitsabläufen nachgenutzt werden kann. **Fördergegenstand ist damit die Kombination aus wiederverwendbarem Kern und zugänglicher Anwendung – nicht nur eine neue Oberfläche.**
+
+## Abgrenzung zu bestehenden Open-Source-Lösungen
+
+| Lösung | Bereits vorhandene Stärke | Ergänzender Ansatz von FAIRmorph |
+| --- | --- | --- |
+| **[OpenRefine](https://openrefine.org/)** | Interaktive Tabellenbereinigung, Clustering, Abgleich mit externen Daten und wiederholbare Änderungshistorie. | Wissenschaftliche Feldbedeutungen und Freigaben **zusammen mit** unveränderten Quellen, revisionsgebundenen RUNs und domänenspezifischen Exportvorbereitungen als eigenständige Runtime verknüpfen. |
+| **[Frictionless](https://framework.frictionlessdata.io/)** | Technische Tabellenbeschreibung, Table Schemas, Data Packages, Validierung und auch Transformationsfunktionen. | Diese Standards **nachnutzen**; fachliche Entscheidungen, Verarbeitung und Audits verbleiben im FAIRmorph-Kern. Die geplante Frictionless-Integration ist noch nicht implementiert. |
+| **[GBIF IPT](https://ipt.gbif.org/manual/en/ipt/latest/)** | Darwin-Core-Mapping, Metadatenpflege und Veröffentlichung von Biodiversitätsdaten über GBIF. | Die **vorgelagerte**, quellenübergreifende wissenschaftliche Kuratierung und reproduzierbare Nachweisführung unterstützen; IPT **nicht** als Publikationsdienst ersetzen. |
+
+**Innovationshöhe:** FAIRmorph erfindet weder Tabellenbereinigung noch Paketstandards oder Biodiversitätspublikation neu. Der zusätzliche Nutzen liegt in der **durchgängigen Verbindung** von fachlichem Review, nachvollziehbarer Verarbeitung und austauschbaren Exporten über **eine auch ohne GUI nutzbare Open-Source-Runtime**. Teile sind im PoC belegt; die zugängliche, vollständige Integration muss in der Förderphase erst entstehen.
+
 ## Was in sechs Fördermonaten entstehen soll
 
-Die beantragte Arbeit baut gezielt auf den vorhandenen Bausteinen auf. Im Mittelpunkt stehen eine verständliche wissenschaftliche Bedienführung, praktische Zuverlässigkeit und die Prüfung mit realen Daten – nicht die Neuentwicklung von Tabellen-Engines oder Datenstandards.
+Die beantragte Arbeit baut auf den vorhandenen Bausteinen auf. **Beide Zugänge – unabhängige Python-Runtime und geführte Desktop-Referenzanwendung – sollen dieselben überprüfbaren Projekt-, Review- und RUN-Verträge nutzen.** Im Mittelpunkt stehen verständliche Bedienführung, wiederverwendbare Schnittstellen und Tests mit realen Daten, nicht neue Tabellen-Engines oder Datenstandards.
 
 | Zeitraum | Geplante Arbeit | Überprüfbares Ergebnis |
 | --- | --- | --- |

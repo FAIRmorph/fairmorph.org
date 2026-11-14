@@ -9,7 +9,15 @@ description: Detaillierte technische Bestandsaufnahme, FOSS-Komponenten, Standar
 
 FAIRmorph ist als **technischer Proof of Concept ausschließlich zur Vorbereitung einer Bewerbung beim deutschen [Prototype Fund](https://prototypefund.de/)** entstanden. Ziel ist es, die Umsetzbarkeit der Grundidee, die Qualität der technischen Arbeit und die Fähigkeiten zur reproduzierbaren Softwareentwicklung nachzuweisen. **Es wird keine bereits erhaltene Förderung, Auswahl oder offizielle Unterstützung durch den Prototype Fund behauptet.**
 
-Der Prototyp ist bewusst **kein fertiges Forschungsdatenprodukt**. Die beantragte sechsmonatige Entwicklung soll die nachgewiesenen Komponenten zu einem nutzbaren, lokal betreibbaren Werkzeug verbinden: Forschende sollen heterogene ökologische Daten ohne Programmierkenntnisse importieren, beschreiben, fachlich prüfen, transformieren und mit nachvollziehbaren Entscheidungen für die Wiederverwendung vorbereiten können.
+Der Prototyp ist bewusst **kein fertiges Forschungsdatenprodukt**. Die beantragte sechsmonatige Entwicklung soll die nachgewiesenen Komponenten zu einer **unabhängig nutzbaren Python-Runtime mit No-Code-Desktop-Referenzanwendung** verbinden: Forschende sollen heterogene ökologische Daten ohne Programmierkenntnisse importieren, beschreiben, fachlich prüfen, transformieren und mit nachvollziehbaren Entscheidungen für die Wiederverwendung vorbereiten können.
+
+## Fördergegenstand und nachgewiesene Trennung von Runtime und Oberfläche
+
+**Neuer wiederverwendbarer Infrastrukturbaustein:** Eine lokal betreibbare **Python-Runtime für wissenschaftlich überprüfbare Datenkuratierung** soll im Förderzeitraum zu einem dokumentierten, unabhängig nutzbaren Kern für Quellenverwaltung, explizite Feld-/Mappingentscheidungen, reproduzierbare RUNs, Prüfberichte und formatgetrennte Exporte weiterentwickelt werden. Die **No-Code-Desktop-Workbench** ist die für Forschende maßgebliche **Referenzanwendung** auf demselben Kern, nicht dessen einzige Einsatzform.
+
+**Heute belegbar:** Die [Engine-Installationsanleitung](https://github.com/FAIRmorph/fairmorph-engine/blob/main/INSTALL.md) benötigt weder Node.js/Tauri noch die Workbench. Die [Typer-CLI](https://github.com/FAIRmorph/fairmorph-engine/blob/main/src/fairmorph_engine/cli.py) bietet strukturierte NDJSON-Ereignisse; die [Engine-Architektur](https://github.com/FAIRmorph/fairmorph-engine/blob/main/docs/ARCHITECTURE.md) beschreibt unabhängig ausführbare Importe, explizite Pipelinewahl, versionierte RUN/2-Artefakte und Wiederholungsprüfungen. [Engine-CI](https://github.com/FAIRmorph/fairmorph-engine/actions) und [CS-PHOC-Reproduktion](/validations/docs/cs-phoc-reproduction-and-results/) nutzen den Kern ohne GUI. **Nicht belegt** sind eine stabile öffentliche Integrations-API, produktionsreifer Serverbetrieb oder ein universeller Export.
+
+**Förderabnahme:** Derselbe reale Beispieldatensatz durchläuft (1) einen dokumentierten **Engine-only-CLI-Workflow** und (2) eine geführte **No-Code-Desktop-Strecke** mit denselben Versionsbindungen und verifizierbaren RUN-Nachweisen. Die Runtime erhält eigenständige Tests, nachvollziehbare Schnittstellenverträge und wiederverwendbare Beispiele; Nutzendentests prüfen die Desktop-Anwendung. Ein Mehrnutzer-Server ist nicht Teil dieser Zusage.
 
 ## Was bereits implementiert ist
 
@@ -84,6 +92,16 @@ Der Mehrwert des [Frictionless Frameworks](https://framework.frictionlessdata.io
 
 **Prüfbare Abnahmekriterien:** (a) Zwei unterschiedlich strukturierte Tabellen lassen sich unverändert importieren, technisch mit Frictionless beschreiben und validieren; (b) Typvorschläge und Fehlwertannahmen werden nicht stillschweigend wissenschaftlich bestätigt; (c) mindestens zwei unterschiedlich benannte RUN-Ergebnisse lassen sich als Data Packages mit Table Schemas ausgeben und durch Frictionless prüfen; (d) ein und derselbe verifizierte RUN kann ohne erneute Transformation sowohl ein generisches Austauschpaket als auch einen zielsystemspezifischen Testexport liefern. **Diese Integration ist Förderziel, kein bereits bestandener PoC-Test.**
 
+## Bestehende Lösungen: Überschneidung, Abgrenzung und Innovationshöhe
+
+| FOSS-Lösung | Bereits gelöste Aufgaben | FAIRmorphs zusätzliche, noch zu integrierende Leistung |
+| --- | --- | --- |
+| **[OpenRefine](https://openrefine.org/)** | Lokale interaktive Bereinigung, Transformation, Clustering, Reconciliation **und Änderungshistorie**. | Ökologische Felddefinition und expliziten Review mit unveränderten Quellen, revisionsgebundenen RUN-/Audit-Artefakten und einem **unabhängigen Python-Kern** verbinden. Keine Behauptung, OpenRefine könne Änderungen nicht nachvollziehen. |
+| **[Frictionless](https://framework.frictionlessdata.io/)** | Tabellenschemata, Datenbeschreibung, Validierung, Data Packages und eigene Transformationsmöglichkeiten. | Für technische Beschreibungen und Paketvalidierung **wiederverwenden**; wissenschaftliche Zustimmung, Polars-RUNs und Auditverträge in FAIRmorph belassen. Die API-Integration ist **geplant**, nicht PoC-Realität. |
+| **[GBIF IPT](https://ipt.gbif.org/manual/en/ipt/latest/)** | Mapping auf Darwin Core, Metadatenverwaltung, DwC-A-Bereitstellung und GBIF-Publikation. | Heterogene ökologische Originalquellen **vor** dem Publikationsschritt kuratieren und den Entscheidungs-/Transformationsweg reproduzierbar belegen; IPT bleibt zuständiger Publikationsweg. |
+
+**Innovationshöhe:** Eine **Integrations- und Infrastrukturinnovation**, keine neue generische Datenbank, Reinigungsfunktion oder Publikationsplattform. Der eigenständige Mehrwert ist die wiederverwendbare **Kopplung wissenschaftlicher Freigaben mit versionierten, prüfbaren Daten-RUNs** – gleicher Kern für CLI und No-Code-Desktop. Der PoC belegt getrennte Bausteine; die durchgängige Bedienung, Frictionless-Interoperabilität und breitere Forschungsvalidierung sind Förderaufgaben.
+
 ## Warum es mehrere Repositories gibt
 
 | Repository | Verantwortung | Was dadurch unabhängig überprüfbar wird |
@@ -143,7 +161,7 @@ Ein **funktionierender Beta-Workflow** und ein **dauerhaft betriebssicheres Prod
 - **Sicherheit und Distribution:** Pfad-/Dateivalidierung, Ressourcenlimits, Schutz sensibler Standort-/Personendaten, dokumentierte Lizenzen, gepinnte Abhängigkeiten, Builds aus festen Engine-Versionen, Plattformtests, gegebenenfalls Codesignierung und eine klare Update-/Kompatibilitätspolitik.
 - **Optionaler Engine-only-Serverbetrieb:** Die Python-Engine ist heute bereits *headless* per CLI nutzbar. Ein verlässlich betreibbarer Server- oder Batchdienst erfordert **zusätzlich** eine definierte Service-/Job-Schnittstelle, Authentifizierung und Autorisierung, Mandanten-/Projektisolation, kontrollierte Dateizugriffe, Job-Queue/Abbruch, Monitoring, Logging, Betriebs-Backups und Lasttests. **Ein solcher Mehrnutzer-Server ist nicht bereits implementiert und keine stillschweigende Zusage für den sechsmonatigen Desktop-MVP.** Er ist ein möglicher weiterer Betriebsweg, der die daten- und fachliche Logik der Engine wiederverwenden soll.
 
-Die lokale, offlinefähige Desktop-Anwendung ist der **primäre Liefergegenstand**. Serverfähigkeit betrifft zunächst die saubere Trennung der headless Engine und ihrer Schnittstellen; ein vollständiger produktiver Serverdienst sollte nur bei belegtem Bedarf und realistischem Ressourcenbudget umgesetzt werden.
+Die lokale, offlinefähige **No-Code-Desktop-Anwendung ist die zentrale Referenzanwendung für Forschende**; die **eigenständig nutzbare Python-Runtime ist der zweite Fördergegenstand**. Beide sollen dieselben geprüften Verträge verwenden. Ein vollständiger produktiver Mehrnutzer-Server wird weder vorausgesetzt noch für den sechsmonatigen MVP zugesagt.
 
 ## Bewusst nicht behauptet
 
