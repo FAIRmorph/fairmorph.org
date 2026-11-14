@@ -202,6 +202,44 @@ jobs:
           }
           console.log('Prototype notice, cited evidence and public scope verified');
           JS
+      - name: Verify readable CS-PHOC results navigation
+        run: |
+          node - <<'JS'
+          import fs from 'node:fs';
+          const root = 'src/content/docs/validations/cs-phoc/validation';
+          for (const file of ['index.md', 'TEST-EXPORTS.md', 'INDEPENDENT-CONTENT-AUDIT.md']) {
+            if (!fs.existsSync(root + '/' + file)) throw new Error('Missing results guide: ' + file);
+          }
+          const landing = fs.readFileSync(root + '/index.md', 'utf8');
+          for (const phrase of [
+            'CS-PHOC validation: results and interpretation',
+            'Result: the bounded technical test passed',
+            '16,940', '11,599', '4,500',
+            '/validations/cs-phoc/validation/test-exports/',
+            '/validations/cs-phoc/validation/independent-content-audit/',
+            '/validations/docs/cs-phoc-reproduction-and-results/'
+          ]) {
+            if (!landing.includes(phrase)) throw new Error('Missing reviewer navigation or evidence: ' + phrase);
+          }
+          for (const route of [
+            '/validations/cs-phoc/validation/',
+            '/validations/cs-phoc/validation/test-exports/',
+            '/validations/cs-phoc/validation/independent-content-audit/'
+          ]) {
+            if (!fs.existsSync('dist' + route + 'index.html')) throw new Error('Missing rendered validation route: ' + route);
+          }
+          const oldPages = [
+            'src/content/docs/validations/cs-phoc/curation',
+            root + '/C1-C4-TEST-EXPORTS.md',
+            root + '/C4-FINAL-CONTENT-AUDIT.md',
+            root + '/PHASE-B-REGISTRY-DRAFTS.md',
+            root + '/CS-PHOC-TECHNICAL-CLOSURE.md'
+          ];
+          for (const old of oldPages) {
+            if (fs.existsSync(old)) throw new Error('Historical protocol still published: ' + old);
+          }
+          console.log('Reader-oriented CS-PHOC routes present; obsolete protocol pages absent');
+          JS
       - name: Check all three sources and navigation pages
         run: |
           node - <<'JS'
