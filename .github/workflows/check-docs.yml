@@ -139,6 +139,17 @@ jobs:
           for (const phrase of ['## Offene Infrastruktur, Datenstandards und Frictionless', 'Frictionless ersetzt nicht die bestehende Transformations- und Audit-Engine', 'Repository-neutraler RUN/2', 'Table Schemas', 'Frictionless-validierte Data Packages', 'wissenschaftliche Freigabe']) {
             if (!technicalEvidence.includes(phrase)) throw new Error('FOSS architecture and Frictionless scope missing from technical appendix: ' + phrase);
           }
+          // Keep the Frictionless division of responsibilities a real Markdown
+          // table, not a set of disconnected headings or line fragments.
+          const responsibilities = technicalEvidence.split('#### Wofür sollte FAIRmorph Frictionless einsetzen?')[1]?.split('Der Mehrwert des')[0];
+          if (!responsibilities) throw new Error('Frictionless responsibilities section missing');
+          const tableRows = responsibilities.split('\n').filter(line => line.trim().startsWith('|'));
+          if (tableRows.length !== 8 || tableRows[0].trim() !== '| Aufgabe | Zuständigkeit und Umsetzungsstand |') {
+            throw new Error('Frictionless responsibilities must be a two-column Markdown table with six tasks');
+          }
+          for (const role of ['**Polars – bereits implementiert**', '**Frictionless – geplant**', '**FAIRmorph Engine', '**Separate FAIRmorph-Exportadapter**']) {
+            if (!responsibilities.includes(role)) throw new Error('Missing Frictionless role clarification: ' + role);
+          }
           const homepage = fs.readFileSync('src/content/docs/index.mdx', 'utf8');
           if (!homepage.includes('Making ecological data FAIR') || !homepage.includes('guide/overview/')) throw new Error('Missing ecological FAIR hero/concept link');
           if (!homepage.includes('link: /guide/prototype-fund/')) throw new Error('Primary hero action must link to the concrete Prototype Fund application');

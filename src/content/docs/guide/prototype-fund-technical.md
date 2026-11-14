@@ -39,7 +39,9 @@ Die Python-Engine arbeitet grundsätzlich datensatzunabhängig. Fachlich spezifi
 | **Desktop und Engine-Anbindung** | [Svelte](https://svelte.dev/), [Tauri](https://tauri.app/), Rust, TypeScript, [Zod](https://zod.dev/) | Lokale Workbench, kontrollierter Python-Prozessaufruf und Validierung der Nachrichtenstruktur; siehe [Workbench-Abhängigkeiten](https://github.com/FAIRmorph/fairmorph-workbench/blob/main/package.json). |
 | **Qualität, Distribution, Dokumentation** | pytest, Ruff, Vitest, PyInstaller, [Astro](https://astro.build/) und [Starlight](https://starlight.astro.build/) | Automatisierte Tests, Linting, vorbereitete Engine-Sidecar-Builds sowie das öffentliche Dokumentationsportal. |
 
-Das [Engine-Paketmanifest](https://github.com/FAIRmorph/fairmorph-engine/blob/main/pyproject.toml) deklariert auch **Frictionless** sowie Geo- und Bildbibliotheken. **DuckDB wurde als ungenutzte Laufzeitabhängigkeit entfernt.** Eine **deklarierte Abhängigkeit ist noch kein Nachweis ihrer produktiven Verwendung**: Der aktuell untersuchte generische Transformationspfad führt seine Operationen über Polars aus, nicht über die Frictionless-Transformations-Engine. Entsprechend werden aus der Abhängigkeitsliste keine bereits fertigen GIS-, Medien- oder zusätzlichen Datenbankfunktionen abgeleitet.
+Das [Engine-Paketmanifest](https://github.com/FAIRmorph/fairmorph-engine/blob/main/pyproject.toml) enthält neben **Polars** auch **Frictionless** sowie Geo- und Bildbibliotheken (**pyogrio**, **Shapely**, **Pillow**, **ExifRead**). **DuckDB ist keine Laufzeitabhängigkeit mehr.** Diese Bibliotheken sind als technische Grundlage für weitere Funktionen vorgesehen. Ihre bloße Deklaration belegt jedoch **nicht**, dass die entsprechenden GIS-, Medien- oder Validierungsfunktionen bereits vollständig eingebunden und getestet sind.
+
+**Aktueller Stand:** Die generischen Tabellentransformationen werden mit **Polars** ausgeführt. Frictionless ist zwar als Abhängigkeit vorhanden, übernimmt dort bislang aber weder die Transformationen noch die geplante generische Data-Package-Validierung. Die konkrete spätere Rolle der Bibliotheken wird im folgenden Entwicklungsplan abgegrenzt.
 
 ### Bereits genutzte offene Datenformate und ihre Grenzen
 
@@ -59,7 +61,22 @@ Das [Engine-Paketmanifest](https://github.com/FAIRmorph/fairmorph-engine/blob/ma
 
 ### Geplanter Frictionless-Einsatz in der Förderphase
 
-**Architekturentscheidung: Frictionless ersetzt nicht die bestehende Transformations- und Audit-Engine.** Wissenschaftliche Freigaben, Null-/Fehlwertsemantik, Provenienz, Change-Audits und RUN-Verifikation bleiben Aufgaben von FAIRmorph; Polars bleibt zunächst der technische Ausführungskern. Der Mehrwert von [Frictionless Framework](https://framework.frictionlessdata.io/) liegt hier **an den Schnittstellen**:
+**Architekturentscheidung: Frictionless ersetzt nicht die bestehende Transformations- und Audit-Engine.** Wissenschaftliche Freigaben, Null-/Fehlwertsemantik, Provenienz, Change-Audits und RUN-Verifikation bleiben Aufgaben von FAIRmorph; Polars bleibt zunächst der technische Ausführungskern.
+
+#### Wofür sollte FAIRmorph Frictionless einsetzen?
+
+**Frictionless soll standardisierte technische Datenbeschreibungen und Prüfungen unterstützen.** Die Zuständigkeiten sind wie folgt getrennt:
+
+| Aufgabe | Zuständigkeit und Umsetzungsstand |
+| --- | --- |
+| Tabellen transformieren, filtern, verbinden und umformen | **Polars – bereits implementiert** |
+| Technische Struktur von Datenquellen und Spaltentypen erkennen | **Frictionless – geplant**; automatische Vorschläge erfordern Prüfung |
+| Spaltentypen, Tabellenregeln, Table Schemas und Data Packages technisch validieren | **Frictionless – geplant**; keine bereits nachgewiesene generische Paketvalidierung |
+| Wissenschaftliche Feldbedeutungen, Null-/Fehlwertsemantik und Freigaben bestätigen | **FAIRmorph mit menschlicher Prüfung**; technische Verträge vorhanden, geführter Workbench-Ablauf geplant |
+| Transformationen, Versionen, Herkunft und RUNs nachvollziehbar prüfen | **FAIRmorph Engine – für implementierte Pfade vorhanden**, mit dokumentierten Auditgrenzen |
+| GBIF-/DwC-A- oder PANGAEA-spezifische Formate vorbereiten | **Separate FAIRmorph-Exportadapter**; einzelne technische Bausteine existieren, allgemeiner Workbench-Export geplant |
+
+Der Mehrwert des [Frictionless Frameworks](https://framework.frictionlessdata.io/) liegt hier **an den Schnittstellen**; die geplante Integration ist in folgende Phasen aufgeteilt:
 
 - **Import und Inventarisierung (Monat 1):** Frictionless `describe` ermittelt technische Tabellen-/Ressourcenbeschreibungen, Feldtypen und Dialekte. Frictionless `validate` liefert strukturierte **technische** Befunde. Automatische Erkennung erzeugt nur Vorschläge; wissenschaftliche Bedeutung, Einheiten und die Interpretation von Null gegenüber fehlenden Werten werden weiterhin ausdrücklich überprüft.
 - **Datenverträge und Review (Monate 2–3):** Standardisierte Data Resources und Table Schemas werden mit den eigenständigen, versionierten FAIRmorph-Quelldefinitionen verknüpft; technische Regelverletzungen werden im Prüfbericht von wissenschaftlich offenen Entscheidungen unterschieden. Die unveränderten Originaldateien bleiben maßgeblich.
