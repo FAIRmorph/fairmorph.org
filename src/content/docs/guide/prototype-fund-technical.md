@@ -7,7 +7,7 @@ description: Detaillierte technische Bestandsaufnahme, FOSS-Komponenten, Standar
 
 **Technischer Anhang zur [Prototype-Fund-Bewerbung von FAIRmorph](/guide/prototype-fund/).** Für Problem, Nutzen, aktuellen Stand und die sechsmonatigen Ziele in kompakter Form bitte zuerst die [Bewerbungsübersicht](/guide/prototype-fund/) lesen.
 
-Der öffentlich dokumentierte **technische Proof of Concept** bildet die Grundlage für die Bewerbung beim deutschen [Prototype Fund](https://prototypefund.de/). Die offenen Repositories machen Entwicklung, Tests und Ergebnisse nachvollziehbar. **Eine Förderentscheidung liegt noch nicht vor.**
+**Wichtig:** Der bestehende Prototyp wurde ausschließlich zur Vorbereitung der Bewerbung entwickelt. Es wird **weder eine Förderzusage noch eine Auswahl oder offizielle Unterstützung** durch den Prototype Fund behauptet. Der PoC ist keine fertige Anwendung für wissenschaftliche Datenkuratierung.
 
 Die beantragte sechsmonatige Entwicklung verbindet die nachgewiesenen Komponenten zu einer **eigenständig nutzbaren Python-Runtime mit No-Code-Desktop-Referenzanwendung**: Forschende sollen heterogene ökologische Daten importieren, beschreiben, fachlich prüfen, transformieren und mit transparenten Entscheidungen zur Wiederverwendung vorbereiten können.
 
