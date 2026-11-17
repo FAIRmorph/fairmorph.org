@@ -8,7 +8,7 @@ description: FAIRmorph's research rationale, scientific safeguards, reproducibil
 The intended **guided, no-code desktop workflow** would make those tasks easier without taking scientific interpretation away from researchers. The Python Engine already preserves source evidence and supports explicit, verifiable processing; the Workbench currently exposes a narrower technical interface. **The full guided experience remains a development goal.**
 
 :::caution[Prototype Fund (Germany) — experimental research prototype]
-FAIRmorph was developed **solely to prepare an application to Germany's [Prototype Fund](https://prototypefund.de/)**; no grant, selection or endorsement is claimed. This is **not production-ready software**. For the concrete proposal, current evidence and six-month plan, visit the **[Prototype Fund application (German)](/guide/prototype-fund/)**.
+FAIRmorph was developed **solely to prepare an application to Germany's [Prototype Fund](https://prototypefund.de/)**; no grant, selection or endorsement is claimed. This is **not production-ready software**. For the concrete proposal, current evidence and six-month plan, visit the **[Prototype Fund application (German)](/guide/prototype-fund-2/)**.
 :::
 
 ## Research evidence: the FAIR implementation gap
@@ -47,7 +47,7 @@ For example, a revised species-count definition can be recorded **without silent
 
 **[Engine](/engine/)** implements source preservation, decision contracts, pipelines and verifiable RUNs. **[Workbench](/workbench/)** provides the local Svelte/Tauri user interface; it is not a separate scientific approval authority. **[Validations](/validations/)** independently audits specific real-data cases against original values, without exercising the full desktop workflow.
 
-FAIRmorph reuses FOSS infrastructure such as Polars and Tauri instead of replacing established table-processing systems. The [technical application annex](/guide/prototype-fund-technical/) explains the architecture, Frictionless's planned validation role and the different export standards. Neither Engine nor Workbench requires AI.
+FAIRmorph reuses FOSS infrastructure such as Polars and Tauri instead of replacing established table-processing systems. The [technical application annex](/guide/prototype-fund-technical-2/) explains the architecture, Frictionless's planned validation role and the different export standards. Neither Engine nor Workbench requires AI.
 
 ## The intended researcher journey
 
@@ -65,13 +65,13 @@ This is **not** a population estimate, scientific approval or proof of generic W
 
 **Demonstrated:** unchanged sources, selected declarative transformations, versioned definitions and decisions, verified RUNs, basic desktop workflows and independent real-data checks. The [v0.1.1 release](https://github.com/FAIRmorph/fairmorph-workbench/releases/tag/v0.1.1) includes built and smoke-tested Windows/Linux packages with a bundled Engine. Linux packages and portable Windows startup were manually tested; a brief [Windows console flash](https://github.com/FAIRmorph/fairmorph-workbench/issues/17) remains open.
 
-**Still planned or not verified:** complete guided scientific no-code workflows, broader ecological/GIS and media support, robust large-data/recovery operations, generic Workbench publication, full graphical acceptance testing, DOI assignment and publisher approval. The [Prototype Fund application](/guide/prototype-fund/) presents the six-month development plan and evidence boundaries.
+**Still planned or not verified:** complete guided scientific no-code workflows, broader ecological/GIS and media support, robust large-data/recovery operations, generic Workbench publication, full graphical acceptance testing, DOI assignment and publisher approval. The [Prototype Fund application](/guide/prototype-fund-2/) presents the six-month development plan and evidence boundaries.
 
 **For researchers**, the goal is less manual data preparation without surrendering scientific judgment. **For data stewards**, it is inspectable definitions and review history. **For future research teams**, it is easier interpretation and reproducible updates.
 
 ## Explore the documentation
 
-- [Prototype Fund application](/guide/prototype-fund/) — concrete evidence and six-month development plan (German).
+- [Prototype Fund application](/guide/prototype-fund-2/) — concrete evidence and six-month development plan (German).
 - [Engine](/engine/) and [Workbench user guide](/workbench/docs/user-guide/) — implemented processing and interface.
 - [Independent CS-PHOC validation](/validations/docs/cs-phoc-reproduction-and-results/) — reproducible real-data audit.
 - [Development installation](/guide/installation/) — prerequisites for contributors and testers.

@@ -5,6 +5,8 @@ description: "Architektur, Open-Source-Komponenten, nachgewiesener Proof of Conc
 
 **Offene Software, nachvollziehbare Datenverarbeitung und überprüfbare Ergebnisse.**
 
+[Zurück zur deutschsprachigen Bewerbungsübersicht](/guide/prototype-fund-2/)
+
 FAIRmorph verbindet einen unabhängig nutzbaren Python-Kern mit einer lokalen Desktop-Anwendung. Diese Seite dokumentiert die technische Umsetzung, den bereits entwickelten Proof of Concept und die geplanten Arbeiten während der sechsmonatigen Förderphase.
 
 ## 1. Technischer Aufbau: Ein gemeinsamer Kern für unterschiedliche Anwendungen

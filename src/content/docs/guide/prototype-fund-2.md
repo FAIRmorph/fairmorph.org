@@ -5,6 +5,8 @@ description: "Warum ökologische Forschungsdaten trotz vorhandener Werkzeuge sch
 
 **Weniger Aufwand bei der Datenaufbereitung. Mehr Klarheit darüber, was Daten bedeuten und wie sie verarbeitet wurden.**
 
+[Technische Umsetzung und überprüfbare Nachweise](/guide/prototype-fund-technical-2/)
+
 FAIRmorph ist ein Open-Source-Projekt, das Forschende bei der Aufbereitung ökologischer Forschungsdaten unterstützen soll – von vorhandenen Rohdaten bis zu dokumentierten, geprüften Ergebnissen.
 
 ## 1. Die Daten sind da. Aber lassen sie sich auch wiederverwenden?
